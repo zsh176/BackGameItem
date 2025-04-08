@@ -37,7 +37,11 @@ public class MonoMgr : InstanceMgr<MonoMgr>
         controller.RemoveUpdateListener(fun);
     }
 
-
+    /// <summary>
+    /// 提供给外部 开启协程
+    /// </summary>
+    /// <param name="routine"></param>
+    /// <returns></returns>
     public Coroutine StartCoroutine(IEnumerator routine)
     {
         return controller.StartCoroutine(routine);

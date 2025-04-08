@@ -39,9 +39,9 @@ public class ScenesMgr : InstanceMgr<ScenesMgr>
         while (!ao.isDone)
         {
             //事件中心 向外分发 进度情况  外面想用就用
-            //EventCenter.Instance.EventTrigger("进度条更新", ao.progress);
+            //EventMgr.Instance.EventTrigger("进度条更新", ao.progress);
             //这里面去更新进度条
-            yield return ao.progress;
+            yield return null;
         }
         //加载完成过后 才会去执行fun
         fun();
