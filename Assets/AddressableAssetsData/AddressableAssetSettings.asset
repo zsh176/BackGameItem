@@ -43,8 +43,9 @@ MonoBehaviour:
   m_GroupAssets:
   - {fileID: 11400000, guid: 26e8184404527db49a2b7fbd23959284, type: 2}
   - {fileID: 11400000, guid: 307cde91d328cbb459416824a305d713, type: 2}
-  - {fileID: 11400000, guid: 38a34592b8c7f8e408757c470afd86b3, type: 2}
   - {fileID: 11400000, guid: ed6374bdef22f944082f97d93d1fa21a, type: 2}
+  - {fileID: 11400000, guid: 80c6a954fccd4414c9b72ff4cbc18c08, type: 2}
+  - {fileID: 11400000, guid: 4e8f0935fba598b44bf0ee4ffcef8f2c, type: 2}
   m_BuildSettings:
     m_CompileScriptsInVirtualMode: 0
     m_CleanupStreamingAssetsAfterBuilds: 1
@@ -101,6 +102,7 @@ MonoBehaviour:
     m_LabelNames:
     - default
     - UI
+    - Clip
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 209599f0edbcd5b4ba87427b14e0358b, type: 2}

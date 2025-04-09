@@ -9,15 +9,15 @@ using UnityEngine.Events;
 public class ResMgr : BaseManager<ResMgr>
 {
 
-    //同步加载资源
+    /// <summary>
+    /// 同步加载资源  如果对象是一个GameObject类型的 实例化后 再返回出去 外部 直接使用即可
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="name"></param>
+    /// <returns></returns>
     public T Load<T>(string name) where T : Object
     {
-        T res = Resources.Load<T>(name);
-        //如果对象是一个GameObject类型的 我把他实例化后 再返回出去 外部 直接使用即可
-        if (res is GameObject)
-            return GameObject.Instantiate(res);
-        else//TextAsset AudioClip
-            return res;
+        return Resources.Load<T>(name);
     }
 
 
@@ -34,10 +34,8 @@ public class ResMgr : BaseManager<ResMgr>
         ResourceRequest r = Resources.LoadAsync<T>(name);
         yield return r;
 
-        if (r.asset is GameObject)
-            callback(GameObject.Instantiate(r.asset) as T);
-        else
-            callback(r.asset as T);
+        callback(r.asset as T);
+
     }
 
 

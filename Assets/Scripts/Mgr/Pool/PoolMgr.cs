@@ -9,50 +9,52 @@ using UnityEngine.Events;
 /// </summary>
 public class PoolMgr : InstanceMgr<PoolMgr>
 {
-    //缓存池容器 (衣柜)
-    public Dictionary<string, PoolData> poolDic = new Dictionary<string, PoolData>();
-    //放在衣柜里暂时不用的东西的父物体
-    private GameObject poolObj;
+    public PoolMgr()
+    {
+        poolObj = new GameObject("Pool");
+        instObj = new GameObject("Inst");
+    }
 
+    //缓存池容器
+    public Dictionary<string, PoolData> poolDic = new Dictionary<string, PoolData>();
+    //放在缓存池里时的父物体
+    private GameObject poolObj;
+    //实例化在场景上时的父物体
+    private GameObject instObj;
 
     /// <summary>
-    /// 加载资源
+    /// 获取缓存池资源
     /// </summary>
-    /// <param name="name">资源路径</param>
-    /// <param name="pos">生成位置</param>
-    /// <param name="callBack">生成后想做的事情</param>
-    public void GetObj(string name, Vector3 pos, UnityAction<GameObject> callBack)
+    /// <param name="name">资源名</param>
+    /// <param name="callBack">传入参数是实例，在回调中不要重复生成</param>
+    public void GetObj(string name, UnityAction<GameObject> callBack)
     {
         //有对应的键(抽屉) 并且抽屉里面有东西
         if (poolDic.ContainsKey(name) && poolDic[name].poolList.Count > 0)
         {
-            callBack(poolDic[name].GetObj(pos));
+            callBack(poolDic[name].GetObj(instObj.transform));
         }
         else
         {
             //通过异步加载资源 创建对象给外部用
-            ResMgr.Instance.LoadAsync<GameObject>(name, (o) =>
+            AddressablesMgr.Instance.LoadAssetAsync<GameObject>(obj =>
             {
-                //资源加载完成后 想做的事情
-                o.name = name;
-                callBack(o);
-            });
-            //定义一个规则，生成物体的名字 就是池子的名字
+                //实例化完再传出去
+                GameObject inst = GameObject.Instantiate(obj);
+                inst.name = name;
+                inst.transform.parent = instObj.transform;
+                callBack(inst);
+            }, name);
         }
     }
 
     /// <summary>
     /// 回收资源
     /// </summary>
-    /// <param name="name">定义一个规则，池子的名字 就是物体的名字</param>
-    /// <param name="obj"></param>
-    public void PushObj(string name, GameObject obj)
+    /// <param name="obj">需要回收的物体</param>
+    public void PushObj(GameObject obj)
     {
-        if (poolObj == null)
-        {
-            poolObj = new GameObject("Pool");
-        }
-
+        string name = obj.name;
         //里面有抽屉
         if (poolDic.ContainsKey(name))
         {
@@ -76,7 +78,9 @@ public class PoolMgr : InstanceMgr<PoolMgr>
         poolDic.Clear();
         poolObj = null;
     }
+
 }
+
 
 /// <summary>
 /// 抽屉数据 池子中的一列容器
@@ -111,20 +115,21 @@ public class PoolData
     }
 
     //从抽屉里拿东西
-    public GameObject GetObj(Vector3 pos)
+    public GameObject GetObj(Transform parent)
     {
         GameObject obj = null;
         //取出第一个
         obj = poolList[0];
         //拿出去用了 就要字典里删除
         poolList.RemoveAt(0);
-        //生成位置
-        obj.transform.position = pos;
-
         //激活 让其显示
         obj.SetActive(true);
-        //断开父子关系
-        obj.transform.parent = null;
+        ////断开父子关系
+        //obj.transform.parent = null;
+        //设置显示时的父物体
+        obj.transform.parent = parent;
         return obj;
     }
 }
+
+
