@@ -1,0 +1,125 @@
+
+skill_effect_js_9.png
+size: 711,2500
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+9qiang1
+  rotate: true
+  xy: 2, 1396
+  size: 455, 500
+  orig: 462, 506
+  offset: 2, 3
+  index: -1
+9qiang2
+  rotate: false
+  xy: 2, 1028
+  size: 460, 366
+  orig: 462, 369
+  offset: 1, 2
+  index: -1
+9qiang3
+  rotate: false
+  xy: 2, 1853
+  size: 685, 645
+  orig: 693, 649
+  offset: 6, 2
+  index: -1
+9qiang4
+  rotate: true
+  xy: 2, 296
+  size: 730, 441
+  orig: 732, 444
+  offset: 2, 3
+  index: -1
+guangtognyong
+  rotate: false
+  xy: 464, 1361
+  size: 34, 33
+  orig: 39, 39
+  offset: 2, 3
+  index: -1
+liefeng-1
+  rotate: false
+  xy: 173, 2
+  size: 101, 122
+  orig: 116, 142
+  offset: 8, 10
+  index: -1
+liefeng-10
+  rotate: true
+  xy: 445, 228
+  size: 170, 261
+  orig: 187, 279
+  offset: 8, 10
+  index: -1
+liefeng-11
+  rotate: true
+  xy: 445, 571
+  size: 167, 264
+  orig: 183, 284
+  offset: 8, 10
+  index: -1
+liefeng-12
+  rotate: true
+  xy: 464, 1176
+  size: 129, 209
+  orig: 153, 234
+  offset: 11, 13
+  index: -1
+liefeng-2
+  rotate: false
+  xy: 464, 910
+  size: 174, 264
+  orig: 194, 278
+  offset: 9, 8
+  index: -1
+liefeng-3
+  rotate: false
+  xy: 504, 1574
+  size: 175, 277
+  orig: 193, 291
+  offset: 10, 11
+  index: -1
+liefeng-4
+  rotate: false
+  xy: 504, 1307
+  size: 175, 265
+  orig: 195, 295
+  offset: 11, 15
+  index: -1
+liefeng-5
+  rotate: true
+  xy: 445, 740
+  size: 168, 264
+  orig: 184, 283
+  offset: 7, 12
+  index: -1
+liefeng-6
+  rotate: false
+  xy: 2, 33
+  size: 169, 261
+  orig: 185, 281
+  offset: 6, 13
+  index: -1
+liefeng-7
+  rotate: true
+  xy: 432, 59
+  size: 167, 257
+  orig: 188, 279
+  offset: 7, 14
+  index: -1
+liefeng-8
+  rotate: true
+  xy: 173, 126
+  size: 168, 257
+  orig: 186, 277
+  offset: 8, 12
+  index: -1
+liefeng-9
+  rotate: true
+  xy: 445, 400
+  size: 169, 262
+  orig: 183, 278
+  offset: 6, 8
+  index: -1

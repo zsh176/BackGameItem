@@ -1,0 +1,34 @@
+
+skill_effect_js_6.png
+size: 291,128
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ghtx-dg1
+  rotate: false
+  xy: 139, 2
+  size: 130, 124
+  orig: 134, 127
+  offset: 2, 1
+  index: -1
+ghtx-dg2
+  rotate: false
+  xy: 2, 3
+  size: 135, 123
+  orig: 138, 128
+  offset: 1, 0
+  index: -1
+ghtx-gdd
+  rotate: false
+  xy: 271, 74
+  size: 18, 18
+  orig: 20, 20
+  offset: 1, 1
+  index: -1
+ghtx-gongji
+  rotate: false
+  xy: 271, 94
+  size: 18, 32
+  orig: 18, 32
+  offset: 0, 0
+  index: -1

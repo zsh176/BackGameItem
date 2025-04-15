@@ -1,0 +1,41 @@
+
+js_17_zd.png
+size: 887,86
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+hytw1
+  rotate: false
+  xy: 467, 6
+  size: 194, 78
+  orig: 200, 82
+  offset: 3, 2
+  index: -1
+hytw2
+  rotate: false
+  xy: 241, 6
+  size: 224, 78
+  orig: 229, 82
+  offset: 3, 2
+  index: -1
+hytw3
+  rotate: false
+  xy: 2, 4
+  size: 237, 80
+  orig: 241, 83
+  offset: 2, 1
+  index: -1
+hytw4
+  rotate: false
+  xy: 663, 2
+  size: 173, 82
+  orig: 178, 86
+  offset: 3, 2
+  index: -1
+hytw5
+  rotate: false
+  xy: 838, 37
+  size: 47, 47
+  orig: 49, 49
+  offset: 1, 1
+  index: -1

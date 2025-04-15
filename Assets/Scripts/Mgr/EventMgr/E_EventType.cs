@@ -8,5 +8,6 @@ using UnityEngine;
 public enum E_EventType
 {
     _null,
-    test
+    dragHero,//拖拽角色
+    placeMatrix,//角色成功放在矩阵上
 }

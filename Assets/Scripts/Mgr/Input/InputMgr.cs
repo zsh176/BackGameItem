@@ -36,7 +36,7 @@ public class InputMgr : InstanceMgr<InputMgr>
     /// 添加监听输入
     /// </summary>
     /// <param name="key">需要监听的key</param>
-    /// <param name="onClick"></param>
+    /// <param name="onClick">执行回调</param>
     public void AddKeyCode(KeyCode key, UnityAction onClick)
     {
         if (!keysOnClickDic.ContainsKey(key))

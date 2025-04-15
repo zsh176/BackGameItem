@@ -1,0 +1,20 @@
+
+gw_5-6jn.png
+size: 160,116
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gw_4huanq
+  rotate: false
+  xy: 2, 2
+  size: 112, 112
+  orig: 112, 112
+  offset: 0, 0
+  index: -1
+gw_5-6zhil
+  rotate: false
+  xy: 116, 72
+  size: 42, 42
+  orig: 46, 46
+  offset: 2, 2
+  index: -1

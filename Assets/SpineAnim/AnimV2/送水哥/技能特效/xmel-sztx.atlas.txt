@@ -1,0 +1,181 @@
+
+xmel-sztx.png
+size: 1859,650
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+anying-2
+  rotate: true
+  xy: 1433, 61
+  size: 183, 221
+  orig: 208, 236
+  offset: 18, 8
+  index: -1
+anying-3
+  rotate: true
+  xy: 1639, 448
+  size: 200, 218
+  orig: 218, 236
+  offset: 11, 7
+  index: -1
+anying-4
+  rotate: false
+  xy: 1479, 246
+  size: 205, 200
+  orig: 225, 227
+  offset: 12, 8
+  index: -1
+anying-5
+  rotate: true
+  xy: 1686, 242
+  size: 204, 170
+  orig: 223, 196
+  offset: 12, 8
+  index: -1
+anying-6
+  rotate: false
+  xy: 1656, 70
+  size: 199, 170
+  orig: 221, 196
+  offset: 12, 8
+  index: -1
+anying-7
+  rotate: false
+  xy: 1299, 423
+  size: 178, 76
+  orig: 209, 97
+  offset: 11, 8
+  index: -1
+guangtognyong
+  rotate: true
+  xy: 618, 310
+  size: 34, 33
+  orig: 39, 39
+  offset: 2, 3
+  index: -1
+shuiz-1
+  rotate: false
+  xy: 986, 9
+  size: 147, 338
+  orig: 147, 338
+  offset: 0, 0
+  index: -1
+shuiz-10
+  rotate: true
+  xy: 959, 349
+  size: 148, 338
+  orig: 148, 338
+  offset: 0, 0
+  index: -1
+shuiz-11
+  rotate: false
+  xy: 1284, 9
+  size: 147, 338
+  orig: 147, 338
+  offset: 0, 0
+  index: -1
+shuiz-12
+  rotate: true
+  xy: 1299, 501
+  size: 147, 338
+  orig: 147, 338
+  offset: 0, 0
+  index: -1
+shuiz-13
+  rotate: false
+  xy: 310, 310
+  size: 152, 338
+  orig: 152, 338
+  offset: 0, 0
+  index: -1
+shuiz-14
+  rotate: true
+  xy: 342, 156
+  size: 152, 338
+  orig: 152, 338
+  offset: 0, 0
+  index: -1
+shuiz-15
+  rotate: true
+  xy: 342, 2
+  size: 152, 338
+  orig: 152, 338
+  offset: 0, 0
+  index: -1
+shuiz-16
+  rotate: false
+  xy: 464, 310
+  size: 152, 338
+  orig: 152, 338
+  offset: 0, 0
+  index: -1
+shuiz-17
+  rotate: false
+  xy: 682, 5
+  size: 150, 339
+  orig: 150, 339
+  offset: 0, 0
+  index: -1
+shuiz-18
+  rotate: false
+  xy: 834, 5
+  size: 150, 339
+  orig: 150, 339
+  offset: 0, 0
+  index: -1
+shuiz-2
+  rotate: false
+  xy: 1135, 9
+  size: 147, 338
+  orig: 147, 338
+  offset: 0, 0
+  index: -1
+shuiz-3
+  rotate: false
+  xy: 2, 310
+  size: 152, 338
+  orig: 152, 338
+  offset: 0, 0
+  index: -1
+shuiz-4
+  rotate: true
+  xy: 2, 156
+  size: 152, 338
+  orig: 152, 338
+  offset: 0, 0
+  index: -1
+shuiz-5
+  rotate: true
+  xy: 2, 2
+  size: 152, 338
+  orig: 152, 338
+  offset: 0, 0
+  index: -1
+shuiz-6
+  rotate: false
+  xy: 156, 310
+  size: 152, 338
+  orig: 152, 338
+  offset: 0, 0
+  index: -1
+shuiz-7
+  rotate: true
+  xy: 618, 498
+  size: 150, 339
+  orig: 150, 339
+  offset: 0, 0
+  index: -1
+shuiz-8
+  rotate: true
+  xy: 618, 346
+  size: 150, 339
+  orig: 150, 339
+  offset: 0, 0
+  index: -1
+shuiz-9
+  rotate: true
+  xy: 959, 499
+  size: 149, 338
+  orig: 149, 338
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,76 @@
+
+boss7.png
+size: 1038,168
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gw15-sheni
+  rotate: true
+  xy: 289, 19
+  size: 147, 225
+  orig: 147, 225
+  offset: 0, 0
+  index: -1
+gw15-tou
+  rotate: true
+  xy: 516, 2
+  size: 164, 183
+  orig: 171, 185
+  offset: 1, 1
+  index: -1
+gw15-touy
+  rotate: false
+  xy: 788, 3
+  size: 188, 48
+  orig: 190, 50
+  offset: 1, 1
+  index: -1
+gw15-wuqi
+  rotate: true
+  xy: 2, 9
+  size: 157, 285
+  orig: 161, 289
+  offset: 2, 2
+  index: -1
+gw15-youb
+  rotate: false
+  xy: 936, 70
+  size: 43, 96
+  orig: 45, 98
+  offset: 1, 1
+  index: -1
+gw15-yous
+  rotate: true
+  xy: 981, 93
+  size: 73, 43
+  orig: 75, 46
+  offset: 1, 1
+  index: -1
+gw15-yout
+  rotate: false
+  xy: 788, 53
+  size: 94, 113
+  orig: 95, 115
+  offset: 1, 1
+  index: -1
+gw15-zuob
+  rotate: false
+  xy: 978, 4
+  size: 58, 64
+  orig: 61, 67
+  offset: 1, 2
+  index: -1
+gw15-zuos
+  rotate: true
+  xy: 884, 67
+  size: 99, 50
+  orig: 101, 52
+  offset: 1, 1
+  index: -1
+gw15-zuot
+  rotate: false
+  xy: 701, 35
+  size: 85, 131
+  orig: 85, 131
+  offset: 0, 0
+  index: -1

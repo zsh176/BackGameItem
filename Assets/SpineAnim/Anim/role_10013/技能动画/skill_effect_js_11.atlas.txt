@@ -1,0 +1,90 @@
+
+skill_effect_js_11.png
+size: 508,629
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+13dl1
+  rotate: true
+  xy: 245, 329
+  size: 298, 164
+  orig: 307, 189
+  offset: 4, 3
+  index: -1
+13qi
+  rotate: true
+  xy: 258, 4
+  size: 254, 248
+  orig: 258, 258
+  offset: 3, 5
+  index: -1
+13xg1
+  rotate: true
+  xy: 411, 345
+  size: 35, 33
+  orig: 37, 35
+  offset: 1, 1
+  index: -1
+13xg2
+  rotate: true
+  xy: 411, 382
+  size: 56, 51
+  orig: 58, 53
+  offset: 1, 1
+  index: -1
+13xg3
+  rotate: false
+  xy: 332, 263
+  size: 42, 64
+  orig: 44, 66
+  offset: 1, 1
+  index: -1
+13xg4
+  rotate: false
+  xy: 245, 260
+  size: 85, 67
+  orig: 87, 70
+  offset: 1, 2
+  index: -1
+13xg5
+  rotate: true
+  xy: 411, 440
+  size: 76, 46
+  orig: 78, 48
+  offset: 1, 1
+  index: -1
+13xg6
+  rotate: true
+  xy: 376, 268
+  size: 59, 78
+  orig: 61, 80
+  offset: 1, 1
+  index: -1
+13xg7
+  rotate: false
+  xy: 411, 518
+  size: 95, 109
+  orig: 97, 112
+  offset: 1, 1
+  index: -1
+guangtognyong
+  rotate: true
+  xy: 446, 346
+  size: 34, 33
+  orig: 39, 39
+  offset: 2, 3
+  index: -1
+qiquan
+  rotate: false
+  xy: 2, 2
+  size: 254, 254
+  orig: 264, 264
+  offset: 5, 5
+  index: -1
+xig-dilie
+  rotate: true
+  xy: 2, 258
+  size: 369, 241
+  orig: 373, 243
+  offset: 3, 1
+  index: -1

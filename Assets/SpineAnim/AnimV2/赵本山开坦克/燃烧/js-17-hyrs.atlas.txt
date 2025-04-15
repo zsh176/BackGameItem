@@ -1,0 +1,55 @@
+
+js-17-hyrs.png
+size: 655,124
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+js17-hyrs1
+  rotate: true
+  xy: 388, 6
+  size: 116, 90
+  orig: 120, 111
+  offset: 1, 2
+  index: -1
+js17_hyrs2
+  rotate: true
+  xy: 569, 5
+  size: 117, 84
+  orig: 122, 90
+  offset: 3, 3
+  index: -1
+js17_hyrs3
+  rotate: true
+  xy: 297, 2
+  size: 120, 89
+  orig: 124, 110
+  offset: 2, 2
+  index: -1
+js17_hyrs4
+  rotate: true
+  xy: 102, 5
+  size: 117, 94
+  orig: 122, 110
+  offset: 2, 2
+  index: -1
+js17_hyrs5
+  rotate: true
+  xy: 2, 5
+  size: 117, 98
+  orig: 122, 111
+  offset: 2, 2
+  index: -1
+js17_hyrs6
+  rotate: true
+  xy: 198, 9
+  size: 113, 97
+  orig: 117, 111
+  offset: 1, 2
+  index: -1
+js17_hyrs7
+  rotate: true
+  xy: 480, 9
+  size: 113, 87
+  orig: 117, 110
+  offset: 2, 2
+  index: -1

@@ -1,0 +1,76 @@
+
+skill_effect_js_18.png
+size: 3288,1132
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+rlsz-1
+  rotate: true
+  xy: 2, 28
+  size: 574, 661
+  orig: 1002, 1002
+  offset: 220, 166
+  index: -1
+rlsz-2
+  rotate: true
+  xy: 757, 568
+  size: 562, 669
+  orig: 1002, 1002
+  offset: 232, 164
+  index: -1
+rlsz-3
+  rotate: true
+  xy: 1984, 2
+  size: 566, 656
+  orig: 1002, 1002
+  offset: 226, 168
+  index: -1
+rlsz-4
+  rotate: true
+  xy: 1323, 3
+  size: 563, 659
+  orig: 1002, 1002
+  offset: 227, 166
+  index: -1
+rlsz-5
+  rotate: true
+  xy: 665, 2
+  size: 564, 656
+  orig: 1002, 1002
+  offset: 230, 166
+  index: -1
+rlsz-6
+  rotate: true
+  xy: 2099, 570
+  size: 560, 661
+  orig: 1002, 1002
+  offset: 232, 168
+  index: -1
+rlsz-7
+  rotate: true
+  xy: 1428, 574
+  size: 556, 669
+  orig: 1002, 1002
+  offset: 237, 164
+  index: -1
+rlsz-8
+  rotate: true
+  xy: 2642, 9
+  size: 559, 644
+  orig: 1002, 1002
+  offset: 235, 169
+  index: -1
+rlsz-dl
+  rotate: false
+  xy: 2762, 889
+  size: 369, 241
+  orig: 374, 273
+  offset: 4, 16
+  index: -1
+rlsz-yj
+  rotate: false
+  xy: 2, 604
+  size: 753, 526
+  orig: 800, 600
+  offset: 47, 0
+  index: -1

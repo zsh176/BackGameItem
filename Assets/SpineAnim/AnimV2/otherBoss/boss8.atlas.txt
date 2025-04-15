@@ -1,0 +1,118 @@
+
+boss8.png
+size: 1067,442
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bs8-gq
+  rotate: true
+  xy: 2, 18
+  size: 422, 409
+  orig: 440, 442
+  offset: 7, 10
+  index: -1
+bs8-st
+  rotate: true
+  xy: 609, 44
+  size: 154, 223
+  orig: 156, 225
+  offset: 1, 1
+  index: -1
+bs8-st2
+  rotate: false
+  xy: 755, 228
+  size: 111, 212
+  orig: 113, 214
+  offset: 1, 1
+  index: -1
+bs8-tou
+  rotate: false
+  xy: 609, 200
+  size: 144, 240
+  orig: 144, 240
+  offset: 0, 0
+  index: -1
+bs8-touy
+  rotate: false
+  xy: 609, 3
+  size: 188, 39
+  orig: 190, 41
+  offset: 1, 1
+  index: -1
+bs8-yaod
+  rotate: true
+  xy: 949, 91
+  size: 148, 88
+  orig: 148, 88
+  offset: 0, 0
+  index: -1
+bs8-youb
+  rotate: false
+  xy: 834, 74
+  size: 113, 152
+  orig: 113, 152
+  offset: 0, 0
+  index: -1
+bs8-yout
+  rotate: false
+  xy: 990, 332
+  size: 75, 108
+  orig: 75, 108
+  offset: 0, 0
+  index: -1
+bs8-yun1
+  rotate: true
+  xy: 413, 9
+  size: 431, 194
+  orig: 431, 194
+  offset: 0, 0
+  index: -1
+bs8-yun2
+  rotate: false
+  xy: 834, 18
+  size: 130, 54
+  orig: 133, 56
+  offset: 2, 1
+  index: -1
+bs8-yun3
+  rotate: false
+  xy: 34, 2
+  size: 16, 14
+  orig: 19, 16
+  offset: 1, 1
+  index: -1
+bs8-yun4
+  rotate: false
+  xy: 2, 2
+  size: 30, 14
+  orig: 32, 16
+  offset: 1, 1
+  index: -1
+bs8-zd
+  rotate: false
+  xy: 868, 315
+  size: 120, 125
+  orig: 123, 127
+  offset: 2, 1
+  index: -1
+bs8-zuob
+  rotate: true
+  xy: 868, 241
+  size: 72, 132
+  orig: 74, 134
+  offset: 1, 1
+  index: -1
+bs8-zuos
+  rotate: false
+  xy: 1002, 243
+  size: 53, 87
+  orig: 53, 88
+  offset: 0, 0
+  index: -1
+bs8-zuot
+  rotate: true
+  xy: 966, 8
+  size: 81, 93
+  orig: 81, 93
+  offset: 0, 0
+  index: -1

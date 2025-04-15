@@ -1,0 +1,34 @@
+
+bossll.png
+size: 612,724
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bsll-gth
+  rotate: false
+  xy: 435, 204
+  size: 175, 175
+  orig: 177, 177
+  offset: 1, 1
+  index: -1
+bsll-hks
+  rotate: true
+  xy: 2, 2
+  size: 720, 236
+  orig: 722, 238
+  offset: 1, 1
+  index: -1
+bsll-hkx
+  rotate: true
+  xy: 240, 2
+  size: 720, 193
+  orig: 722, 195
+  offset: 1, 1
+  index: -1
+bsll-zi
+  rotate: true
+  xy: 435, 381
+  size: 341, 118
+  orig: 341, 118
+  offset: 0, 0
+  index: -1

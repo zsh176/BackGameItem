@@ -1,0 +1,41 @@
+
+show_js_5.png
+size: 101,400
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+0
+  rotate: true
+  xy: 2, 89
+  size: 89, 76
+  orig: 89, 76
+  offset: 0, 0
+  index: -1
+1
+  rotate: true
+  xy: 2, 279
+  size: 119, 97
+  orig: 119, 97
+  offset: 0, 0
+  index: -1
+2
+  rotate: false
+  xy: 2, 2
+  size: 83, 85
+  orig: 83, 85
+  offset: 0, 0
+  index: -1
+3
+  rotate: false
+  xy: 2, 180
+  size: 94, 97
+  orig: 94, 97
+  offset: 0, 0
+  index: -1
+4
+  rotate: true
+  xy: 80, 155
+  size: 23, 19
+  orig: 23, 19
+  offset: 0, 0
+  index: -1

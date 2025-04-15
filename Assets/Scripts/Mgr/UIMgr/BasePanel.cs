@@ -19,12 +19,12 @@ public class BasePanel : MonoBehaviour
     protected virtual void Awake()
     {
         FindChildrenControl<Button>();
-        FindChildrenControl<Image>();
-        FindChildrenControl<Text>();
+        //FindChildrenControl<Image>();
+        //FindChildrenControl<Text>();
         FindChildrenControl<Toggle>();
-        FindChildrenControl<Slider>();
+        //FindChildrenControl<Slider>();
         FindChildrenControl<ScrollRect>();
-        FindChildrenControl<InputField>();
+        //FindChildrenControl<InputField>();
     }
 
     /// <summary>

@@ -1,0 +1,55 @@
+
+buffquan.png
+size: 518,55
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+diquan1
+  rotate: false
+  xy: 2, 2
+  size: 76, 51
+  orig: 78, 53
+  offset: 1, 1
+  index: -1
+diquan2
+  rotate: false
+  xy: 232, 3
+  size: 71, 50
+  orig: 74, 53
+  offset: 2, 1
+  index: -1
+diquan3
+  rotate: false
+  xy: 80, 2
+  size: 76, 51
+  orig: 78, 53
+  offset: 1, 1
+  index: -1
+diquan4
+  rotate: false
+  xy: 158, 3
+  size: 72, 50
+  orig: 74, 54
+  offset: 1, 2
+  index: -1
+diquan5
+  rotate: false
+  xy: 376, 4
+  size: 69, 49
+  orig: 71, 53
+  offset: 1, 1
+  index: -1
+diquan6
+  rotate: false
+  xy: 305, 3
+  size: 69, 50
+  orig: 71, 53
+  offset: 1, 2
+  index: -1
+diquan7
+  rotate: false
+  xy: 447, 4
+  size: 69, 49
+  orig: 71, 51
+  offset: 1, 1
+  index: -1

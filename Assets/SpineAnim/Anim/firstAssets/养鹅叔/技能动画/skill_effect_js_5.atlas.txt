@@ -1,0 +1,125 @@
+
+skill_effect_js_5.png
+size: 1051,269
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+de5dae
+  rotate: false
+  xy: 893, 144
+  size: 148, 123
+  orig: 148, 127
+  offset: 0, 0
+  index: -1
+de5et1
+  rotate: false
+  xy: 994, 2
+  size: 26, 22
+  orig: 26, 22
+  offset: 0, 0
+  index: -1
+de5et2
+  rotate: false
+  xy: 1022, 2
+  size: 25, 22
+  orig: 25, 22
+  offset: 0, 0
+  index: -1
+defuhao
+  rotate: true
+  xy: 889, 20
+  size: 44, 103
+  orig: 44, 103
+  offset: 0, 0
+  index: -1
+dehouchi
+  rotate: true
+  xy: 972, 104
+  size: 38, 77
+  orig: 38, 78
+  offset: 0, 0
+  index: -1
+deqianchi
+  rotate: false
+  xy: 889, 66
+  size: 81, 76
+  orig: 81, 76
+  offset: 0, 0
+  index: -1
+detouy
+  rotate: false
+  xy: 972, 82
+  size: 65, 20
+  orig: 65, 20
+  offset: 0, 0
+  index: -1
+dqq1
+  rotate: false
+  xy: 2, 144
+  size: 220, 123
+  orig: 221, 123
+  offset: 0, 0
+  index: -1
+dqq2
+  rotate: false
+  xy: 2, 19
+  size: 220, 123
+  orig: 220, 123
+  offset: 0, 0
+  index: -1
+dqq3
+  rotate: false
+  xy: 224, 20
+  size: 219, 123
+  orig: 221, 123
+  offset: 0, 0
+  index: -1
+dqq4
+  rotate: false
+  xy: 447, 21
+  size: 219, 123
+  orig: 220, 123
+  offset: 0, 0
+  index: -1
+dqq5
+  rotate: false
+  xy: 668, 20
+  size: 219, 123
+  orig: 220, 123
+  offset: 0, 0
+  index: -1
+dqq6
+  rotate: false
+  xy: 224, 145
+  size: 221, 122
+  orig: 222, 122
+  offset: 0, 0
+  index: -1
+dqq7
+  rotate: false
+  xy: 447, 146
+  size: 222, 121
+  orig: 223, 121
+  offset: 0, 0
+  index: -1
+dqq8
+  rotate: false
+  xy: 671, 145
+  size: 220, 122
+  orig: 221, 122
+  offset: 0, 0
+  index: -1
+eeehg
+  rotate: true
+  xy: 994, 26
+  size: 54, 44
+  orig: 56, 45
+  offset: 1, 1
+  index: -1
+eeeyg
+  rotate: false
+  xy: 2, 5
+  size: 103, 12
+  orig: 104, 20
+  offset: 1, 1
+  index: -1

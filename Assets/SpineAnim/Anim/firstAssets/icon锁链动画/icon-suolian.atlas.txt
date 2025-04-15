@@ -1,0 +1,62 @@
+
+icon-suolian.png
+size: 533,225
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+suolian1
+  rotate: false
+  xy: 135, 114
+  size: 130, 109
+  orig: 134, 114
+  offset: 2, 2
+  index: -1
+suolian11
+  rotate: false
+  xy: 268, 2
+  size: 130, 110
+  orig: 135, 114
+  offset: 2, 2
+  index: -1
+suolian13
+  rotate: false
+  xy: 399, 114
+  size: 130, 109
+  orig: 135, 114
+  offset: 2, 2
+  index: -1
+suolian15
+  rotate: false
+  xy: 400, 2
+  size: 131, 110
+  orig: 135, 114
+  offset: 2, 2
+  index: -1
+suolian3
+  rotate: false
+  xy: 2, 115
+  size: 131, 108
+  orig: 135, 114
+  offset: 2, 3
+  index: -1
+suolian5
+  rotate: false
+  xy: 2, 3
+  size: 131, 110
+  orig: 135, 114
+  offset: 2, 2
+  index: -1
+suolian7
+  rotate: false
+  xy: 267, 114
+  size: 130, 109
+  orig: 134, 114
+  offset: 2, 2
+  index: -1
+suolian9
+  rotate: false
+  xy: 135, 2
+  size: 131, 110
+  orig: 135, 114
+  offset: 2, 2
+  index: -1

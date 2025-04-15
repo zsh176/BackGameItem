@@ -1,0 +1,27 @@
+
+skill_effect_js_3.png
+size: 603,467
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gw12-guangh
+  rotate: false
+  xy: 2, 2
+  size: 470, 463
+  orig: 476, 470
+  offset: 2, 4
+  index: -1
+gw12-hd
+  rotate: false
+  xy: 474, 197
+  size: 105, 139
+  orig: 107, 141
+  offset: 1, 1
+  index: -1
+图层 1
+  rotate: false
+  xy: 474, 338
+  size: 127, 127
+  orig: 141, 141
+  offset: 8, 7
+  index: -1

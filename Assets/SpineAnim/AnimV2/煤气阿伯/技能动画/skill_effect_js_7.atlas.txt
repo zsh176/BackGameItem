@@ -1,0 +1,55 @@
+
+skill_effect_js_7.png
+size: 224,792
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+7huoyan
+  rotate: true
+  xy: 2, 22
+  size: 112, 147
+  orig: 120, 158
+  offset: 5, 7
+  index: -1
+7tukuai
+  rotate: false
+  xy: 2, 628
+  size: 203, 162
+  orig: 352, 213
+  offset: 96, 0
+  index: -1
+7yanwu
+  rotate: true
+  xy: 151, 2
+  size: 132, 60
+  orig: 147, 68
+  offset: 3, 2
+  index: -1
+xhz1/7wuqitx
+  rotate: true
+  xy: 2, 505
+  size: 121, 220
+  orig: 121, 222
+  offset: 0, 0
+  index: -1
+xhz2/7wuqitx
+  rotate: true
+  xy: 2, 382
+  size: 121, 220
+  orig: 121, 222
+  offset: 0, 0
+  index: -1
+xhz3/7wuqitx
+  rotate: true
+  xy: 2, 259
+  size: 121, 220
+  orig: 121, 222
+  offset: 0, 0
+  index: -1
+xhz4/7wuqitx
+  rotate: true
+  xy: 2, 136
+  size: 121, 220
+  orig: 121, 222
+  offset: 0, 0
+  index: -1

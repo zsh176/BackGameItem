@@ -1,0 +1,90 @@
+
+js20_zdbz.png
+size: 343,707
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+lxwbz1
+  rotate: false
+  xy: 217, 3
+  size: 99, 111
+  orig: 108, 120
+  offset: 4, 4
+  index: -1
+lxwbz10
+  rotate: true
+  xy: 2, 114
+  size: 140, 139
+  orig: 142, 141
+  offset: 1, 1
+  index: -1
+lxwbz11
+  rotate: false
+  xy: 2, 256
+  size: 140, 140
+  orig: 142, 142
+  offset: 1, 1
+  index: -1
+lxwbz12
+  rotate: false
+  xy: 2, 398
+  size: 141, 138
+  orig: 143, 140
+  offset: 1, 1
+  index: -1
+lxwbz2
+  rotate: false
+  xy: 112, 4
+  size: 103, 108
+  orig: 115, 117
+  offset: 5, 4
+  index: -1
+lxwbz3
+  rotate: true
+  xy: 241, 273
+  size: 123, 100
+  orig: 133, 109
+  offset: 5, 4
+  index: -1
+lxwbz4
+  rotate: true
+  xy: 144, 271
+  size: 125, 95
+  orig: 134, 106
+  offset: 5, 4
+  index: -1
+lxwbz5
+  rotate: false
+  xy: 2, 2
+  size: 108, 110
+  orig: 133, 135
+  offset: 12, 13
+  index: -1
+lxwbz6
+  rotate: false
+  xy: 172, 398
+  size: 142, 141
+  orig: 159, 157
+  offset: 9, 8
+  index: -1
+lxwbz7
+  rotate: true
+  xy: 172, 541
+  size: 164, 167
+  orig: 170, 170
+  offset: 5, 1
+  index: -1
+lxwbz8
+  rotate: true
+  xy: 2, 538
+  size: 167, 168
+  orig: 170, 170
+  offset: 1, 1
+  index: -1
+lxwbz9
+  rotate: true
+  xy: 143, 116
+  size: 138, 136
+  orig: 163, 161
+  offset: 15, 12
+  index: -1

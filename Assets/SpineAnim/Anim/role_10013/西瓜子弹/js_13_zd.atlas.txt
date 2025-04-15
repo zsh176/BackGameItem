@@ -1,0 +1,41 @@
+
+js_13_zd.png
+size: 326,252
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+js_13_zd1
+  rotate: true
+  xy: 258, 197
+  size: 53, 66
+  orig: 53, 66
+  offset: 0, 0
+  index: -1
+js_13_zd2
+  rotate: true
+  xy: 258, 142
+  size: 53, 66
+  orig: 53, 66
+  offset: 0, 0
+  index: -1
+js_13_zd3
+  rotate: true
+  xy: 258, 87
+  size: 53, 66
+  orig: 53, 66
+  offset: 0, 0
+  index: -1
+js_13_zd4
+  rotate: true
+  xy: 258, 32
+  size: 53, 66
+  orig: 53, 66
+  offset: 0, 0
+  index: -1
+qitiliu
+  rotate: false
+  xy: 2, 2
+  size: 254, 248
+  orig: 258, 258
+  offset: 3, 5
+  index: -1

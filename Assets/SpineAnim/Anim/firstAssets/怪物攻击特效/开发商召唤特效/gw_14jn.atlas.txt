@@ -1,0 +1,41 @@
+
+gw_14jn.png
+size: 643,164
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+gw14tx1
+  rotate: false
+  xy: 495, 37
+  size: 146, 125
+  orig: 148, 127
+  offset: 1, 1
+  index: -1
+gw14tx2
+  rotate: false
+  xy: 2, 2
+  size: 197, 160
+  orig: 199, 162
+  offset: 1, 1
+  index: -1
+gw14tx3
+  rotate: false
+  xy: 357, 23
+  size: 136, 139
+  orig: 138, 141
+  offset: 1, 1
+  index: -1
+gw14tx4
+  rotate: false
+  xy: 201, 2
+  size: 154, 160
+  orig: 156, 162
+  offset: 1, 1
+  index: -1
+gw14tx5
+  rotate: false
+  xy: 495, 5
+  size: 36, 30
+  orig: 38, 32
+  offset: 1, 1
+  index: -1

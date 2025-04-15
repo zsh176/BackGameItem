@@ -1,0 +1,76 @@
+
+jn_15.png
+size: 282,655
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+ebqzd-djl
+  rotate: false
+  xy: 133, 15
+  size: 140, 136
+  orig: 143, 138
+  offset: 1, 1
+  index: -1
+ebqzd-shent
+  rotate: false
+  xy: 2, 153
+  size: 191, 148
+  orig: 193, 149
+  offset: 1, 1
+  index: -1
+ebqzd-tou
+  rotate: true
+  xy: 2, 2
+  size: 149, 129
+  orig: 151, 132
+  offset: 1, 2
+  index: -1
+ebqzd-weib
+  rotate: false
+  xy: 255, 372
+  size: 23, 39
+  orig: 25, 42
+  offset: 1, 1
+  index: -1
+ebqzd-xueh
+  rotate: false
+  xy: 2, 303
+  size: 204, 281
+  orig: 217, 283
+  offset: 6, 1
+  index: -1
+ebqzd-yous
+  rotate: true
+  xy: 208, 413
+  size: 77, 72
+  orig: 78, 72
+  offset: 1, 0
+  index: -1
+ebqzd-zui
+  rotate: true
+  xy: 208, 492
+  size: 92, 72
+  orig: 94, 74
+  offset: 1, 1
+  index: -1
+ebqzd-zuoj
+  rotate: false
+  xy: 208, 326
+  size: 45, 85
+  orig: 45, 86
+  offset: 0, 0
+  index: -1
+ebqzd-zuos
+  rotate: false
+  xy: 195, 204
+  size: 84, 97
+  orig: 84, 97
+  offset: 0, 0
+  index: -1
+js15zd-touy
+  rotate: false
+  xy: 2, 586
+  size: 260, 67
+  orig: 262, 69
+  offset: 1, 1
+  index: -1

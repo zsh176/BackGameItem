@@ -1,0 +1,55 @@
+
+js_10_zid.png
+size: 634,174
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+guangtognyong
+  rotate: false
+  xy: 566, 23
+  size: 34, 33
+  orig: 39, 39
+  offset: 2, 3
+  index: -1
+yaling
+  rotate: false
+  xy: 472, 6
+  size: 92, 50
+  orig: 94, 52
+  offset: 1, 1
+  index: -1
+ylgx-1
+  rotate: true
+  xy: 472, 58
+  size: 114, 160
+  orig: 116, 162
+  offset: 1, 1
+  index: -1
+ylgx-2
+  rotate: false
+  xy: 2, 2
+  size: 115, 170
+  orig: 117, 172
+  offset: 1, 1
+  index: -1
+ylgx-3
+  rotate: false
+  xy: 119, 2
+  size: 115, 170
+  orig: 117, 172
+  offset: 1, 1
+  index: -1
+ylgx-4
+  rotate: false
+  xy: 236, 3
+  size: 116, 169
+  orig: 118, 171
+  offset: 1, 1
+  index: -1
+ylgx-5
+  rotate: false
+  xy: 354, 10
+  size: 116, 162
+  orig: 118, 164
+  offset: 1, 1
+  index: -1

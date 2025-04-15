@@ -1,0 +1,104 @@
+
+sc-xinggtx.png
+size: 434,531
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+sc-bxtx1
+  rotate: false
+  xy: 247, 128
+  size: 151, 98
+  orig: 153, 100
+  offset: 1, 1
+  index: -1
+sc-bxtx10
+  rotate: true
+  xy: 2, 3
+  size: 134, 122
+  orig: 136, 124
+  offset: 1, 1
+  index: -1
+sc-bxtx11
+  rotate: false
+  xy: 277, 8
+  size: 142, 118
+  orig: 144, 120
+  offset: 1, 1
+  index: -1
+sc-bxtx12
+  rotate: false
+  xy: 126, 2
+  size: 149, 106
+  orig: 151, 108
+  offset: 1, 1
+  index: -1
+sc-bxtx13
+  rotate: true
+  xy: 247, 228
+  size: 38, 39
+  orig: 40, 41
+  offset: 1, 1
+  index: -1
+sc-bxtx14
+  rotate: true
+  xy: 400, 217
+  size: 26, 32
+  orig: 28, 34
+  offset: 1, 1
+  index: -1
+sc-bxtx2
+  rotate: true
+  xy: 137, 110
+  size: 156, 108
+  orig: 158, 110
+  offset: 1, 1
+  index: -1
+sc-bxtx3
+  rotate: false
+  xy: 153, 404
+  size: 151, 125
+  orig: 153, 127
+  offset: 1, 1
+  index: -1
+sc-bxtx4
+  rotate: false
+  xy: 306, 391
+  size: 124, 138
+  orig: 126, 140
+  offset: 1, 1
+  index: -1
+sc-bxtx5
+  rotate: true
+  xy: 2, 402
+  size: 127, 149
+  orig: 129, 151
+  offset: 1, 1
+  index: -1
+sc-bxtx6
+  rotate: false
+  xy: 294, 245
+  size: 128, 144
+  orig: 130, 146
+  offset: 1, 1
+  index: -1
+sc-bxtx7
+  rotate: true
+  xy: 2, 139
+  size: 129, 133
+  orig: 131, 135
+  offset: 1, 1
+  index: -1
+sc-bxtx8
+  rotate: true
+  xy: 153, 268
+  size: 134, 139
+  orig: 136, 141
+  offset: 1, 1
+  index: -1
+sc-bxtx9
+  rotate: true
+  xy: 2, 270
+  size: 130, 141
+  orig: 132, 143
+  offset: 1, 1
+  index: -1
