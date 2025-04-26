@@ -31,28 +31,53 @@ public class UIManager : InstanceMgr<UIManager>
 
     //记录我们UI的Canvas父对象 方便以后外部可能会使用它
     public RectTransform canvas;
+    //第一个面板要通过绑定这个回调显示，因为是异步加载，否则会出现异常
+    public UnityAction startinitPanel;
 
     public UIManager()
     {
         //创建Canvas 让其过场景的时候 不被移除
         AddressablesMgr.Instance.LoadAssetAsync<GameObject>(obj =>
         {
-            canvas = obj.transform as RectTransform;
-            GameObject.DontDestroyOnLoad(obj);
+            GameObject m_obj = GameObject.Instantiate(obj);
+            canvas = m_obj.transform as RectTransform;
+            GameObject.DontDestroyOnLoad(m_obj);
+            //设置绑定摄像机
+            m_obj.GetComponent<Canvas>().worldCamera = Camera.main;
 
             //找到各层级
             bot = canvas.Find("Bot");
             mid = canvas.Find("Mid");
             top = canvas.Find("Top");
             system = canvas.Find("System");
+            startinitPanel?.Invoke();
         }, "MainCanvas", "UI");
 
         //创建EventSystem 让其过场景的时候 不被移除
         AddressablesMgr.Instance.LoadAssetAsync<GameObject>(obj =>
         {
-            GameObject.DontDestroyOnLoad(obj);
+            GameObject.DontDestroyOnLoad(GameObject.Instantiate(obj));
         }, "EventSystem", "UI");
+    }
 
+    /// <summary>
+    /// 获取层级
+    /// </summary>
+    /// <returns></returns>
+    public Transform GetLayer(E_UI_Layer ui_Layer)
+    {
+        switch (ui_Layer)
+        {
+            case E_UI_Layer.Bot:
+                return bot;
+            case E_UI_Layer.Mid:
+                return mid;
+            case E_UI_Layer.Top:
+                return top;
+            case E_UI_Layer.System:
+                return system;
+        }
+        return null;
     }
 
     /// <summary>
@@ -78,9 +103,7 @@ public class UIManager : InstanceMgr<UIManager>
         }
         AddressablesMgr.Instance.LoadAssetAsync<GameObject>(obj =>
         {
-            //把他作为 MainCanvas的子对象
-            //并且 要设置它的相对位置
-            //找到父对象 要显示在哪一层显示
+            //要显示在哪一层显示
             Transform father = bot;
             switch (layer)
             {
@@ -94,22 +117,24 @@ public class UIManager : InstanceMgr<UIManager>
                     father = system;
                     break;
             }
+
+            GameObject m_obj = GameObject.Instantiate(obj);
             //设置父对象  设置相对位置和大小
-            obj.transform.SetParent(father);
+            m_obj.transform.SetParent(father, false);
 
-            obj.transform.localPosition = Vector3.zero;
-            obj.transform.localScale = Vector3.one;
+            m_obj.transform.localPosition = Vector3.zero;
+            m_obj.transform.localScale = Vector3.one;
 
-            (obj.transform as RectTransform).offsetMax = Vector2.zero;
-            (obj.transform as RectTransform).offsetMin = Vector2.zero;
+            (m_obj.transform as RectTransform).offsetMax = Vector2.zero;
+            (m_obj.transform as RectTransform).offsetMin = Vector2.zero;
 
             //得到预设体身上的面板脚本
-            T panel = obj.GetComponent<T>();
+            T panel = m_obj.GetComponent<T>();
+            panel.ShowMe();
+
             // 处理面板创建完成后的逻辑
             if (callBack != null)
                 callBack(panel);
-
-            panel.ShowMe();
 
             //把面板存起来
             panelDic.Add(panelName, panel);

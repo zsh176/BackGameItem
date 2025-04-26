@@ -103,6 +103,7 @@ MonoBehaviour:
     - default
     - UI
     - Clip
+    - Anim
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 209599f0edbcd5b4ba87427b14e0358b, type: 2}
