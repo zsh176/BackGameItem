@@ -30,41 +30,41 @@ public class GamePanel : BasePanel
 
         CalculateLayout(isRotation: true);
 
-        EventMgr.Instance.AddEventListener<UpHero>(E_EventType.placeHeroBox, PlaceHeroBox);
+        EventMgr.Instance.AddEventListener<UpHeroOrBox>(E_EventType.placeHeroBox, PlaceHeroBox);
     }
 
     /// <summary>
-    /// 将角色放置备用区
+    /// 拖拽，松开 角色或对象处理
     /// </summary>
-    private void PlaceHeroBox(UpHero uphoero)
+    private void PlaceHeroBox(UpHeroOrBox uphoero)
     {
         switch (uphoero.e_touchState)
         {
             case E_TouchState.Down://开始拖拽
-                uphoero.type.transform.SetParent(transform, true);
-                uphoero.type.transform.SetAsLastSibling();
-                uphoero.type.transform.DORotate(new Vector3(0, 0, 0), transitionDuration);
-                if (heroBoxs.Contains(uphoero.type.transform))
-                    heroBoxs.Remove(uphoero.type.transform);
+                uphoero.type.SetParent(transform, true);
+                uphoero.type.SetAsLastSibling();
+                uphoero.type.DORotate(new Vector3(0, 0, 0), transitionDuration);
+                if (heroBoxs.Contains(uphoero.type))
+                    heroBoxs.Remove(uphoero.type);
                 CalculateLayout();
                 break;
             case E_TouchState.UpPlace://放入备用卡池区
-                uphoero.type.transform.SetParent(heroBoxBase, true);
-                int index = FindClosest(uphoero.type.transform.position);
+                uphoero.type.SetParent(heroBoxBase, true);
+                int index = FindClosest(uphoero.type.position);
                 //在指定索引处，插入
                 if (index < heroBoxBase.childCount)
-                    uphoero.type.transform.SetSiblingIndex(index);
+                    uphoero.type.SetSiblingIndex(index);
                 if (index >= heroBoxs.Count)
-                    heroBoxs.Add(uphoero.type.transform);
+                    heroBoxs.Add(uphoero.type);
                 else
-                    heroBoxs.Insert(index, uphoero.type.transform);
+                    heroBoxs.Insert(index, uphoero.type);
                 CalculateLayout(index);
                 break;
             case E_TouchState.UpField://上阵处理
-                uphoero.type.transform.SetParent(fieldHero, true);
-                fieldHeros.Add(uphoero.type.transform);
-                if (heroBoxs.Contains(uphoero.type.transform))
-                    heroBoxs.Remove(uphoero.type.transform);
+                uphoero.type.SetParent(fieldHero, true);
+                fieldHeros.Add(uphoero.type);
+                if (heroBoxs.Contains(uphoero.type))
+                    heroBoxs.Remove(uphoero.type);
                 break;
         }
     }

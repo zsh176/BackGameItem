@@ -2,12 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using Unity.UI;
-using UnityEditor.Experimental.GraphView;
-using UnityEngine.Assertions.Must;
 using System;
 using DG.Tweening;
-using Unity.VisualScripting;
 using TMPro;
 
 /// <summary>
@@ -22,7 +18,7 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
     protected RectTransform thisRt;//自身
     private Transform box_Pos;//角色占用格子信息
-    protected TextMeshProUGUI tet_Level;
+    protected TextMeshProUGUI tet_Level;//显示等级
     private DragHero dragHero;//拖拽时传递的参数
     public bool isSyn;//标记自己为被合成对象
 
@@ -76,10 +72,10 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
     {
         isClick = false;
 
-        UpHero upHero = new UpHero();
-        upHero.type = this;
+        UpHeroOrBox upHero = new UpHeroOrBox();
+        upHero.type = transform;
         upHero.e_touchState = E_TouchState.Down;
-        EventMgr.Instance.EventTrigger<UpHero>(E_EventType.placeHeroBox, upHero);
+        EventMgr.Instance.EventTrigger<UpHeroOrBox>(E_EventType.placeHeroBox, upHero);
 
     }
     /// <summary>
@@ -163,10 +159,10 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
         if (!isSyn)//加锁，防止两个动画叠加
         {
             // 3、如果都没有，就将自己放回备战区
-            UpHero upHero = new UpHero();
-            upHero.type = this;
+            UpHeroOrBox upHero = new UpHeroOrBox();
+            upHero.type = transform;
             upHero.e_touchState = E_TouchState.UpPlace;
-            EventMgr.Instance.EventTrigger<UpHero>(E_EventType.placeHeroBox, upHero);
+            EventMgr.Instance.EventTrigger<UpHeroOrBox>(E_EventType.placeHeroBox, upHero);
         }
     }
     /// <summary>
@@ -176,10 +172,10 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
     {
         if (_dragHero.type == this)
         {
-            UpHero upHero = new UpHero();
-            upHero.type = this;
+            UpHeroOrBox upHero = new UpHeroOrBox();
+            upHero.type = transform;
             upHero.e_touchState = E_TouchState.UpField;
-            EventMgr.Instance.EventTrigger<UpHero>(E_EventType.placeHeroBox, upHero);
+            EventMgr.Instance.EventTrigger<UpHeroOrBox>(E_EventType.placeHeroBox, upHero);
             Vector3 movePos = transform.position + _dragHero.deviation;
             transform.DOKill();
             transform.DOMove(movePos, 0.25f).SetEase(Ease.OutBounce);
@@ -242,12 +238,14 @@ public class DragHero
 public enum E_TouchState{
     Down, UpPlace, UpField
 }
+
+
 /// <summary>
-/// 用于传递按下和松开角色时的参数
+/// 用于传递按下和松开角色或格子时的参数
 /// </summary>
-public class UpHero
+public class UpHeroOrBox
 {
-    public HeroBase type;
+    public Transform type;
     /// <summary>
     /// 是否上阵
     /// </summary>

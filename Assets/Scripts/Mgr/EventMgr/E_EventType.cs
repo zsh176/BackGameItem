@@ -11,4 +11,6 @@ public enum E_EventType
     dragHero,//拖拽角色
     placeMatrix,//角色成功放在矩阵上
     placeHeroBox,//将角色放置备用区
+    dragBox,//拖拽格子
+    upBox,//松开格子
 }
