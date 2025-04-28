@@ -1,3 +1,5 @@
+using DG.Tweening;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -16,18 +18,18 @@ public class Matrix_MapBox : MonoBehaviour
     /// <summary>
     /// 存储所有放置格子的信息
     /// </summary>
-    private RectTransform[,] curBoxs;
-    private RectTransform[,] mapBoxs;
+    private Transform[,] curBoxs;
+    private Transform[,] mapBoxs;
     void Start()
     {
         curBoxsBase = transform.Find("BattleMap/Matrix_MapBox/Current_Box").transform;
         mapBoxBase = transform.Find("BattleMap/Matrix_MapBox/_AddBox").transform;
-        curBoxs = new RectTransform[5, 7];
+        curBoxs = new Transform[5, 7];
         int x = 0;
         int y = 0;
         foreach (Transform item in curBoxsBase)
         {
-            curBoxs[x, y] = item.GetComponent<RectTransform>();
+            curBoxs[x, y] = item.GetComponent<Transform>();
             //初始化角色可用格子区域
             if (y <= 1 || y >= 5)
                 item.gameObject.SetActive(false);
@@ -40,17 +42,15 @@ public class Matrix_MapBox : MonoBehaviour
                 y++;
             }
         }
-        mapBoxs = new RectTransform[5, 7];
+        mapBoxs = new Transform[5, 7];
         x = 0;
         y = 0;
         foreach (Transform item in mapBoxBase)
         {
-            mapBoxs[x, y] = item.GetComponent<RectTransform>();
+            mapBoxs[x, y] = item.GetComponent<Transform>();
             //初始化地图可用格子区域
-            //if (!(y <= 1) || !(y >= 5))
-            //    item.gameObject.SetActive(false);
-            //else if (!(x == 0) || !(x == 4))
-            //    item.gameObject.SetActive(false);
+            if (y >= 2 && y <= 4 && x != 0 && x != 4)
+                item.gameObject.SetActive(false);
 
             if (++x == 5)
             {
@@ -66,7 +66,7 @@ public class Matrix_MapBox : MonoBehaviour
 
 
     //临时存储符合放置位置的格子
-    List<RectTransform> _nearestHeros = new List<RectTransform>();
+    List<Transform> _nearestHeros = new List<Transform>();
     /// <summary>
     /// 拖拽角色 判断矩阵格子
     /// </summary>
@@ -75,7 +75,7 @@ public class Matrix_MapBox : MonoBehaviour
         if (hero.isUpHero) return;
         _nearestHeros.Clear();
         // 重置所有格子的颜色
-        foreach (RectTransform box in curBoxs)
+        foreach (Transform box in curBoxs)
         {
             if (box.gameObject.activeSelf)
                 box.GetComponent<Image>().color = Color.white;
@@ -83,11 +83,11 @@ public class Matrix_MapBox : MonoBehaviour
         // 遍历 pos 的所有子对象
         foreach (Transform child in hero.pos)
         {
-            RectTransform childRect = child.GetComponent<RectTransform>();
-            RectTransform nearestBox = null;
+            Transform childRect = child.GetComponent<Transform>();
+            Transform nearestBox = null;
             float minDistance = float.MaxValue;
             // 遍历所有格子，查找距离最近的那个
-            foreach (RectTransform box in curBoxs)
+            foreach (Transform box in curBoxs)
             {
                 if (box.gameObject.activeSelf)
                 {
@@ -100,14 +100,12 @@ public class Matrix_MapBox : MonoBehaviour
                 }
             }
             // 如果最近的格子距离在允许范围内，则标记该格子
-            if (nearestBox != null && minDistance < 6.5f && !_nearestHeros.Contains(nearestBox))
+            if (nearestBox != null && minDistance < 4.5f && !_nearestHeros.Contains(nearestBox))
                 _nearestHeros.Add(nearestBox);
         }
 
-        foreach(RectTransform itmeBox in _nearestHeros)
-        {
+        foreach(Transform itmeBox in _nearestHeros)
             itmeBox.GetComponent<Image>().color = _nearestHeros.Count == hero.pos.childCount ? Color.green : Color.grey;
-        }
 
         //松开拖拽处理
         if (hero.isUpBox)
@@ -121,43 +119,44 @@ public class Matrix_MapBox : MonoBehaviour
                 _draghreo.deviation = _nearestHeros[0].transform.position - hero.pos.GetChild(0).position;
                 EventMgr.Instance.EventTrigger<DragHero>(E_EventType.placeMatrix, _draghreo);
                 foreach (var item in _nearestHeros)
-                {
                     item.GetComponent<Image>().color = Color.clear;//设置透明
-                }
             }
             else
             {
-                hero.UpHeroOnCilck?.Invoke();
+                hero.type.transform.DOKill();
+                UpHeroOrBox upHero = new UpHeroOrBox();
+                upHero.type = hero.type.transform;
+                upHero.e_touchState = E_TouchState.UpPlace;
+                EventMgr.Instance.EventTrigger<UpHeroOrBox>(E_EventType.placeHeroBox, upHero);
                 foreach (var item in _nearestHeros)
-                {
                     item.GetComponent<Image>().color = Color.white;
-                }
             }
 
         }
     }
 
-    //临时存储符合放置位置的格子
-    List<RectTransform> _nearestBoxs = new List<RectTransform>();
+    List<Transform> _nearestBoxs = new List<Transform>();
     /// <summary>
     /// 拖拽格子和松开格子处理
     /// </summary>
     private void IsBoxTrigger(DragBox dragBox)
     {
         _nearestBoxs.Clear();
-        // 重置所有格子的颜色
-        foreach (RectTransform box in mapBoxs)
+        foreach (Transform box in mapBoxs)
         {
             if (box.gameObject.activeSelf)
-                box.GetComponent<Image>().color = Color.white;
+            {
+                box.GetChild(0).gameObject.SetActive(false);
+                box.GetChild(0).GetComponent<Image>().color = Color.white;
+            }
         }
 
         foreach (Transform child in dragBox.pos)
         {
-            RectTransform childRect = child.GetComponent<RectTransform>();
-            RectTransform nearestBox = null;
+            Transform childRect = child.GetComponent<Transform>();
+            Transform nearestBox = null;
             float minDistance = float.MaxValue;
-            foreach (RectTransform box in mapBoxs)
+            foreach (Transform box in mapBoxs)
             {
                 if (box.gameObject.activeSelf)
                 {
@@ -169,32 +168,61 @@ public class Matrix_MapBox : MonoBehaviour
                     }
                 }
             }
-            if (nearestBox != null && minDistance < 6.5f && !_nearestBoxs.Contains(nearestBox))
+            if (nearestBox != null && minDistance < 4.5f && !_nearestBoxs.Contains(nearestBox))
                 _nearestBoxs.Add(nearestBox);
         }
-
-        foreach (RectTransform itmeBox in _nearestBoxs)
-            itmeBox.GetComponent<Image>().color = _nearestBoxs.Count == dragBox.pos.childCount ? Color.green : Color.grey;
-
+        foreach (Transform itmeBox in _nearestBoxs)
+        {
+            itmeBox.GetChild(0).gameObject.SetActive(true);
+            if (_nearestBoxs.Count != dragBox.pos.childCount)
+                itmeBox.GetChild(0).GetComponent<Image>().color = Color.grey;
+        }
+        //处理松开格子操作
         if (dragBox.isUp)
         {
-            DragBox _draghreo = new DragBox();
-            _draghreo.type = dragBox.type;
             if (_nearestBoxs.Count == dragBox.pos.childCount)
             {
-                //可以放置
-                _draghreo.isWin= true;
-                _draghreo.deviation = _nearestBoxs[0].transform.position - dragBox.pos.GetChild(0).position;
-                foreach (var item in _nearestBoxs)
-                    item.gameObject.SetActive(false);
+                Vector3 movePos = _nearestBoxs[0].transform.position - dragBox.pos.GetChild(0).position;
+                movePos = dragBox.type.position + movePos;
+                dragBox.type.DOKill();
+                dragBox.type.DOMove(movePos, 0.25f).SetEase(Ease.OutBounce).OnComplete(() =>
+                {
+                    Destroy(dragBox.type.gameObject);
+                    foreach (Transform item in _nearestBoxs)
+                    {
+                        item.gameObject.SetActive(false);
+                        Vector2Int indexV2 = FindIndex(mapBoxs, item);
+                        curBoxs[indexV2.x, indexV2.y].gameObject.SetActive(true);
+                    }
+                });
             }
             else
             {
-                _draghreo.isWin = false;
+                UpHeroOrBox upHero = new UpHeroOrBox();
+                upHero.type = dragBox.type;
+                upHero.e_touchState = E_TouchState.UpPlace;
+                EventMgr.Instance.EventTrigger<UpHeroOrBox>(E_EventType.placeHeroBox, upHero);
                 foreach (var item in _nearestBoxs)
-                    item.GetComponent<Image>().color = Color.white;
+                    item.GetChild(0).gameObject.SetActive(false);
             }
-            EventMgr.Instance.EventTrigger<DragBox>(E_EventType.upBox, _draghreo);
         }
+    }
+
+    /// <summary>
+    /// 获取坐标
+    /// </summary>
+    public static Vector2Int FindIndex(Transform[,] array, Transform target)
+    {
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                if (array[i, j] == target)
+                {
+                    return new Vector2Int(i, j);
+                }
+            }
+        }
+        return new Vector2Int(-1, -1);  // 未找到
     }
 }

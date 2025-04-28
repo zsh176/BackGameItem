@@ -125,44 +125,27 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
             float dist = Vector2.Distance(thisRt.position, triggerRt.position);
             
             // 1、先判断是否可以合成
-            if (dist < 6.5f && _dragHero.type != this && _dragHero.type.level == level && !_dragHero.type.isSyn)
+            if (dist < 4.8f && _dragHero.type != this && _dragHero.type.level == level && !_dragHero.type.isSyn)
             {
                 _dragHero.type.isSyn = true;
                 _dragHero.type.transform.DOKill();
                 _dragHero.type.transform.DOMove(transform.position, 0.25f).OnComplete(() =>
                 {
                     //动画播完回调
-                    _dragHero.type.gameObject.SetActive(false);
+                    Destroy(_dragHero.type.gameObject);
                     Level++;
                 });
             }
             else if (_dragHero.type == this)
             {
+                // 2、再发送事件，判断是否可以放置在矩阵上
                 DragHero newDragHero = new DragHero();
                 newDragHero.type = this;
                 newDragHero.pos = box_Pos;
                 newDragHero.isUpBox = true;
                 newDragHero.isUpHero = false;
-                newDragHero.UpHeroOnCilck = () =>
-                {
-                    //解决被合成方 先执行 放入备战区，等判断完是否可以合成，再执行放回备战区
-                    StartCoroutine(InvokeDragHero());
-                };
-                // 2、再发送事件，判断是否可以放置在矩阵上
                 EventMgr.Instance.EventTrigger<DragHero>(E_EventType.dragHero, newDragHero);
             }
-        }
-    }
-    IEnumerator InvokeDragHero()
-    {
-        yield return null;
-        if (!isSyn)//加锁，防止两个动画叠加
-        {
-            // 3、如果都没有，就将自己放回备战区
-            UpHeroOrBox upHero = new UpHeroOrBox();
-            upHero.type = transform;
-            upHero.e_touchState = E_TouchState.UpPlace;
-            EventMgr.Instance.EventTrigger<UpHeroOrBox>(E_EventType.placeHeroBox, upHero);
         }
     }
     /// <summary>

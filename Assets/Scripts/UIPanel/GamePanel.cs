@@ -95,9 +95,6 @@ public class GamePanel : BasePanel
             return index + 1;
     }
 
-
-    
-
     /// <summary>
     /// 备用区动态布局排列
     /// </summary>
@@ -146,7 +143,7 @@ public class GamePanel : BasePanel
                 currentX += rt.rect.width + overlap;
             }
         }
-        // 计算完每个卡牌位置，统一移动
+        // 计算完每张卡牌位置，统一移动
         for (int i = 0; i < children.Count; i++)
         {
             RectTransform rt = children[i].GetComponent<RectTransform>();

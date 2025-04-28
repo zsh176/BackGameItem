@@ -5,37 +5,51 @@ using Unity.VisualScripting;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 /// <summary>
 /// 控制格子拖拽
 /// </summary>
 public class BoxHero : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IDragHandler
 {
-    public int level;//自身有几个格子
 
+    private int level;//自身有几个格子
     private RectTransform thisRt;//自身
     private Transform box_Pos;//占用格子信息
+    private GameObject ad_lock;//广告遮罩
     private bool isClick;//是否点击 且没有进行拖拽
     private DragBox dragBox;
-
+    private bool isAdLock;//是否为广告解锁
 
     void Start()
     {
         thisRt = GetComponent<RectTransform>();
         box_Pos = transform.Find("Box_Pos");
+        ad_lock = transform.Find("Ad_lock").gameObject;
+
 
         dragBox = new DragBox();
         dragBox.pos = box_Pos;
         dragBox.isUp = false;
         dragBox.type = transform;
 
-        EventMgr.Instance.AddEventListener<DragBox>(E_EventType.upBox, BackUpBox);
+        level = box_Pos.childCount;
+        if (level == 2)
+            isAdLock = Random.value > 0.5f;
+        else if (level == 3)
+            isAdLock = !(Random.value > 0.95f);// 5%概率为免费
+        else
+            isAdLock = false;
+
+        ad_lock.SetActive(isAdLock);
     }
 
 
     public void OnPointerDown(PointerEventData eventData)
     {
         isClick = false;
+
+        if (isAdLock) return;
 
         UpHeroOrBox upHero = new UpHeroOrBox();
         upHero.type = transform;
@@ -44,6 +58,8 @@ public class BoxHero : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IP
     }
     public void OnPointerUp(PointerEventData eventData)
     {
+        if (isAdLock) return;
+
         DragBox newDragBox = new DragBox();
         newDragBox.isUp = true;
         newDragBox.pos = box_Pos;
@@ -58,40 +74,28 @@ public class BoxHero : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IP
     public void OnDrag(PointerEventData eventData)
     {
         isClick = true;
-        thisRt.anchoredPosition += eventData.delta;
 
+        if (isAdLock) return;
+        
+        thisRt.anchoredPosition += eventData.delta;
         EventMgr.Instance.EventTrigger<DragBox>(E_EventType.dragBox, dragBox);
     }
-
-    //返回拖拽结束的结果
-    private void BackUpBox(DragBox dragBox)
-    {
-        if(dragBox.type == transform)
-        {
-            if (dragBox.isWin)
-            {
-                //成功放置
-                Vector3 movePos = transform.position + dragBox.deviation;
-                transform.DOKill();
-                transform.DOMove(movePos, 0.25f).SetEase(Ease.OutBounce);
-            }
-            else
-            {
-                UpHeroOrBox upHero = new UpHeroOrBox();
-                upHero.type = transform;
-                upHero.e_touchState = E_TouchState.UpPlace;
-                EventMgr.Instance.EventTrigger<UpHeroOrBox>(E_EventType.placeHeroBox, upHero);
-            }
-        }
-    }
-
 
     /// <summary>
     /// 点击触发事件
     /// </summary>
     protected virtual void Btn_OnClick()
     {
-        print("点击触发事件");
+        if (!isAdLock) return;
+        AdsMgr.Instance.ShowRewardedVideoAd(() =>
+        {
+            isAdLock = false;
+            ad_lock.GetComponent<Image>().DOFade(0, 0.3f).OnComplete(() =>
+            {
+                ad_lock.SetActive(false);
+            });
+            ad_lock.transform.GetChild(0).GetComponent<Image>().DOFade(0, 0.3f);
+        });
     }
 }
 
@@ -111,12 +115,4 @@ public class DragBox{
     /// 是否松开
     /// </summary>
     public bool isUp;
-    /// <summary>
-    /// 放置完成的 位置偏移信息
-    /// </summary>
-    public Vector3 deviation;
-    /// <summary>
-    /// 是否成功放置
-    /// </summary>
-    public bool isWin;
 }
