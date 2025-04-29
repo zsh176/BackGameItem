@@ -33,6 +33,11 @@ public class GamePanel : BasePanel
         EventMgr.Instance.AddEventListener<UpHeroOrBox>(E_EventType.placeHeroBox, PlaceHeroBox);
     }
 
+    public override void HideMe()
+    {
+        EventMgr.Instance.RemoveEventListener<UpHeroOrBox>(E_EventType.placeHeroBox, PlaceHeroBox);
+    }
+
     /// <summary>
     /// 拖拽，松开 角色或对象处理
     /// </summary>

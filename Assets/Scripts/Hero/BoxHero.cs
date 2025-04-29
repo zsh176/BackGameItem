@@ -55,6 +55,7 @@ public class BoxHero : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IP
         upHero.type = transform;
         upHero.e_touchState = E_TouchState.Down;
         EventMgr.Instance.EventTrigger<UpHeroOrBox>(E_EventType.placeHeroBox, upHero);
+        EventMgr.Instance.EventTrigger(E_EventType.boxStatus);
     }
     public void OnPointerUp(PointerEventData eventData)
     {

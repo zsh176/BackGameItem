@@ -233,4 +233,5 @@ public class UpHeroOrBox
     ///  «∑Ò…œ’Û
     /// </summary>
     public E_TouchState e_touchState;
+    /// <summary>
 }
