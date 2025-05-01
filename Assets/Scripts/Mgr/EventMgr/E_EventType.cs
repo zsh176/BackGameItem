@@ -12,5 +12,6 @@ public enum E_EventType
     placeMatrix,//角色成功放在矩阵上
     placeHeroBox,//点击或松开 角色或格子
     dragBox,//拖拽格子
-    boxStatus,//按下或松开格子，只用于控制地图背景缩放
+    startDragBox,//按下 开始拖拽格子
+
 }

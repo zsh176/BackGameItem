@@ -35,7 +35,7 @@ public class BoxHero : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IP
 
         level = box_Pos.childCount;
         if (level == 2)
-            isAdLock = Random.value > 0.5f;
+            isAdLock = Random.value > 0.999f;
         else if (level == 3)
             isAdLock = !(Random.value > 0.95f);// 5%매쪽槨출롤
         else
@@ -55,7 +55,7 @@ public class BoxHero : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IP
         upHero.type = transform;
         upHero.e_touchState = E_TouchState.Down;
         EventMgr.Instance.EventTrigger<UpHeroOrBox>(E_EventType.placeHeroBox, upHero);
-        EventMgr.Instance.EventTrigger(E_EventType.boxStatus);
+        EventMgr.Instance.EventTrigger(E_EventType.startDragBox);
     }
     public void OnPointerUp(PointerEventData eventData)
     {
