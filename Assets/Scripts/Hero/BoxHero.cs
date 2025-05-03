@@ -19,7 +19,11 @@ public class BoxHero : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IP
     private GameObject ad_lock;//广告遮罩
     private bool isClick;//是否点击 且没有进行拖拽
     private DragBox dragBox;
-    private bool isAdLock;//是否为广告解锁
+
+    [HideInInspector]
+    public bool isAdLock;//是否为广告解锁
+
+    public HeroType type;//类型标签
 
     void Start()
     {
@@ -33,20 +37,14 @@ public class BoxHero : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IP
         dragBox.isUp = false;
         dragBox.type = transform;
 
-        level = box_Pos.childCount;
-        if (level == 2)
-            isAdLock = Random.value > 0.999f;
-        else if (level == 3)
-            isAdLock = !(Random.value > 0.95f);// 5%概率为免费
-        else
-            isAdLock = false;
-
         ad_lock.SetActive(isAdLock);
     }
 
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        if (GameStatus.Instance.offDrag) return;
+
         isClick = false;
 
         if (isAdLock) return;
@@ -59,6 +57,8 @@ public class BoxHero : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IP
     }
     public void OnPointerUp(PointerEventData eventData)
     {
+        if (GameStatus.Instance.offDrag) return;
+
         if (isAdLock) return;
 
         DragBox newDragBox = new DragBox();
@@ -69,11 +69,15 @@ public class BoxHero : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IP
     }
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (GameStatus.Instance.offDrag) return;
+
         if (isClick) return;
         Btn_OnClick();
     }
     public void OnDrag(PointerEventData eventData)
     {
+        if (GameStatus.Instance.offDrag) return;
+
         isClick = true;
 
         if (isAdLock) return;

@@ -520,6 +520,7 @@ GameObject:
   - component: {fileID: 662012269958282490}
   - component: {fileID: 662012269958282491}
   - component: {fileID: 1666370748427299602}
+  - component: {fileID: 4622627836982752847}
   m_Layer: 5
   m_Name: Hero_10002
   m_TagString: Untagged
@@ -574,6 +575,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad17e0942611a03458b9c70187e11d6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isSyn: 0
+  level: 0
+  isAdLock: 0
+--- !u!95 &4622627836982752847
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 662012269958282493}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e9c05498cfeec4b41b0bc22e6cbdbd31, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &662012269968029563
 GameObject:
   m_ObjectHideFlags: 0

@@ -16,7 +16,67 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 8fc550f7e140a60439874f394ef652b7
-  m_SerializeEntries: []
+  m_SerializeEntries:
+  - m_GUID: 9362d88f1a4e53248af05db657945273
+    m_Address: dz_1_1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 336dabc88505a6a4c84b9985e8d4e5bb
+    m_Address: dz_1_2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: edb34adb2def4bd4b8087a9588956975
+    m_Address: dz_1_3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: fb91c5a9ab4369e45a30e5b0a5ea76bb
+    m_Address: dz_1_4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: d8f9ae7d153600f43b82779b3b5d92a8
+    m_Address: dz_2_1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 6ba8935bcf76b6641b6ed730a52a5a86
+    m_Address: dz_2_2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: f3f792d042448644f91c6ecb462e5290
+    m_Address: dz_2_3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: f024b03a717ad4a4b998434fe6fe35a0
+    m_Address: dz_2_4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 677f3ee0e5f64f241817011f48141775
+    m_Address: dz_3_1
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: 02a188d184879234f837cdeb8e158d6e
+    m_Address: dz_3_2
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: f34aba4a8da89c546b06670727da3642
+    m_Address: dz_3_3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
+  - m_GUID: c5fa4e18c75a1dd46994976e57aab1e2
+    m_Address: dz_3_4
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Sprite
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 1ba7714d817f03c4b9385123947df6ec, type: 2}
   m_SchemaSet:

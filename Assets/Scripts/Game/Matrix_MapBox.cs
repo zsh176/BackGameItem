@@ -2,13 +2,13 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Accessibility;
 using UnityEngine.Profiling;
 using UnityEngine.UI;
-using static UnityEngine.GraphicsBuffer;
 
 /// <summary>
 /// 管理放置角色的地图矩阵
@@ -25,21 +25,14 @@ public class Matrix_MapBox : MonoBehaviour
     private Transform[,] curBoxs;
     private Transform[,] mapBoxs;
     /// <summary>
-    /// 存储可放置角色格子索引坐标，方便查找
-    /// </summary>
-    private Dictionary<Transform, Vector2Int> curBoxsKeyDict;
-    /// <summary>
-    /// 某个处于上阵中角色占用的格子信息
-    /// </summary>
-    private Dictionary<Transform, List<Transform>> heroInfoDict;
-    /// <summary>
-    /// 所有已上阵的格子 key=占用格子自身，value = 角色信息
+    /// 所有已上阵的格子 key = 占用格子自身，value = 角色信息
     /// </summary>
     private Dictionary<Transform,Transform> curHerosDict;
 
     private float mapMoveSpeed = 0.2f;//地图渐变速度
     private Vector3 boxInitPos;//矩阵初始位置
-    //地图背景缩放及矩阵位置                           
+
+    #region 配置地图背景 回弹时的_缩放及矩阵位置
     private readonly Dictionary<string, (float posY, float scaleY)> mapYDict = new Dictionary<string, (float, float)>
     {
         [""] = (74f, 0.45f),
@@ -59,6 +52,8 @@ public class Matrix_MapBox : MonoBehaviour
         ["4"] = (-52.5f, 0.8f),
         ["04"] = (0f, 1.0f),
     };
+    #endregion
+
 
     void Start()
     {
@@ -72,14 +67,11 @@ public class Matrix_MapBox : MonoBehaviour
         mapBG.localScale = new Vector3(0.6f, 0.45f);
 
         curHerosDict = new Dictionary<Transform, Transform>();
-        heroInfoDict = new Dictionary<Transform, List<Transform>>();
-        curBoxsKeyDict = new Dictionary<Transform, Vector2Int>();
         curBoxs = new Transform[5, 7];
         int x = 0;
         int y = 0;
         foreach (Transform item in curBase)
         {
-            curBoxsKeyDict.Add(item, new Vector2Int(x, y));
             curBoxs[x, y] = item;
             //初始化角色可用格子区域
             if (y <= 1 || y >= 5)
@@ -118,6 +110,7 @@ public class Matrix_MapBox : MonoBehaviour
         EventMgr.Instance.AddEventListener<DragHero>(E_EventType.dragHero, IsHeroTrigger);
         EventMgr.Instance.AddEventListener<DragBox>(E_EventType.dragBox, IsBoxTrigger);
         EventMgr.Instance.AddEventListener(E_EventType.startDragBox, StartDragBox);
+        EventMgr.Instance.AddEventListener<Transform>(E_EventType.fieldHeroDrag, RemoveCurHerosDict);
     }
     private void OnDestroy()
     {
@@ -145,7 +138,6 @@ public class Matrix_MapBox : MonoBehaviour
         // 遍历 pos 的所有子对象
         foreach (Transform child in hero.pos)
         {
-            Transform childRect = child;
             Transform nearestBox = null;
             float minDistance = float.MaxValue;
             // 遍历所有格子，查找距离最近的那个
@@ -153,7 +145,7 @@ public class Matrix_MapBox : MonoBehaviour
             {
                 if (box.gameObject.activeSelf)
                 {
-                    float dist = Vector2.Distance(box.position, childRect.position);
+                    float dist = Vector2.Distance(box.position, child.position);
                     if (dist < minDistance)
                     {
                         minDistance = dist;
@@ -180,6 +172,13 @@ public class Matrix_MapBox : MonoBehaviour
     /// <param name="hero"></param>
     private void UpHero(DragHero hero)
     {
+        if (hero.type.isSyn)
+        {
+            //如果松开的角色，被合成升级，则不执行后续
+            foreach (var item in curHerosDict)
+                item.Key.GetComponent<Image>().DOFade(0, mapMoveSpeed);
+            return;
+        }
         if (_nearestHeros.Count == hero.pos.childCount)
         {
             //可以放置在矩阵上
@@ -189,14 +188,39 @@ public class Matrix_MapBox : MonoBehaviour
             _draghreo.deviation = _nearestHeros[0].transform.position - hero.pos.GetChild(0).position;
             EventMgr.Instance.EventTrigger<DragHero>(E_EventType.placeMatrix, _draghreo);
 
-
-            List<Transform> temp = new List<Transform>();
+            //获取该位置上已有的角色信息
+            List<Transform> tempHeros = new List<Transform>();
             foreach (var item in _nearestHeros)
             {
-                item.GetComponent<Image>().color = Color.clear;//设置透明
-                temp.Add(item);
+                if (curHerosDict.ContainsKey(item))
+                {
+                    if (!tempHeros.Contains(curHerosDict[item]))
+                        tempHeros.Add(curHerosDict[item]);
+                    curHerosDict.Remove(item);
+                }
+                curHerosDict.Add(item, hero.type.transform);
             }
-            heroInfoDict.Add(hero.type.transform, temp);
+
+            foreach (Transform itemHero in tempHeros)
+            {
+                RemoveCurHerosDict(itemHero);
+                float posX = (hero.type.GetComponent<RectTransform>().rect.width + itemHero.GetComponent<RectTransform>().rect.width) / 2;
+                if (itemHero.position.x < hero.type.transform.position.x)
+                    posX = -posX;
+                Vector3 pos = new Vector3(itemHero.localPosition.x + posX, itemHero.localPosition.y + 2);
+                itemHero.DOKill();
+                //先左右移动
+                itemHero.DOLocalMove(pos, mapMoveSpeed)
+                    .SetEase(Ease.OutQuad)
+                    .OnComplete(() =>
+                    {
+                        //将挤下来的角色放回备用区
+                        UpHeroOrBox upHero = new UpHeroOrBox();
+                        upHero.type = itemHero;
+                        upHero.e_touchState = E_TouchState.UpPlace;
+                        EventMgr.Instance.EventTrigger<UpHeroOrBox>(E_EventType.placeHeroBox, upHero);
+                    });
+            }
         }
         else
         {
@@ -208,8 +232,27 @@ public class Matrix_MapBox : MonoBehaviour
             foreach (var item in _nearestHeros)
                 item.GetComponent<Image>().color = Color.white;
         }
+        foreach (var item in curHerosDict)
+            item.Key.GetComponent<Image>().DOFade(0, mapMoveSpeed);//已上阵的格子 设置透明
     }
-
+    /// <summary>
+    /// 角色下阵，或被挤下阵等
+    /// </summary>
+    private void RemoveCurHerosDict(Transform heroTr)
+    {
+        List<Transform> removeHeros = new List<Transform>();
+        //遍历一个集合时，不能同时进行增删改
+        foreach (var itemHero in curHerosDict)
+        {
+            if (itemHero.Value == heroTr && !removeHeros.Contains(itemHero.Key))
+                removeHeros.Add(itemHero.Key);
+        }
+        //收集需要删除的key，查找完后同一删除
+        foreach (var item in removeHeros)
+        {
+            curHerosDict.Remove(item);
+        }
+    }
 
     List<Transform> _nearestBoxs = new List<Transform>();
     /// <summary>
@@ -226,17 +269,15 @@ public class Matrix_MapBox : MonoBehaviour
                 box.GetChild(0).GetComponent<Image>().color = Color.white;
             }
         }
-
         foreach (Transform child in dragBox.pos)
         {
-            Transform childRect = child;
             Transform nearestBox = null;
             float minDistance = float.MaxValue;
             foreach (Transform box in mapBoxs)
             {
                 if (box != null)
                 {
-                    float dist = Vector2.Distance(box.position, childRect.position);
+                    float dist = Vector2.Distance(box.position, child.position);
                     if (dist < minDistance)
                     {
                         minDistance = dist;
@@ -334,9 +375,9 @@ public class Matrix_MapBox : MonoBehaviour
         //    }
         //}
         //string allindexY = "";
-        //foreach (string item in indexY)
+        //foreach (string itemHero in indexY)
         //{
-        //    allindexY += item;
+        //    allindexY += itemHero;
         //}
         //List<string> indexX = new List<string>();
         //for (int i = 0; i < curBoxs.GetLength(0); i++)
@@ -352,9 +393,9 @@ public class Matrix_MapBox : MonoBehaviour
         //    }
         //}
         //string allindexX = "";
-        //foreach (string item in indexX)
+        //foreach (string itemHero in indexX)
         //{
-        //    allindexX += item;
+        //    allindexX += itemHero;
         //}
         #endregion
 

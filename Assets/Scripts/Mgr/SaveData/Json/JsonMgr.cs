@@ -80,6 +80,7 @@ public class JsonMgr : InstanceMgr<JsonMgr>
         {
             path = $"{DataPath}/{_path}{fileName}.json";
         }
+
         //如果读写文件夹中都还没有 那就返回一个默认对象
         if (!File.Exists(path)) return new T();
 

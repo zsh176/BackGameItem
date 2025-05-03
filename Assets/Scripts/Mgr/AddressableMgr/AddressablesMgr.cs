@@ -124,7 +124,7 @@ public class AddressablesMgr : InstanceMgr<AddressablesMgr>
         {
             if (obj.Status == AsyncOperationStatus.Failed)
             {
-                Debug.LogError("资源加载失败" + keyName);
+                Debug.LogError("资源加载失败：" + keyName);
                 if (resDic.ContainsKey(keyName))
                     resDic.Remove(keyName);
             }

@@ -13,5 +13,5 @@ public enum E_EventType
     placeHeroBox,//点击或松开 角色或格子
     dragBox,//拖拽格子
     startDragBox,//按下 开始拖拽格子
-
+    fieldHeroDrag,//上阵中的角色被拖拽
 }
