@@ -162,6 +162,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -103.745
       objectReference: {fileID: 0}
+    - target: {fileID: 1108102610906177240, guid: 45305aa90e7ecf546b8e202408d646c3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -94.29999
+      objectReference: {fileID: 0}
+    - target: {fileID: 2252460999888575586, guid: 45305aa90e7ecf546b8e202408d646c3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -94.29999
+      objectReference: {fileID: 0}
     - target: {fileID: 3128090268741079825, guid: 45305aa90e7ecf546b8e202408d646c3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -274,6 +282,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -184.94
       objectReference: {fileID: 0}
+    - target: {fileID: 7909296286239634075, guid: 45305aa90e7ecf546b8e202408d646c3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7909296286286335433, guid: 45305aa90e7ecf546b8e202408d646c3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -298,6 +310,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -76
       objectReference: {fileID: 0}
+    - target: {fileID: 7909296286299363764, guid: 45305aa90e7ecf546b8e202408d646c3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7909296286579559552, guid: 45305aa90e7ecf546b8e202408d646c3, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
@@ -317,6 +333,14 @@ PrefabInstance:
     - target: {fileID: 7909296286688920398, guid: 45305aa90e7ecf546b8e202408d646c3, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7909296286863590954, guid: 45305aa90e7ecf546b8e202408d646c3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7909296286944653982, guid: 45305aa90e7ecf546b8e202408d646c3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7909296286972155931, guid: 45305aa90e7ecf546b8e202408d646c3, type: 3}
       propertyPath: m_Pivot.x
@@ -405,6 +429,10 @@ PrefabInstance:
     - target: {fileID: 7909296286972155932, guid: 45305aa90e7ecf546b8e202408d646c3, type: 3}
       propertyPath: m_Name
       value: GamePanel
+      objectReference: {fileID: 0}
+    - target: {fileID: 7909296286996715039, guid: 45305aa90e7ecf546b8e202408d646c3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7909296287056215088, guid: 45305aa90e7ecf546b8e202408d646c3, type: 3}
       propertyPath: m_Enabled

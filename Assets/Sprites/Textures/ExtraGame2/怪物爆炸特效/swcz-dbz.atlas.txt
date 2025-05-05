@@ -1,0 +1,146 @@
+
+swcz-dbz.png
+size: 1901,1699
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+swcz-dbz1
+  rotate: true
+  xy: 1812, 728
+  size: 42, 53
+  orig: 44, 55
+  offset: 1, 1
+  index: -1
+swcz-dbz10
+  rotate: false
+  xy: 1054, 401
+  size: 518, 335
+  orig: 520, 337
+  offset: 1, 1
+  index: -1
+swcz-dbz11
+  rotate: false
+  xy: 528, 696
+  size: 524, 326
+  orig: 526, 328
+  offset: 1, 1
+  index: -1
+swcz-dbz12
+  rotate: false
+  xy: 1075, 1059
+  size: 528, 330
+  orig: 530, 332
+  offset: 1, 1
+  index: -1
+swcz-dbz13
+  rotate: false
+  xy: 2, 1013
+  size: 524, 336
+  orig: 526, 338
+  offset: 1, 1
+  index: -1
+swcz-dbz14
+  rotate: false
+  xy: 2, 672
+  size: 520, 339
+  orig: 522, 341
+  offset: 1, 1
+  index: -1
+swcz-dbz15
+  rotate: false
+  xy: 539, 1024
+  size: 527, 334
+  orig: 529, 336
+  offset: 1, 1
+  index: -1
+swcz-dbz16
+  rotate: false
+  xy: 539, 1360
+  size: 534, 337
+  orig: 536, 339
+  offset: 1, 1
+  index: -1
+swcz-dbz17
+  rotate: false
+  xy: 1068, 738
+  size: 527, 319
+  orig: 529, 321
+  offset: 1, 1
+  index: -1
+swcz-dbz18
+  rotate: false
+  xy: 2, 1351
+  size: 535, 346
+  orig: 537, 348
+  offset: 1, 1
+  index: -1
+swcz-dbz19
+  rotate: false
+  xy: 1075, 1391
+  size: 532, 306
+  orig: 534, 308
+  offset: 1, 1
+  index: -1
+swcz-dbz2
+  rotate: false
+  xy: 1597, 600
+  size: 213, 170
+  orig: 215, 172
+  offset: 1, 1
+  index: -1
+swcz-dbz20
+  rotate: true
+  xy: 1605, 772
+  size: 527, 293
+  orig: 529, 295
+  offset: 1, 1
+  index: -1
+swcz-dbz3
+  rotate: true
+  xy: 1609, 1301
+  size: 396, 278
+  orig: 398, 280
+  offset: 1, 1
+  index: -1
+swcz-dbz4
+  rotate: false
+  xy: 2, 2
+  size: 480, 326
+  orig: 482, 328
+  offset: 1, 1
+  index: -1
+swcz-dbz5
+  rotate: false
+  xy: 1036, 58
+  size: 496, 341
+  orig: 498, 343
+  offset: 1, 1
+  index: -1
+swcz-dbz6
+  rotate: false
+  xy: 2, 330
+  size: 499, 340
+  orig: 501, 342
+  offset: 1, 1
+  index: -1
+swcz-dbz7
+  rotate: false
+  xy: 503, 39
+  size: 493, 326
+  orig: 495, 328
+  offset: 1, 1
+  index: -1
+swcz-dbz8
+  rotate: true
+  xy: 1574, 96
+  size: 502, 325
+  orig: 504, 327
+  offset: 1, 1
+  index: -1
+swcz-dbz9
+  rotate: false
+  xy: 524, 367
+  size: 510, 327
+  orig: 512, 329
+  offset: 1, 1
+  index: -1

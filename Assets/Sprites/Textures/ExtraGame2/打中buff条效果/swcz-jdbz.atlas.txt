@@ -1,0 +1,41 @@
+
+swcz-jdbz.png
+size: 806,249
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+11tx1
+  rotate: true
+  xy: 679, 2
+  size: 117, 110
+  orig: 121, 115
+  offset: 2, 2
+  index: -1
+11tx2
+  rotate: false
+  xy: 679, 121
+  size: 125, 126
+  orig: 129, 130
+  offset: 2, 2
+  index: -1
+11tx3
+  rotate: true
+  xy: 479, 27
+  size: 220, 198
+  orig: 226, 204
+  offset: 3, 3
+  index: -1
+11tx4
+  rotate: false
+  xy: 2, 2
+  size: 258, 245
+  orig: 264, 250
+  offset: 3, 2
+  index: -1
+11tx5
+  rotate: false
+  xy: 262, 17
+  size: 215, 230
+  orig: 235, 234
+  offset: 15, 2
+  index: -1

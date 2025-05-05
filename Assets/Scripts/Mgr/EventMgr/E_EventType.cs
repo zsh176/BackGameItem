@@ -14,4 +14,9 @@ public enum E_EventType
     dragBox,//拖拽格子
     startDragBox,//按下 开始拖拽格子
     fieldHeroDrag,//上阵中的角色被拖拽
+    enemyDeath,//敌人死亡
+    setPlayGame,//改变游戏状态，开始游戏或进入准备阶段
+    skipLevel,//跳过当前波数
+    playerBeAtk,//玩家被攻击
+    chaEnemyList,//更新敌人数组
 }

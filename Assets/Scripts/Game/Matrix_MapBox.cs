@@ -57,7 +57,7 @@ public class Matrix_MapBox : MonoBehaviour
 
     void Start()
     {
-        mapBG = transform.Find("BattleMap/mapBG").transform;
+        mapBG = transform.Find("BattleMap/mapHeroBG").transform;
         boxBase = transform.Find("BattleMap/Matrix_MapBox").transform;
         curBase = transform.Find("BattleMap/Matrix_MapBox/Current_Box").transform;
         mapBase = transform.Find("BattleMap/Matrix_MapBox/_AddBox").transform;
@@ -111,12 +111,37 @@ public class Matrix_MapBox : MonoBehaviour
         EventMgr.Instance.AddEventListener<DragBox>(E_EventType.dragBox, IsBoxTrigger);
         EventMgr.Instance.AddEventListener(E_EventType.startDragBox, StartDragBox);
         EventMgr.Instance.AddEventListener<Transform>(E_EventType.fieldHeroDrag, RemoveCurHerosDict);
+        EventMgr.Instance.AddEventListener<bool>(E_EventType.setPlayGame, SetCur);
     }
     private void OnDestroy()
     {
         EventMgr.Instance.RemoveEventListener<DragHero>(E_EventType.dragHero, IsHeroTrigger);
         EventMgr.Instance.RemoveEventListener<DragBox>(E_EventType.dragBox, IsBoxTrigger);
         EventMgr.Instance.RemoveEventListener(E_EventType.startDragBox, StartDragBox);
+        EventMgr.Instance.RemoveEventListener<Transform>(E_EventType.fieldHeroDrag, RemoveCurHerosDict);
+        EventMgr.Instance.RemoveEventListener<bool>(E_EventType.setPlayGame, SetCur);
+    }
+
+    /// <summary>
+    /// 开始游戏，设置透明
+    /// </summary>
+    private void SetCur(bool isPlay)
+    {
+        if (isPlay)
+        {
+            foreach (Transform item in curBoxs)
+            {
+                item.GetComponent<Image>().DOFade(0, mapMoveSpeed);
+            }
+        }
+        else
+        {
+            foreach (Transform item in curBoxs)
+            {
+                if (!curHerosDict.ContainsKey(item))
+                    item.GetComponent<Image>().DOFade(1, mapMoveSpeed);
+            }
+        }
     }
 
 

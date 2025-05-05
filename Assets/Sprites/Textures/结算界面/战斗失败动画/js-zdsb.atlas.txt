@@ -1,0 +1,97 @@
+
+js-zdsb.png
+size: 1006,1290
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+js-lei1
+  rotate: true
+  xy: 627, 948
+  size: 340, 368
+  orig: 349, 378
+  offset: 4, 5
+  index: -1
+js-lei2
+  rotate: false
+  xy: 2, 364
+  size: 391, 306
+  orig: 399, 315
+  offset: 5, 3
+  index: -1
+js-lei3
+  rotate: false
+  xy: 329, 20
+  size: 399, 290
+  orig: 410, 302
+  offset: 6, 5
+  index: -1
+js-lei4
+  rotate: true
+  xy: 627, 557
+  size: 389, 311
+  orig: 401, 325
+  offset: 6, 10
+  index: -1
+js-lei5
+  rotate: true
+  xy: 2, 2
+  size: 360, 325
+  orig: 373, 343
+  offset: 9, 9
+  index: -1
+js-sbgq
+  rotate: true
+  xy: 2, 672
+  size: 616, 623
+  orig: 722, 697
+  offset: 53, 69
+  index: -1
+js-sbhf
+  rotate: true
+  xy: 395, 312
+  size: 358, 230
+  orig: 360, 232
+  offset: 1, 1
+  index: -1
+js-sbhz
+  rotate: true
+  xy: 627, 329
+  size: 226, 265
+  orig: 230, 267
+  offset: 2, 1
+  index: -1
+js-sblab
+  rotate: true
+  xy: 826, 49
+  size: 136, 174
+  orig: 138, 176
+  offset: 1, 1
+  index: -1
+js-sbss
+  rotate: false
+  xy: 940, 657
+  size: 36, 289
+  orig: 36, 289
+  offset: 0, 0
+  index: -1
+js-zi1
+  rotate: true
+  xy: 730, 3
+  size: 324, 94
+  orig: 326, 96
+  offset: 1, 1
+  index: -1
+js-zi2
+  rotate: true
+  xy: 894, 187
+  size: 368, 110
+  orig: 370, 112
+  offset: 1, 1
+  index: -1
+js-zi3
+  rotate: true
+  xy: 940, 573
+  size: 82, 60
+  orig: 84, 62
+  offset: 1, 1
+  index: -1

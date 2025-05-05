@@ -1,8 +1,5 @@
 using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -13,8 +10,7 @@ using UnityEngine.UI;
 public class BoxHero : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler, IDragHandler
 {
 
-    private int level;//自身有几个格子
-    private RectTransform thisRt;//自身
+    private RectTransform thisRect;//自身
     private Transform box_Pos;//占用格子信息
     private GameObject ad_lock;//广告遮罩
     private bool isClick;//是否点击 且没有进行拖拽
@@ -27,7 +23,7 @@ public class BoxHero : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IP
 
     void Start()
     {
-        thisRt = GetComponent<RectTransform>();
+        thisRect = GetComponent<RectTransform>();
         box_Pos = transform.Find("Box_Pos");
         ad_lock = transform.Find("Ad_lock").gameObject;
 
@@ -81,8 +77,17 @@ public class BoxHero : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IP
         isClick = true;
 
         if (isAdLock) return;
-        
-        thisRt.anchoredPosition += eventData.delta;
+        // 将鼠标位置转换为父级 RectTransform 的本地坐标
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            thisRect.parent as RectTransform, // 父级 RectTransform
+            eventData.position,                // 鼠标屏幕坐标
+            eventData.pressEventCamera,        // 摄像机（Canvas 的渲染模式决定）
+            out Vector2 localPos
+        ))
+        {
+            // 更新 UI 元素的位置
+            thisRect.localPosition = localPos;
+        }
         EventMgr.Instance.EventTrigger<DragBox>(E_EventType.dragBox, dragBox);
     }
 

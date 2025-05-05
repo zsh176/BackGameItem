@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using System;
@@ -7,7 +6,8 @@ using DG.Tweening;
 using TMPro;
 using Spine.Unity;
 using UnityEngine.UI;
-using System.Diagnostics;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 
 /// <summary>
 /// 角色基类
@@ -28,7 +28,8 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
     private Quaternion downRotation;//按下时的旋转
     private bool isUpLevelSeq;//是否开启提示可以升级动画
 
-    protected RectTransform thisRt;//自身
+    protected RectTransform thisRect;//自身
+    protected Transform thisRotation;//左右旋转点
     protected SkeletonGraphic spineAnim;//骨骼动画
     protected TextMeshProUGUI tet_Level;//显示等级
     protected HeroDataInfo heroDataInfo;//角色配置数据
@@ -37,19 +38,34 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
     [HideInInspector]
     public bool isSyn;//标记自己为被合成对象
     [HideInInspector]
+    public bool isAdLock;//是否广告解锁
+    [HideInInspector]
     public int level; //等级
     [HideInInspector]
-    public bool isAdLock;//是否广告解锁
+    public Transform bullet_Base;//子弹父物体
+    [HideInInspector]
+    public RectTransform sceneMapBG;//游戏场景地图背景
 
+    protected Transform atkPos;//子弹发射位置
+    protected List<Transform> enemyAllList;//存储场景中所有敌人
+    protected int atkValue;//基础攻击力
+    protected int atkValueBuff;//加成后的攻击力
+    protected float atkCooling;//攻击间隔
+    protected int atkDistance;//攻击距离
+    protected float timeAtkCooling;//记时攻击间隔
+    protected string bulletName;//子弹名称
+    private int LevelMultiplier => Mathf.RoundToInt(Mathf.Pow(2, level - 1));//等级系数伤害加成
 
     protected virtual void Start()
     {
-        thisRt = GetComponent<RectTransform>();
+        thisRect = GetComponent<RectTransform>();
         box_Pos = transform.Find("Box_Pos");
-        spineAnim = transform.Find("spine_Anim").GetComponent<SkeletonGraphic>();
+        spineAnim = transform.Find("Rotation/spine_Anim").GetComponent<SkeletonGraphic>();
         tet_Level = transform.Find("level/tet_level").GetComponent<TextMeshProUGUI>();
         buff_Anim = transform.Find("buff_Anim").gameObject;
         add_buff_Tips = transform.Find("Add_buff_Tips").gameObject;
+        thisRotation = transform.Find("Rotation");
+        atkPos = transform.Find("Rotation/AtkPos");
 
 
         dragHero = new DragHero();
@@ -58,12 +74,11 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
         heroDataInfo = FileSystemMgr.Instance.heroData.typeData[Type];
        
-
         tet_Level.text = level.ToString();
         buff_Anim.SetActive(false);
         add_buff_Tips.SetActive(false);
 
-        if (Type != HeroType.Hero_100015)
+        if (Type != HeroType.Hero_10015)
         {
             thisAnimator = GetComponent<Animator>();
             thisAnimator.enabled = false;
@@ -75,15 +90,26 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
             }, heroDataInfo.levelSpiteName + level.ToString(), StaticFields.Sprite);
         }
 
+        atkValue = heroDataInfo.atkValue;
+        atkCooling = heroDataInfo.atkCooling;
+        atkDistance = heroDataInfo.atkDistance;
+        bulletName = $"Bullet_{Type}";
+
+        atkValueBuff = atkValue * LevelMultiplier;
+
         EventMgr.Instance.AddEventListener<DragHero>(E_EventType.placeMatrix, PlaceMatrix);
         EventMgr.Instance.AddEventListener<DragHero>(E_EventType.dragHero, UpDragHero);
+        EventMgr.Instance.AddEventListener<List<Transform>>(E_EventType.chaEnemyList, ChaEnemyList);
     }
 
     private void OnDisable()
     {
         EventMgr.Instance.RemoveEventListener<DragHero>(E_EventType.placeMatrix, PlaceMatrix);
         EventMgr.Instance.RemoveEventListener<DragHero>(E_EventType.dragHero, UpDragHero);
+        EventMgr.Instance.RemoveEventListener<List<Transform>>(E_EventType.chaEnemyList, ChaEnemyList);
     }
+
+    #region 拖拽相关API
 
     /// <summary>
     /// 按下
@@ -141,8 +167,17 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
         if (GameStatus.Instance.offDrag) return;
 
         isClick = true;
-        //将鼠标的增量移动添加到自身
-        thisRt.anchoredPosition += eventData.delta;
+        // 将鼠标位置转换为父级 RectTransform 的本地坐标
+        if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
+            thisRect.parent as RectTransform, // 父级 RectTransform
+            eventData.position,                // 鼠标屏幕坐标
+            eventData.pressEventCamera,        // 摄像机（Canvas 的渲染模式决定）
+            out Vector2 localPos
+        ))
+        {
+            // 更新 UI 元素的位置
+            thisRect.localPosition = localPos;
+        }
         EventMgr.Instance.EventTrigger<DragHero>(E_EventType.dragHero, dragHero);
     }
 
@@ -161,9 +196,9 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
             }
             isUpLevelSeq = false;
 
-            float dist = Vector2.Distance(thisRt.position, _dragHero.type.transform.position);
+            float dist = Vector2.Distance(thisRect.position, _dragHero.type.transform.position);
             // 1、先判断是否可以合成
-            if (dist < 4.8f && _dragHero.type != this && _dragHero.type.level == level && level <= 3 && !_dragHero.type.isSyn)
+            if (dist < 4.5f && _dragHero.type != this && _dragHero.type.level == level && level <= 3 && !_dragHero.type.isSyn)
             {
                 _dragHero.type.isSyn = true;
                 _dragHero.type.transform.DOKill();
@@ -178,7 +213,7 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
                 StartCoroutine(InvokeIsThis());
             }
         }
-        else if (_dragHero.isDown && _dragHero.type != this && _dragHero.type.Type == Type && _dragHero.type.level == level && level <= 3 && Type != HeroType.Hero_100015)
+        else if (_dragHero.isDown && _dragHero.type != this && _dragHero.type.Type == Type && _dragHero.type.level == level && level <= 3 && Type != HeroType.Hero_10015)
         {   //自身符合升级，播放动画
             isUpLevelSeq = true;
             downRotation = transform.localRotation;
@@ -205,6 +240,7 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
     {
         level++;
         tet_Level.text = level.ToString();
+        atkValueBuff = atkValue * LevelMultiplier;
         spineAnim.Skeleton.SetSkin($"xhz{level}");
         PlayAnimMgr.Instance.PlayAnim("HeroUPAnim", "hec", transform.position);
         AddressablesMgr.Instance.LoadAssetAsync<Sprite>(spr =>
@@ -237,11 +273,97 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
     {
         print("点击触发事件");
     }
+    #endregion
 
-   
+
+    /// <summary>
+    /// 更新敌人数组
+    /// </summary>
+    private void ChaEnemyList(List<Transform> allEnemy)
+    {
+        enemyAllList = allEnemy;
+    }
+
+    //临时判断变量
+    private Transform nearestEnemy;
+    private float dist;
+    private float minDistance;
+    /// <summary>
+    /// 是否可以攻击
+    /// </summary>
+    protected virtual void IsOkAtk()
+    {
+        if (enemyAllList != null && enemyAllList.Count > 0)
+        {
+            minDistance = float.MaxValue;
+            // 遍历所有敌人，查找距离最近的那个
+            foreach (Transform enemy in enemyAllList)
+            {
+                dist = Vector2.Distance(enemy.localPosition, transform.localPosition);
+                if (dist < minDistance)
+                {
+                    minDistance = dist;
+                    nearestEnemy = enemy;
+                }
+            }
+            if (minDistance < atkDistance)
+            {
+                Attack(nearestEnemy);
+            }
+        }
+    }
+    /// <summary>
+    /// 发起攻击
+    /// </summary>
+    protected virtual void Attack(Transform target)
+    {
+        if (timeAtkCooling > 0) return;
+        if (target.position.x < transform.position.x)
+            thisRotation.localScale = new Vector2(-1, 1);
+        else
+            thisRotation.localScale = Vector2.one;
+
+        // 先播放攻击动画，结束后自动播放待机动画
+        spineAnim.AnimationState.SetAnimation(0, HeroAnimSpineTag.atk, false);
+        spineAnim.AnimationState.AddAnimation(0, HeroAnimSpineTag.stand, true, 0f);
+
+        timeAtkCooling = atkCooling;
+    }
+
+    protected virtual void Update()
+    {
+        if (!GameStatus.Instance.offDrag) return;
+
+        if (timeAtkCooling > 0)
+            timeAtkCooling -= Time.deltaTime;
+        else
+            IsOkAtk();
+
+    }
 
 }
 
+
+#region 枚举，数据类相关
+
+/// <summary>
+/// 动画名
+/// </summary>
+public struct HeroAnimSpineTag
+{
+    /// <summary>
+    /// 待机
+    /// </summary>
+    public const string stand = "stand";
+    /// <summary>
+    /// 攻击
+    /// </summary>
+    public const string atk = "hit";
+    /// <summary>
+    /// 技能
+    /// </summary>
+    public const string skill = "skill";
+}
 
 //英雄类型 枚举
 public enum HeroType
@@ -265,11 +387,11 @@ public enum HeroType
     /// <summary>
     /// 保安队长
     /// </summary>
-    Hero_100014,
+    Hero_10014,
     /// <summary>
     /// 黑道大哥
     /// </summary>
-    Hero_100015,
+    Hero_10015,
     Box_1, Box_2, Box_3
 }
 
@@ -339,3 +461,4 @@ public class UpHeroOrBox
     public E_TouchState e_touchState;
     /// <summary>
 }
+#endregion

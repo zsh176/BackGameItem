@@ -11,6 +11,5 @@ public class GameStatus : InstanceMgr<GameStatus>
     /// µ±Ç°ÊÇ·ñ½ûÖ¹ÍÏ×§
     /// </summary>
     public bool offDrag;
-
     
 }

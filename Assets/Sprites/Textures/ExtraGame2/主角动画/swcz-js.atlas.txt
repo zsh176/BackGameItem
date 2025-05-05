@@ -1,0 +1,62 @@
+
+swcz-js.png
+size: 282,187
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+swcz-qh
+  rotate: true
+  xy: 2, 50
+  size: 135, 125
+  orig: 147, 146
+  offset: 4, 13
+  index: -1
+swcz-qk
+  rotate: false
+  xy: 178, 96
+  size: 19, 89
+  orig: 21, 92
+  offset: 1, 2
+  index: -1
+swcz-st
+  rotate: false
+  xy: 199, 102
+  size: 75, 83
+  orig: 77, 85
+  offset: 1, 1
+  index: -1
+swcz-tou
+  rotate: false
+  xy: 209, 28
+  size: 71, 72
+  orig: 73, 74
+  offset: 1, 1
+  index: -1
+swcz-ty
+  rotate: false
+  xy: 129, 54
+  size: 78, 33
+  orig: 80, 35
+  offset: 1, 1
+  index: -1
+swcz-yj
+  rotate: true
+  xy: 115, 4
+  size: 44, 92
+  orig: 46, 94
+  offset: 1, 1
+  index: -1
+swcz-zd
+  rotate: true
+  xy: 2, 2
+  size: 46, 111
+  orig: 48, 113
+  offset: 1, 1
+  index: -1
+swcz-zj
+  rotate: false
+  xy: 129, 89
+  size: 47, 96
+  orig: 49, 99
+  offset: 1, 1
+  index: -1

@@ -1,0 +1,111 @@
+
+js-zdsl.png
+size: 871,480
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+js-hengf
+  rotate: false
+  xy: 415, 248
+  size: 358, 230
+  orig: 360, 232
+  offset: 1, 1
+  index: -1
+js-huiz
+  rotate: true
+  xy: 415, 21
+  size: 225, 264
+  orig: 227, 266
+  offset: 1, 1
+  index: -1
+js-laba
+  rotate: true
+  xy: 681, 19
+  size: 136, 174
+  orig: 138, 176
+  offset: 1, 1
+  index: -1
+js-laba2
+  rotate: true
+  xy: 292, 12
+  size: 53, 55
+  orig: 55, 58
+  offset: 1, 1
+  index: -1
+js-laba3
+  rotate: false
+  xy: 349, 21
+  size: 31, 44
+  orig: 33, 46
+  offset: 1, 1
+  index: -1
+js-laba4
+  rotate: true
+  xy: 382, 23
+  size: 42, 28
+  orig: 45, 30
+  offset: 1, 1
+  index: -1
+js-pd1
+  rotate: false
+  xy: 681, 196
+  size: 69, 50
+  orig: 71, 52
+  offset: 1, 1
+  index: -1
+js-pd2
+  rotate: true
+  xy: 681, 172
+  size: 22, 28
+  orig: 24, 30
+  offset: 1, 1
+  index: -1
+js-pd3
+  rotate: true
+  xy: 752, 203
+  size: 23, 15
+  orig: 25, 17
+  offset: 1, 1
+  index: -1
+js-pd4
+  rotate: true
+  xy: 382, 2
+  size: 19, 27
+  orig: 21, 29
+  offset: 1, 1
+  index: -1
+js-pd5
+  rotate: false
+  xy: 349, 3
+  size: 20, 16
+  orig: 22, 18
+  offset: 1, 1
+  index: -1
+js-pd6
+  rotate: true
+  xy: 752, 228
+  size: 18, 16
+  orig: 20, 18
+  offset: 1, 1
+  index: -1
+js-shex
+  rotate: false
+  xy: 2, 67
+  size: 411, 411
+  orig: 427, 426
+  offset: 8, 7
+  index: -1
+js-ss
+  rotate: true
+  xy: 2, 29
+  size: 36, 288
+  orig: 36, 288
+  offset: 0, 0
+  index: -1
+js-zdslz
+  rotate: true
+  xy: 775, 157
+  size: 321, 94
+  orig: 323, 96
+  offset: 1, 1
+  index: -1

@@ -62,7 +62,7 @@ public class LoginPanel : BasePanel
         }
     }
 
-    protected override void OnValueChanged(string toggleName, bool value)
+    protected override void OnValueChangedToggle(string toggleName, bool value)
     {
         //在这来根据名字判断 到底是那一个单选框或者多选框状态变化了 当前状态就是传入的value
     }

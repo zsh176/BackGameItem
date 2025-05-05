@@ -82,6 +82,55 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Hero
+  - m_GUID: d9add54718a08e54694e34e4bfee97bb
+    m_Address: Enemy_Ordinary04
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Enemy
+  - m_GUID: 6f13af384f127924db546505e26fcb79
+    m_Address: Enemy_Ordinary03
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Enemy
+  - m_GUID: 7312b8e15fd6d8147b308bee6f6661cf
+    m_Address: Enemy_Ordinary02
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Enemy
+  - m_GUID: 8d63750e2109bee4d8e3ec0d0ee5e126
+    m_Address: Enemy_Ordinary01
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Enemy
+  - m_GUID: 9ab9c17c5c54a2e468eec69d40acba7d
+    m_Address: Enemy_Boss02
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Enemy
+  - m_GUID: 8612a99dbefbbeb4f9886a0ded7b7bea
+    m_Address: Enemy_Boss01
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Enemy
+  - m_GUID: 7882d8563dc021d47bd631ba86a19913
+    m_Address: Enemy_Ordinary05
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Enemy
+  - m_GUID: c89b95c2a75bf994ea9acd99105b0fd6
+    m_Address: PopUpTips
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 597e3dd60ac24ba4882bbc9aa6597198
+    m_Address: Bullet_Hero_10002
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Bullet
+  - m_GUID: bd7c58588c8074d4b9ef1cd311200f2b
+    m_Address: Bullet_Hero_10014
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Bullet
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 1ba7714d817f03c4b9385123947df6ec, type: 2}
   m_SchemaSet:

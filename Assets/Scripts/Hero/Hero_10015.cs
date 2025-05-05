@@ -7,6 +7,6 @@ using UnityEngine;
 /// </summary>
 public class Hero_10015 : HeroBase
 {
-    public override HeroType Type => HeroType.Hero_100015;
+    public override HeroType Type => HeroType.Hero_10015;
 
 }

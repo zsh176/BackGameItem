@@ -1,0 +1,104 @@
+
+rzdf-icon.png
+size: 1604,117
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+rzdf-ico
+  rotate: true
+  xy: 1497, 7
+  size: 108, 105
+  orig: 108, 105
+  offset: 0, 0
+  index: -1
+rzdf-tx1
+  rotate: false
+  xy: 2, 2
+  size: 113, 113
+  orig: 115, 115
+  offset: 1, 1
+  index: -1
+rzdf-tx10
+  rotate: false
+  xy: 1037, 2
+  size: 113, 113
+  orig: 115, 115
+  offset: 1, 1
+  index: -1
+rzdf-tx11
+  rotate: false
+  xy: 1152, 2
+  size: 113, 113
+  orig: 115, 115
+  offset: 1, 1
+  index: -1
+rzdf-tx12
+  rotate: false
+  xy: 1267, 2
+  size: 113, 113
+  orig: 115, 115
+  offset: 1, 1
+  index: -1
+rzdf-tx13
+  rotate: false
+  xy: 1382, 2
+  size: 113, 113
+  orig: 115, 115
+  offset: 1, 1
+  index: -1
+rzdf-tx2
+  rotate: false
+  xy: 117, 2
+  size: 113, 113
+  orig: 115, 115
+  offset: 1, 1
+  index: -1
+rzdf-tx3
+  rotate: false
+  xy: 232, 2
+  size: 113, 113
+  orig: 115, 115
+  offset: 1, 1
+  index: -1
+rzdf-tx4
+  rotate: false
+  xy: 347, 2
+  size: 113, 113
+  orig: 115, 115
+  offset: 1, 1
+  index: -1
+rzdf-tx5
+  rotate: false
+  xy: 462, 2
+  size: 113, 113
+  orig: 115, 115
+  offset: 1, 1
+  index: -1
+rzdf-tx6
+  rotate: false
+  xy: 577, 2
+  size: 113, 113
+  orig: 115, 115
+  offset: 1, 1
+  index: -1
+rzdf-tx7
+  rotate: false
+  xy: 692, 2
+  size: 113, 113
+  orig: 115, 115
+  offset: 1, 1
+  index: -1
+rzdf-tx8
+  rotate: false
+  xy: 807, 2
+  size: 113, 113
+  orig: 115, 115
+  offset: 1, 1
+  index: -1
+rzdf-tx9
+  rotate: false
+  xy: 922, 2
+  size: 113, 113
+  orig: 115, 115
+  offset: 1, 1
+  index: -1

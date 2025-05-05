@@ -1,0 +1,167 @@
+
+dkjl-longtou.png
+size: 1175,336
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dkjl-guang
+  rotate: true
+  xy: 560, 8
+  size: 145, 35
+  orig: 151, 43
+  offset: 3, 4
+  index: -1
+dkjl-ld1
+  rotate: false
+  xy: 385, 2
+  size: 173, 142
+  orig: 179, 149
+  offset: 5, 1
+  index: -1
+dkjl-ld2
+  rotate: false
+  xy: 1074, 32
+  size: 85, 81
+  orig: 87, 87
+  offset: 1, 1
+  index: -1
+dkjl-ld3
+  rotate: true
+  xy: 371, 146
+  size: 188, 151
+  orig: 201, 156
+  offset: 8, 1
+  index: -1
+dkjl-ld4
+  rotate: true
+  xy: 597, 14
+  size: 139, 152
+  orig: 146, 164
+  offset: 6, 1
+  index: -1
+dkjl-ld5
+  rotate: false
+  xy: 606, 180
+  size: 99, 154
+  orig: 106, 164
+  offset: 3, 1
+  index: -1
+dkjl-ld6
+  rotate: true
+  xy: 225, 2
+  size: 139, 158
+  orig: 145, 161
+  offset: 5, 2
+  index: -1
+dkjl-ld7
+  rotate: false
+  xy: 524, 155
+  size: 80, 179
+  orig: 98, 181
+  offset: 9, 1
+  index: -1
+dkjl-ld8
+  rotate: false
+  xy: 222, 143
+  size: 147, 191
+  orig: 155, 202
+  offset: 3, 5
+  index: -1
+dkjl-lsb
+  rotate: false
+  xy: 707, 195
+  size: 137, 139
+  orig: 139, 141
+  offset: 1, 1
+  index: -1
+dkjl-ltgg
+  rotate: true
+  xy: 2, 110
+  size: 224, 218
+  orig: 227, 221
+  offset: 2, 1
+  index: -1
+dkjl-lxb
+  rotate: true
+  xy: 751, 41
+  size: 124, 104
+  orig: 126, 106
+  offset: 1, 1
+  index: -1
+dkjl-nlq1
+  rotate: true
+  xy: 113, 3
+  size: 105, 110
+  orig: 237, 237
+  offset: 68, 66
+  index: -1
+dkjl-nlq10
+  rotate: false
+  xy: 962, 114
+  size: 105, 109
+  orig: 237, 237
+  offset: 69, 67
+  index: -1
+dkjl-nlq2
+  rotate: false
+  xy: 1058, 225
+  size: 104, 109
+  orig: 237, 237
+  offset: 69, 67
+  index: -1
+dkjl-nlq3
+  rotate: false
+  xy: 846, 223
+  size: 103, 111
+  orig: 237, 237
+  offset: 70, 65
+  index: -1
+dkjl-nlq4
+  rotate: false
+  xy: 1069, 115
+  size: 104, 108
+  orig: 237, 237
+  offset: 70, 68
+  index: -1
+dkjl-nlq5
+  rotate: false
+  xy: 951, 225
+  size: 105, 109
+  orig: 237, 237
+  offset: 70, 67
+  index: -1
+dkjl-nlq6
+  rotate: true
+  xy: 857, 4
+  size: 105, 109
+  orig: 237, 237
+  offset: 70, 67
+  index: -1
+dkjl-nlq7
+  rotate: true
+  xy: 2, 2
+  size: 106, 109
+  orig: 237, 237
+  offset: 70, 67
+  index: -1
+dkjl-nlq8
+  rotate: false
+  xy: 968, 3
+  size: 104, 109
+  orig: 237, 237
+  offset: 70, 67
+  index: -1
+dkjl-nlq9
+  rotate: false
+  xy: 857, 111
+  size: 103, 110
+  orig: 237, 237
+  offset: 70, 66
+  index: -1
+dkjl-zayan
+  rotate: false
+  xy: 707, 167
+  size: 61, 26
+  orig: 63, 28
+  offset: 1, 1
+  index: -1

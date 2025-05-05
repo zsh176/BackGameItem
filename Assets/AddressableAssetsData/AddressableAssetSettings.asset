@@ -81,7 +81,7 @@ MonoBehaviour:
       - m_Id: 9a70a33a78e211e4ab70489e595cb4ef
         m_Value: ServerData/[BuildTarget]
       - m_Id: 05c257f4d8a76e641976f313ac89a4d2
-        m_Value: https://wxxyx.szpailedi.com
+        m_Value: https://micro.dragon.efunent.com/web1/zsh_Ast/ThisBackGame/1.0.0
     m_ProfileEntryNames:
     - m_Id: eb7b95b292c16e24f90e86652746ca19
       m_Name: BuildTarget
@@ -107,6 +107,8 @@ MonoBehaviour:
     - Anim
     - Sprite
     - Hero
+    - Enemy
+    - Bullet
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 209599f0edbcd5b4ba87427b14e0358b, type: 2}

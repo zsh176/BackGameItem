@@ -1,0 +1,146 @@
+
+xmel-sztx.png
+size: 1000,1344
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+bianp-1
+  rotate: false
+  xy: 705, 688
+  size: 136, 301
+  orig: 138, 303
+  offset: 1, 1
+  index: -1
+bianp-10
+  rotate: true
+  xy: 2, 596
+  size: 194, 310
+  orig: 196, 312
+  offset: 1, 1
+  index: -1
+bianp-11
+  rotate: false
+  xy: 810, 123
+  size: 172, 240
+  orig: 174, 242
+  offset: 1, 1
+  index: -1
+bianp-12
+  rotate: false
+  xy: 313, 308
+  size: 131, 236
+  orig: 133, 238
+  offset: 1, 1
+  index: -1
+bianp-13
+  rotate: true
+  xy: 810, 29
+  size: 92, 134
+  orig: 94, 136
+  offset: 1, 1
+  index: -1
+bianp-2
+  rotate: false
+  xy: 843, 658
+  size: 136, 286
+  orig: 138, 288
+  offset: 1, 1
+  index: -1
+bianp-3
+  rotate: true
+  xy: 390, 991
+  size: 169, 369
+  orig: 171, 371
+  offset: 1, 1
+  index: -1
+bianp-4
+  rotate: true
+  xy: 2, 1168
+  size: 174, 420
+  orig: 176, 422
+  offset: 1, 1
+  index: -1
+bianp-5
+  rotate: false
+  xy: 845, 946
+  size: 153, 396
+  orig: 155, 398
+  offset: 1, 1
+  index: -1
+bianp-6
+  rotate: true
+  xy: 424, 1162
+  size: 180, 419
+  orig: 182, 421
+  offset: 1, 1
+  index: -1
+bianp-7
+  rotate: true
+  xy: 2, 995
+  size: 171, 386
+  orig: 173, 388
+  offset: 1, 1
+  index: -1
+bianp-8
+  rotate: true
+  xy: 2, 792
+  size: 201, 363
+  orig: 203, 365
+  offset: 1, 1
+  index: -1
+bianp-9
+  rotate: true
+  xy: 367, 801
+  size: 188, 336
+  orig: 190, 338
+  offset: 1, 1
+  index: -1
+bpyh-1
+  rotate: false
+  xy: 446, 316
+  size: 230, 228
+  orig: 232, 230
+  offset: 1, 1
+  index: -1
+bpyh-2
+  rotate: false
+  xy: 367, 546
+  size: 314, 253
+  orig: 316, 255
+  offset: 1, 1
+  index: -1
+bpyh-3
+  rotate: true
+  xy: 2, 2
+  size: 304, 273
+  orig: 306, 275
+  offset: 1, 1
+  index: -1
+bpyh-4
+  rotate: false
+  xy: 2, 308
+  size: 309, 286
+  orig: 311, 288
+  offset: 1, 1
+  index: -1
+bpyh-5
+  rotate: false
+  xy: 683, 365
+  size: 310, 291
+  orig: 312, 293
+  offset: 1, 1
+  index: -1
+bpyh-6
+  rotate: true
+  xy: 277, 17
+  size: 289, 274
+  orig: 291, 276
+  offset: 1, 1
+  index: -1
+bpyh-7
+  rotate: true
+  xy: 553, 47
+  size: 267, 255
+  orig: 269, 257
+  offset: 1, 1
+  index: -1

@@ -1,0 +1,48 @@
+
+swcz-yhdbz.png
+size: 1430,244
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+cthyh-1
+  rotate: true
+  xy: 535, 3
+  size: 239, 236
+  orig: 241, 238
+  offset: 1, 1
+  index: -1
+cthyh-2
+  rotate: true
+  xy: 773, 7
+  size: 235, 232
+  orig: 237, 234
+  offset: 1, 1
+  index: -1
+cthyh-3
+  rotate: true
+  xy: 1007, 7
+  size: 235, 229
+  orig: 237, 231
+  offset: 1, 1
+  index: -1
+cthyh-4
+  rotate: false
+  xy: 2, 2
+  size: 281, 240
+  orig: 283, 242
+  offset: 1, 1
+  index: -1
+cthyh-5
+  rotate: false
+  xy: 285, 2
+  size: 248, 240
+  orig: 250, 242
+  offset: 1, 1
+  index: -1
+cthyh-guang
+  rotate: false
+  xy: 1238, 52
+  size: 190, 190
+  orig: 221, 222
+  offset: 16, 16
+  index: -1

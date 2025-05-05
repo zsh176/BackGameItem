@@ -1,0 +1,132 @@
+
+xmel-sztx.png
+size: 1025,916
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+shuiz-1
+  rotate: true
+  xy: 2, 767
+  size: 147, 338
+  orig: 147, 338
+  offset: 0, 0
+  index: -1
+shuiz-10
+  rotate: true
+  xy: 342, 617
+  size: 148, 338
+  orig: 148, 338
+  offset: 0, 0
+  index: -1
+shuiz-11
+  rotate: true
+  xy: 682, 767
+  size: 147, 338
+  orig: 147, 338
+  offset: 0, 0
+  index: -1
+shuiz-12
+  rotate: true
+  xy: 2, 618
+  size: 147, 338
+  orig: 147, 338
+  offset: 0, 0
+  index: -1
+shuiz-13
+  rotate: true
+  xy: 682, 156
+  size: 152, 338
+  orig: 152, 338
+  offset: 0, 0
+  index: -1
+shuiz-14
+  rotate: true
+  xy: 2, 5
+  size: 152, 338
+  orig: 152, 338
+  offset: 0, 0
+  index: -1
+shuiz-15
+  rotate: true
+  xy: 342, 2
+  size: 152, 338
+  orig: 152, 338
+  offset: 0, 0
+  index: -1
+shuiz-16
+  rotate: true
+  xy: 682, 2
+  size: 152, 338
+  orig: 152, 338
+  offset: 0, 0
+  index: -1
+shuiz-17
+  rotate: true
+  xy: 684, 464
+  size: 150, 339
+  orig: 150, 339
+  offset: 0, 0
+  index: -1
+shuiz-18
+  rotate: true
+  xy: 2, 313
+  size: 150, 339
+  orig: 150, 339
+  offset: 0, 0
+  index: -1
+shuiz-2
+  rotate: true
+  xy: 342, 767
+  size: 147, 338
+  orig: 147, 338
+  offset: 0, 0
+  index: -1
+shuiz-3
+  rotate: true
+  xy: 343, 310
+  size: 152, 338
+  orig: 152, 338
+  offset: 0, 0
+  index: -1
+shuiz-4
+  rotate: true
+  xy: 683, 310
+  size: 152, 338
+  orig: 152, 338
+  offset: 0, 0
+  index: -1
+shuiz-5
+  rotate: true
+  xy: 2, 159
+  size: 152, 338
+  orig: 152, 338
+  offset: 0, 0
+  index: -1
+shuiz-6
+  rotate: true
+  xy: 342, 156
+  size: 152, 338
+  orig: 152, 338
+  offset: 0, 0
+  index: -1
+shuiz-7
+  rotate: true
+  xy: 2, 465
+  size: 150, 339
+  orig: 150, 339
+  offset: 0, 0
+  index: -1
+shuiz-8
+  rotate: true
+  xy: 343, 464
+  size: 150, 339
+  orig: 150, 339
+  offset: 0, 0
+  index: -1
+shuiz-9
+  rotate: true
+  xy: 682, 616
+  size: 149, 338
+  orig: 149, 338
+  offset: 0, 0
+  index: -1

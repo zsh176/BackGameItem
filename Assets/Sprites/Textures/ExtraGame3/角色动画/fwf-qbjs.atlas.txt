@@ -1,0 +1,111 @@
+
+fwf-qbjs.png
+size: 297,341
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+swcz-qh
+  rotate: false
+  xy: 2, 214
+  size: 135, 125
+  orig: 147, 146
+  offset: 4, 13
+  index: -1
+swcz-qk
+  rotate: false
+  xy: 275, 76
+  size: 19, 89
+  orig: 21, 92
+  offset: 1, 2
+  index: -1
+swcz-st
+  rotate: true
+  xy: 139, 173
+  size: 75, 83
+  orig: 77, 85
+  offset: 1, 1
+  index: -1
+swcz-tou
+  rotate: false
+  xy: 83, 51
+  size: 71, 72
+  orig: 73, 74
+  offset: 1, 1
+  index: -1
+swcz-ty
+  rotate: false
+  xy: 2, 11
+  size: 78, 33
+  orig: 80, 35
+  offset: 1, 1
+  index: -1
+swcz-yj
+  rotate: true
+  xy: 83, 2
+  size: 44, 92
+  orig: 46, 94
+  offset: 1, 1
+  index: -1
+swcz-zd
+  rotate: true
+  xy: 111, 125
+  size: 46, 111
+  orig: 48, 113
+  offset: 1, 1
+  index: -1
+swcz-zj
+  rotate: false
+  xy: 226, 69
+  size: 47, 96
+  orig: 49, 99
+  offset: 1, 1
+  index: -1
+xmel-js3st
+  rotate: false
+  xy: 219, 256
+  size: 76, 83
+  orig: 78, 86
+  offset: 1, 2
+  index: -1
+xmel-js3t
+  rotate: false
+  xy: 2, 132
+  size: 107, 80
+  orig: 109, 82
+  offset: 1, 1
+  index: -1
+xmel-js3xg
+  rotate: false
+  xy: 226, 2
+  size: 60, 65
+  orig: 62, 67
+  offset: 1, 1
+  index: -1
+xmel-js3xz
+  rotate: false
+  xy: 2, 46
+  size: 79, 84
+  orig: 81, 86
+  offset: 1, 1
+  index: -1
+xmel-jsss
+  rotate: false
+  xy: 139, 250
+  size: 78, 89
+  orig: 80, 91
+  offset: 1, 1
+  index: -1
+xmel-jst
+  rotate: false
+  xy: 156, 48
+  size: 68, 75
+  orig: 70, 77
+  offset: 1, 1
+  index: -1
+xmel-jsxs
+  rotate: false
+  xy: 224, 167
+  size: 71, 87
+  orig: 73, 89
+  offset: 1, 1
+  index: -1

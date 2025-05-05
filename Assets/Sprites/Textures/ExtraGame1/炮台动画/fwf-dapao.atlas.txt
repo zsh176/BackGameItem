@@ -1,0 +1,20 @@
+
+fwf-dapao.png
+size: 304,193
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+fwf-dapao
+  rotate: false
+  xy: 198, 42
+  size: 104, 149
+  orig: 106, 151
+  offset: 1, 1
+  index: -1
+fwf-paoh
+  rotate: false
+  xy: 2, 2
+  size: 194, 189
+  orig: 198, 199
+  offset: 2, 8
+  index: -1

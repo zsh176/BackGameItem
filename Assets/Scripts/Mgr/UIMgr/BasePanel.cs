@@ -22,8 +22,8 @@ public class BasePanel : MonoBehaviour
         //FindChildrenControl<Image>();
         //FindChildrenControl<Text>();
         FindChildrenControl<Toggle>();
-        //FindChildrenControl<Slider>();
-        FindChildrenControl<ScrollRect>();
+        FindChildrenControl<Slider>();
+        //FindChildrenControl<ScrollRect>();
         //FindChildrenControl<InputField>();
     }
 
@@ -69,7 +69,7 @@ public class BasePanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 让子类重写 用名字区分是哪个Button
+    /// 事件回调 用名字区分是哪个Button
     /// </summary>
     protected virtual void OnClick(string btnName)
     {
@@ -77,12 +77,20 @@ public class BasePanel : MonoBehaviour
     }
 
     /// <summary>
-    /// 让子类重写 用名字区分是哪个按钮
+    /// 事件回调 用名字区分是哪个单选框
     /// </summary>
-    protected virtual void OnValueChanged(string toggleName, bool value)
+    protected virtual void OnValueChangedToggle(string toggleName, bool value)
     {
 
     }
+    /// <summary>
+    /// 事件回调 用名字区分是哪个滑动条
+    /// </summary>
+    protected virtual void OnValueChangedSlider(string sliderName, float value)
+    {
+
+    }
+
 
     /// <summary>
     /// 得到对应名字的对应控件脚本
@@ -132,7 +140,14 @@ public class BasePanel : MonoBehaviour
             {
                 (controls[i] as Toggle).onValueChanged.AddListener((value) =>
                 {
-                    OnValueChanged(objName, value);
+                    OnValueChangedToggle(objName, value);
+                });
+            }
+            else if(controls[i] is Slider)
+            {
+                (controls[i] as Slider).onValueChanged.AddListener((value) =>
+                {
+                    OnValueChangedSlider(objName, value);
                 });
             }
         }

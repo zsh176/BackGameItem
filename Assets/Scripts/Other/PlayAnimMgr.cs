@@ -41,4 +41,17 @@ public class PlayAnimMgr : BaseManager<PlayAnimMgr>
         }, name, StaticFields.AnimTag);
     }
 
+    /// <summary>
+    /// Ã· æµØ¥∞
+    /// </summary>
+    /// <param name="str"></param>
+    /// <param name="time"></param>
+    public void ShowTips(string str, float time = 1.2f)
+    {
+        PoolMgr.Instance.GetObj("PopUpTips", obj =>
+        {
+            obj.transform.SetParent(animBase, false);
+            obj.GetComponent<PopUpTips>().ShowTips(str, time);
+        });
+    }
 }

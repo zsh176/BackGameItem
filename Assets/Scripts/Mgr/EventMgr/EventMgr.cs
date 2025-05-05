@@ -106,20 +106,20 @@ public class EventInfo<T> : IEventInfo
     * 1，需要快速查找元素的集合。
     * 2，不需要排序，但要确保元素唯一的集合
     */
-    public HashSet<UnityAction<T>> actions;
+    public List<UnityAction<T>> actions;
 
     public EventInfo(UnityAction<T> action)
     {
-        actions = new HashSet<UnityAction<T>>() { action };
+        actions = new List<UnityAction<T>>() { action };
     }
 }
 
 public class EventInfo : IEventInfo
 {
-    public HashSet<UnityAction> actions;
+    public List<UnityAction> actions;
 
     public EventInfo(UnityAction action)
     {
-        actions = new HashSet<UnityAction>() { action };
+        actions = new List<UnityAction>() { action };
     }
 }

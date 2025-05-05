@@ -1,0 +1,69 @@
+
+dkjl-ldnl.png
+size: 885,111
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+dkjl-lqd
+  rotate: false
+  xy: 543, 4
+  size: 96, 105
+  orig: 100, 108
+  offset: 2, 2
+  index: -1
+dkjl-tx1
+  rotate: false
+  xy: 2, 3
+  size: 108, 106
+  orig: 110, 108
+  offset: 1, 1
+  index: -1
+dkjl-tx2
+  rotate: false
+  xy: 112, 2
+  size: 106, 107
+  orig: 108, 109
+  offset: 1, 1
+  index: -1
+dkjl-tx3
+  rotate: false
+  xy: 436, 3
+  size: 105, 106
+  orig: 107, 108
+  offset: 1, 1
+  index: -1
+dkjl-tx4
+  rotate: true
+  xy: 220, 2
+  size: 107, 106
+  orig: 109, 108
+  offset: 1, 1
+  index: -1
+dkjl-tx5
+  rotate: true
+  xy: 328, 2
+  size: 107, 106
+  orig: 109, 108
+  offset: 1, 1
+  index: -1
+dkjl-tx6
+  rotate: true
+  xy: 735, 12
+  size: 97, 81
+  orig: 99, 83
+  offset: 1, 1
+  index: -1
+dkjl-tx7
+  rotate: true
+  xy: 641, 16
+  size: 93, 92
+  orig: 95, 94
+  offset: 1, 1
+  index: -1
+dkjl-zylq
+  rotate: false
+  xy: 818, 44
+  size: 65, 65
+  orig: 67, 67
+  offset: 1, 1
+  index: -1

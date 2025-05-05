@@ -1,0 +1,20 @@
+
+js-shiffh.png
+size: 434,379
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+js-guanh
+  rotate: true
+  xy: 2, 2
+  size: 375, 387
+  orig: 404, 428
+  offset: 14, 19
+  index: -1
+js-xingx
+  rotate: false
+  xy: 391, 336
+  size: 41, 41
+  orig: 43, 43
+  offset: 1, 1
+  index: -1
