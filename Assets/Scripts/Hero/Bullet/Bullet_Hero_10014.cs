@@ -13,11 +13,4 @@ public class Bullet_Hero_10014 : BulletBase
 
         moveSpeed = 50;
     }
-
-    protected override void Update()
-    {
-        base.Update();
-        transform.Translate(Vector3.up * moveSpeed * Time.deltaTime, Space.Self);
-
-    }
 }

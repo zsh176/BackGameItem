@@ -27,6 +27,8 @@ public class Hero_10014 : HeroBase
     {
         base.Attack(target);
 
+        Debug.Log($"等级 {level} ,子弹数量 {bulletFewbuff}");
+
         int bulletCount = bulletFewbuff;
         Vector2 baseDirection = (target.position - transform.position).normalized;
 

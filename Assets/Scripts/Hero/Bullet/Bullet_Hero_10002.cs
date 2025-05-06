@@ -23,18 +23,13 @@ public class Bullet_Hero_10002 : BulletBase
         transform.position = initPos;
         transform.rotation = initRotation;
         atkValue = atkvalus;
-        sceneMapBG = initsceneMapBG;
+        mapBGheight = (initsceneMapBG.rect.height / 2) + 200;
+        mapBGwidth = (initsceneMapBG.rect.width / 2) + 200;
         if (isSkill)
         {
             ordinary.SetActive(false);
             skill.SetActive(true);
         }
+        isOver = false;
     }
-    protected override void Update()
-    {
-        base.Update();
-        transform.Translate(Vector3.up * moveSpeed * Time.deltaTime, Space.Self);
-
-    }
-
 }

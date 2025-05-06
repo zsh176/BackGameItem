@@ -29,7 +29,7 @@ public class LevelGameData
                    },
                     new BatchData()//第二批
                    {
-                       Cooling = 7,
+                       Cooling = 5,
                        fewEnemy = 25,
                        enemyName = new EnemyType[]
                        {
@@ -38,7 +38,7 @@ public class LevelGameData
                    },
                     new BatchData()//第三批
                    {
-                       Cooling = 10,
+                       Cooling = 7,
                        fewEnemy = 30,
                        enemyName = new EnemyType[]
                        {
@@ -66,7 +66,7 @@ public class LevelGameData
                    },
                     new BatchData()
                    {
-                       Cooling = 7,
+                       Cooling = 5,
                        fewEnemy = 25,
                        enemyName = new EnemyType[]
                        {
@@ -75,7 +75,7 @@ public class LevelGameData
                    },
                     new BatchData()
                    {
-                       Cooling = 10,
+                       Cooling = 7,
                        fewEnemy = 30,
                        enemyName = new EnemyType[]
                        {
@@ -104,7 +104,7 @@ public class LevelGameData
                    },
                     new BatchData()
                    {
-                       Cooling = 7,
+                       Cooling = 5,
                        fewEnemy = 25,
                        enemyName = new EnemyType[]
                        {
@@ -113,7 +113,7 @@ public class LevelGameData
                    },
                     new BatchData()
                    {
-                       Cooling = 10,
+                       Cooling = 7,
                        fewEnemy = 30,
                        enemyName = new EnemyType[]
                        {
@@ -146,7 +146,7 @@ public class LevelGameData
                    },
                     new BatchData()
                    {
-                       Cooling = 7,
+                       Cooling = 5,
                        fewEnemy = 40,
                        enemyName = new EnemyType[]
                        {
@@ -155,7 +155,7 @@ public class LevelGameData
                    },
                     new BatchData()
                    {
-                       Cooling = 10,
+                       Cooling = 7,
                        fewEnemy = 45,
                        enemyName = new EnemyType[]
                        {
@@ -183,7 +183,7 @@ public class LevelGameData
                    },
                     new BatchData()
                    {
-                       Cooling = 7,
+                       Cooling = 5,
                        fewEnemy = 40,
                        enemyName = new EnemyType[]
                        {
@@ -193,7 +193,7 @@ public class LevelGameData
                    },
                     new BatchData()
                    {
-                       Cooling = 10,
+                       Cooling = 7,
                        fewEnemy = 45,
                        enemyName = new EnemyType[]
                        {
@@ -221,7 +221,7 @@ public class LevelGameData
                    },
                     new BatchData()
                    {
-                       Cooling = 7,
+                       Cooling = 5,
                        fewEnemy = 40,
                        enemyName = new EnemyType[]
                        {
@@ -236,7 +236,7 @@ public class LevelGameData
                    },
                     new BatchData()
                    {
-                       Cooling = 10,
+                       Cooling = 7,
                        fewEnemy = 45,
                        enemyName = new EnemyType[]
                        {
@@ -271,7 +271,7 @@ public class LevelGameData
                    },
                     new BatchData()
                    {
-                       Cooling = 7,
+                       Cooling = 5,
                        fewEnemy = 45,
                        enemyName = new EnemyType[]
                        {
@@ -281,7 +281,7 @@ public class LevelGameData
                    },
                     new BatchData()
                    {
-                       Cooling = 10,
+                       Cooling = 7,
                        fewEnemy = 50,
                        enemyName = new EnemyType[]
                        {
@@ -309,7 +309,7 @@ public class LevelGameData
                    },
                     new BatchData()
                    {
-                       Cooling = 7,
+                       Cooling = 5,
                        fewEnemy = 45,
                        enemyName = new EnemyType[]
                        {
@@ -318,7 +318,7 @@ public class LevelGameData
                    },
                     new BatchData()
                    {
-                       Cooling = 10,
+                       Cooling = 7,
                        fewEnemy = 50,
                        enemyName = new EnemyType[]
                        {
@@ -348,7 +348,7 @@ public class LevelGameData
                    },
                     new BatchData()
                    {
-                       Cooling = 7,
+                       Cooling = 5,
                        fewEnemy = 45,
                        enemyName = new EnemyType[]
                        {
@@ -358,7 +358,7 @@ public class LevelGameData
                    },
                     new BatchData()
                    {
-                       Cooling = 10,
+                       Cooling = 7,
                        fewEnemy = 50,
                        enemyName = new EnemyType[]
                        {
@@ -394,7 +394,7 @@ public class LevelGameData
                    },
                     new BatchData()
                    {
-                       Cooling = 8,
+                       Cooling = 5,
                        fewEnemy = 45,
                        enemyName = new EnemyType[]
                        {
@@ -410,7 +410,7 @@ public class LevelGameData
                    },
                     new BatchData()
                    {
-                       Cooling = 11,
+                       Cooling = 7,
                        fewEnemy = 50,
                        enemyName = new EnemyType[]
                        {

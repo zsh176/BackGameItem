@@ -70,6 +70,36 @@ public class GamePanel : BasePanel
     };
     #endregion
 
+    #region 配置角色随机概率
+    // 创建概率字典（总概率100%） 权重(概率)可以修改，总权重可以超过100%
+    Dictionary<HeroType, float> heroprobabilities = new Dictionary<HeroType, float>()
+    {
+        { HeroType.Hero_10002, 0.176f },
+        { HeroType.Hero_10004, 0.176f },
+        { HeroType.Hero_10005, 0.176f },
+        { HeroType.Hero_10006, 0.176f },
+        { HeroType.Hero_10014, 0.176f },
+        { HeroType.Box_1, 0.07f },
+        { HeroType.Box_2, 0.035f },
+        { HeroType.Box_3, 0.015f }
+    };
+    Dictionary<int, float> levelprobabilities = new Dictionary<int, float>()
+    {
+        { 1,0.8f},
+        { 2,0.15f},
+        { 3,0},
+        { 4,0},
+    };
+    List<HeroType> targetKeys = new List<HeroType>
+    {
+        HeroType.Hero_10002,
+        HeroType.Hero_10004,
+        HeroType.Hero_10005,
+        HeroType.Hero_10006,
+        HeroType.Hero_10014
+    };
+    #endregion
+
     //初始化
     public override void ShowMe()
     {
@@ -168,9 +198,6 @@ public class GamePanel : BasePanel
                 break;
         }
     }
-    #endregion
-
-    #region 按钮事件
     private void OnClick_Play()
     {
         GameStatus.Instance.offDrag = true;
@@ -376,7 +403,7 @@ public class GamePanel : BasePanel
                     EventMgr.Instance.EventTrigger<Transform>(E_EventType.fieldHeroDrag, uphoero.type);
                 }
                 //注释此处可以解决，快速点击时，物体直接跑到屏幕中间的问题
-                //uphoero.type.SetParent(transform, true);
+                uphoero.type.SetParent(transform, true);
                 uphoero.type.SetAsLastSibling();
                 uphoero.type.DOLocalRotate(new Vector3(0, 0, 0), animSmoothTime);
                 if (heroBoxs.Contains(uphoero.type))
@@ -398,10 +425,30 @@ public class GamePanel : BasePanel
             case E_TouchState.UpField://上阵处理
                 uphoero.type.SetParent(fieldHero, true);
                 fieldHeros.Add(uphoero.type);
+                SortObjects(fieldHero);
                 if (heroBoxs.Contains(uphoero.type))
                     heroBoxs.Remove(uphoero.type);
                 break;
         }
+    }
+
+    /// <summary>
+    /// 根据y轴排序物体
+    /// </summary>
+    private void SortObjects(Transform sorting)
+    {
+        var directChildren = new Transform[sorting.childCount];
+        for (int i = 0; i < sorting.childCount; i++)
+        {
+            directChildren[i] = sorting.GetChild(i);
+        }
+        // 按 Y 轴升序排序（Y 小的在前）
+        var sortedChildren = directChildren
+            .OrderBy(child => child.localPosition.y)
+            .ToList();
+        // 逆序设置层级（Y 最小的最后设置，层级最高）
+        for (int i = sortedChildren.Count - 1; i >= 0; i--)
+            sortedChildren[i].SetAsLastSibling();
     }
     /// <summary>
     /// 获得插入位置索引
@@ -509,36 +556,6 @@ public class GamePanel : BasePanel
     {
         return UnityEngine.Random.Range(min, max);
     }
-    #endregion
-
-    #region 配置随机概率
-    // 创建概率字典（总概率100%） 权重(概率)可以修改，总权重可以超过100%
-    Dictionary<HeroType, float> heroprobabilities = new Dictionary<HeroType, float>()
-    {
-        { HeroType.Hero_10002, 0.176f },
-        { HeroType.Hero_10004, 0.176f },
-        { HeroType.Hero_10005, 0.176f },
-        { HeroType.Hero_10006, 0.176f },
-        { HeroType.Hero_10014, 0.176f },
-        { HeroType.Box_1, 0.07f },
-        { HeroType.Box_2, 0.035f },
-        { HeroType.Box_3, 0.015f }
-    };
-    Dictionary<int, float> levelprobabilities = new Dictionary<int, float>()
-    {
-        { 1,0.8f},
-        { 2,0.15f},
-        { 3,0},
-        { 4,0},
-    };
-    List<HeroType> targetKeys = new List<HeroType>
-    {
-        HeroType.Hero_10002,
-        HeroType.Hero_10004,
-        HeroType.Hero_10005,
-        HeroType.Hero_10006,
-        HeroType.Hero_10014
-    };
     #endregion
 
     #region 随机获取角色相关
@@ -697,6 +714,7 @@ public class GamePanel : BasePanel
             }
         }
         EventMgr.Instance.EventTrigger<List<Transform>>(E_EventType.chaEnemyList, enemyAllList);
+        SortObjects(enemyBoss);
         presentBatch++;
         if (presentBatch < allLevelData[presentAwve].batchDatas.Count)
         {
@@ -714,21 +732,21 @@ public class GamePanel : BasePanel
     {
         float randomAngle = Range(0f, 360f);
         float radians = randomAngle * Mathf.Deg2Rad;
-        int offsetX = Mathf.RoundToInt(1250 * Mathf.Cos(radians));
-        int offsetY = Mathf.RoundToInt(1250 * Mathf.Sin(radians));
+        int offsetX = Mathf.RoundToInt(1500 * Mathf.Cos(radians));
+        int offsetY = Mathf.RoundToInt(1500 * Mathf.Sin(radians));
 
 
         Vector2 point = new Vector2(mapHeroBG.position.x + offsetX, mapHeroBG.position.y + offsetY);
 
         if (point.x > (sceneMapBG.rect.width / 2))
-            point.x = (sceneMapBG.rect.width / 2) + Range(10, 270);
+            point.x = (sceneMapBG.rect.width / 2) + Range(0, 350);
         else if (point.x < -(sceneMapBG.rect.width / 2))
-            point.x = -(sceneMapBG.rect.width / 2) - Range(10, 270);
+            point.x = -(sceneMapBG.rect.width / 2) - Range(0, 350);
 
         if (point.y > 0)
-            point.y += Range(0, 260);
+            point.y += Range(0, 350);
         else if (point.y < 0)
-            point.y -= Range(0, 260);
+            point.y -= Range(0, 350);
 
         return point;
     }
@@ -770,7 +788,7 @@ public class GamePanel : BasePanel
         if (nowHP <= 0)
         {
             isGameOver = true;
-            GameOver(false);
+            //GameOver(false);
         }
     }
 

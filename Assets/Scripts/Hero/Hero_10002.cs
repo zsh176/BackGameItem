@@ -13,6 +13,8 @@ public class Hero_10002 : HeroBase
     {
         base.Attack(target);
 
+        bool isSkill = level >= 3;
+
         PoolMgr.Instance.GetObj(obj =>
         {
             obj.transform.SetParent(bullet_Base, false);
@@ -23,7 +25,7 @@ public class Hero_10002 : HeroBase
 
             Quaternion rotation = Quaternion.FromToRotation(Vector3.up, dir);
 
-            obj.GetComponent<Bullet_Hero_10002>().Init(atkPos.position, rotation, atkValueBuff , sceneMapBG);
+            obj.GetComponent<Bullet_Hero_10002>().Init(atkPos.position, rotation, atkValueBuff , sceneMapBG, isSkill);
 
         }, bulletName, StaticFields.Bullet);
     }

@@ -27,6 +27,7 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
     private Animator thisAnimator;//动画控制器
     private Quaternion downRotation;//按下时的旋转
     private bool isUpLevelSeq;//是否开启提示可以升级动画
+    private bool isField;//自己是否已上阵
 
     protected RectTransform thisRect;//自身
     protected Transform thisRotation;//左右旋转点
@@ -34,6 +35,7 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
     protected TextMeshProUGUI tet_Level;//显示等级
     protected HeroDataInfo heroDataInfo;//角色配置数据
     protected bool isClick;//是否点击 且没有进行拖拽
+
     
     [HideInInspector]
     public bool isSyn;//标记自己为被合成对象
@@ -110,21 +112,17 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
     }
 
     #region 拖拽相关API
-
     /// <summary>
     /// 按下
     /// </summary>
     public virtual void OnPointerDown(PointerEventData eventData)
     {
         if (GameStatus.Instance.offDrag) return;
-
         isClick = false;
-
         UpHeroOrBox upHero = new UpHeroOrBox();
         upHero.type = transform;
         upHero.e_touchState = E_TouchState.Down;
         EventMgr.Instance.EventTrigger<UpHeroOrBox>(E_EventType.placeHeroBox, upHero);
-
         //解决处理事件时会互相干扰
         DragHero newDragHero = new DragHero();
         newDragHero.type = this;
@@ -138,8 +136,6 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
     public virtual void OnPointerUp(PointerEventData eventData)
     {
         if (GameStatus.Instance.offDrag) return;
-       
-
         DragHero newDragHero = new DragHero();
         newDragHero.type = this;
         newDragHero.pos = box_Pos;
@@ -153,11 +149,8 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
     public virtual void OnPointerClick(PointerEventData eventData)
     {
         if (GameStatus.Instance.offDrag) return;
-
         if (isClick) return;
-
         Btn_OnClick();
-
     }
     /// <summary>
     /// 拖拽中
@@ -165,7 +158,6 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
     public virtual void OnDrag(PointerEventData eventData)
     {
         if (GameStatus.Instance.offDrag) return;
-
         isClick = true;
         // 将鼠标位置转换为父级 RectTransform 的本地坐标
         if (RectTransformUtility.ScreenPointToLocalPointInRectangle(
@@ -180,8 +172,6 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
         }
         EventMgr.Instance.EventTrigger<DragHero>(E_EventType.dragHero, dragHero);
     }
-
-
     /// <summary>
     /// 松开拖拽角色 判断是否合成升级
     /// </summary>
@@ -192,7 +182,11 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
             if (isUpLevelSeq)
             {   //关闭动画
                 thisAnimator.enabled = false;
-                transform.DOLocalRotate(downRotation.eulerAngles, 0.2f);
+                transform.DOKill();
+                if (isField)
+                    transform.DOLocalRotate(Vector3.zero, 0.2f);
+                else
+                    transform.DOLocalRotate(downRotation.eulerAngles, 0.2f);
             }
             isUpLevelSeq = false;
 
@@ -255,6 +249,7 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
     {
         if (_dragHero.type == this)
         {
+            isField = true;
             UpHeroOrBox upHero = new UpHeroOrBox();
             upHero.type = transform;
             upHero.e_touchState = E_TouchState.UpField;
@@ -265,7 +260,6 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
             transform.DOMove(movePos, 0.25f).SetEase(Ease.OutBounce);
         }
     }
-
     /// <summary>
     /// 点击触发事件
     /// </summary>
@@ -274,7 +268,6 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
         print("点击触发事件");
     }
     #endregion
-
 
     /// <summary>
     /// 更新敌人数组
