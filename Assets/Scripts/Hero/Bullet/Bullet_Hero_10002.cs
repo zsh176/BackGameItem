@@ -25,11 +25,8 @@ public class Bullet_Hero_10002 : BulletBase
         atkValue = atkvalus;
         mapBGheight = (initsceneMapBG.rect.height / 2) + 200;
         mapBGwidth = (initsceneMapBG.rect.width / 2) + 200;
-        if (isSkill)
-        {
-            ordinary.SetActive(false);
-            skill.SetActive(true);
-        }
+        ordinary.SetActive(!isSkill);
+        skill.SetActive(isSkill);
         isOver = false;
     }
 }

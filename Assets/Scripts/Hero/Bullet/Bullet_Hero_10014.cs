@@ -11,6 +11,6 @@ public class Bullet_Hero_10014 : BulletBase
     {
         base.Awake();
 
-        moveSpeed = 50;
+        moveSpeed = 42;
     }
 }

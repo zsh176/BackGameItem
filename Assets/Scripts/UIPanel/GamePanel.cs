@@ -14,11 +14,11 @@ public class GamePanel : BasePanel
     private List<Transform> fieldHeros;//所有上阵中角色信息
     private List<Transform> enemyAllList;//存储场景中所有敌人
     private Transform heroBoxBase;//角色备用区
+    private Transform heroPoxX;//角色备用区 Y轴的位置
     private Transform fieldHero;//角色上阵中父物体
+    private Transform addBoxPos;//生成格子的初始位置
     private Transform enemyBoss;//敌人父物体
     private Transform bullet_Base;//子弹父物体
-
-    private Transform addBoxPos;//生成格子的初始位置
     private Transform battleMap;//游戏场景父物体
     private Transform mapHeroBG;//防御塔位置
     private RectTransform phase;//准备阶段，卡池备用区
@@ -106,7 +106,8 @@ public class GamePanel : BasePanel
         heroBoxs = new List<Transform>();
         fieldHeros = new List<Transform>();
         enemyAllList = new List<Transform>();
-        heroBoxBase = transform.Find("Phase/HeroBox");
+        heroBoxBase = transform.Find("Phase/HeroBoxBase");
+        heroPoxX = transform.Find("Phase/HeroPoxX");
         fieldHero = transform.Find("BattleMap/Matrix_MapBox/FieldHero");
         addBoxPos = transform.Find("Phase/AddBoxPos");
         battleMap = transform.Find("BattleMap");
@@ -353,7 +354,7 @@ public class GamePanel : BasePanel
                 GameObject insObj = Instantiate(obj);
                 insObj.transform.SetParent(heroBoxBase, true);
                 insObj.transform.localScale = Vector3.one;
-                insObj.transform.position = heroBoxBase.position;
+                insObj.transform.position = heroPoxX.position;
                 HeroBase heroBase = insObj.GetComponent<HeroBase>();
                 if (heroBase != null)
                 {
@@ -504,7 +505,7 @@ public class GamePanel : BasePanel
             {
                 RectTransform rt = child.GetComponent<RectTransform>();
                 // 目标位置 = 当前起点 + 卡牌半宽
-                targetPositions.Add(new Vector3(currentX + rt.rect.width / 2, 0, 0));
+                targetPositions.Add(new Vector3(currentX + rt.rect.width / 2, heroPoxX.localPosition.y, 0));
                 // 累计起始位置，计算每个卡片位置
                 // 记录起点：当前位置 + 卡牌全宽 + 间距
                 currentX += rt.rect.width + spacing;
@@ -520,7 +521,7 @@ public class GamePanel : BasePanel
             foreach (var child in children)
             {
                 RectTransform rt = child.GetComponent<RectTransform>();
-                targetPositions.Add(new Vector3(currentX + rt.rect.width / 2, 0, 0));
+                targetPositions.Add(new Vector3(currentX + rt.rect.width / 2, heroPoxX.localPosition.y, 0));
                 currentX += rt.rect.width + overlap;
             }
         }

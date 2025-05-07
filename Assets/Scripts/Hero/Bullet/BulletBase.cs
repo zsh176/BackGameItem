@@ -39,7 +39,6 @@ public abstract class BulletBase : MonoBehaviour
         {
             //超出地图背景就回收自己
             enemys.Clear();
-            Debug.Log("超出屏幕 被回收");
             PoolMgr.Instance.PushObj(gameObject);
         }
     }
@@ -64,7 +63,6 @@ public abstract class BulletBase : MonoBehaviour
             enemys[0].GetComponent<EnemyBase>().EnemyBeAtk(atkValue);
             enemys.Clear();
 
-            Debug.Log("Trigger 被回收");
             PoolMgr.Instance.PushObj(gameObject);
         }
     }
