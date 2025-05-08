@@ -131,6 +131,16 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - Bullet
+  - m_GUID: 3b537acaad24dd44eb039f0a16d2999f
+    m_Address: Bullet_Hero_10005
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Bullet
+  - m_GUID: a02efe630c3298548ba72ab7e2b89126
+    m_Address: Bullet_10005_PushAnim
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Anim
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 1ba7714d817f03c4b9385123947df6ec, type: 2}
   m_SchemaSet:

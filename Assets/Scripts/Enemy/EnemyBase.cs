@@ -76,7 +76,7 @@ public abstract class EnemyBase : MonoBehaviour
     {
         stopMove = false;
         transform.localRotation = Quaternion.identity;
-        transform.localPosition = new Vector3(2000, 2000);
+        transform.localPosition = new Vector3(1000, 0);
         EventMgr.Instance.EventTrigger<Transform>(E_EventType.enemyDeath, transform);
         PoolMgr.Instance.PushObj(gameObject);
         //移除事件放在最后面，避免还没回收就移除了事件
@@ -176,7 +176,7 @@ public enum EnemyType
     Enemy_Boss02,
 }
 
-public struct EnemyAnimSpineTag
+public class EnemyAnimSpineTag
 {
     /// <summary>
     /// 待机

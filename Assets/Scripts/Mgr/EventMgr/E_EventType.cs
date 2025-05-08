@@ -19,4 +19,8 @@ public enum E_EventType
     skipLevel,//跳过当前波数
     playerBeAtk,//玩家被攻击
     chaEnemyList,//更新敌人数组
+    addHP,//食堂阿姨攻击，更加血量
+    upHero10006,//上阵中的食堂阿姨合成升级
+    addBulletAll,//记录大鹅，在过关时统一回收
+    removeBulletAll,//大鹅被回收
 }

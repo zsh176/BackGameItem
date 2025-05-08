@@ -121,6 +121,7 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
         isClick = false;
         UpHeroOrBox upHero = new UpHeroOrBox();
         upHero.type = transform;
+        upHero.heroBase = this;
         upHero.e_touchState = E_TouchState.Down;
         EventMgr.Instance.EventTrigger<UpHeroOrBox>(E_EventType.placeHeroBox, upHero);
         //解决处理事件时会互相干扰
@@ -236,7 +237,7 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
         tet_Level.text = level.ToString();
         atkValueBuff = atkValue * LevelMultiplier;
         spineAnim.Skeleton.SetSkin($"xhz{level}");
-        PlayAnimMgr.Instance.PlayAnim("HeroUPAnim", "hec", transform.position);
+        PlayAnimMgr.Instance.PlayUpLevelAnim("HeroUPAnim", "hec", transform.position);
         AddressablesMgr.Instance.LoadAssetAsync<Sprite>(spr =>
         {
             img_Box.sprite = spr;
@@ -252,6 +253,7 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
             isField = true;
             UpHeroOrBox upHero = new UpHeroOrBox();
             upHero.type = transform;
+            upHero.heroBase = this;
             upHero.e_touchState = E_TouchState.UpField;
             EventMgr.Instance.EventTrigger<UpHeroOrBox>(E_EventType.placeHeroBox, upHero);
             Vector3 movePos = transform.position + _dragHero.deviation;
@@ -327,11 +329,12 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
     {
         if (!GameStatus.Instance.offDrag) return;
 
+        if (enemyAllList == null) return;
+
         if (timeAtkCooling > 0)
             timeAtkCooling -= Time.deltaTime;
         else
             IsOkAtk();
-
     }
 
 }
@@ -342,7 +345,7 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
 /// <summary>
 /// 动画名
 /// </summary>
-public struct HeroAnimSpineTag
+public class HeroAnimSpineTag
 {
     /// <summary>
     /// 待机
@@ -436,7 +439,7 @@ public enum E_TouchState{
     /// </summary>
     UpPlace,
     /// <summary>
-    /// UpField
+    /// 角色上阵
     /// </summary>
     UpField
 }
@@ -452,6 +455,7 @@ public class UpHeroOrBox
     /// 是否上阵
     /// </summary>
     public E_TouchState e_touchState;
-    /// <summary>
+    
+    public HeroBase heroBase;
 }
 #endregion

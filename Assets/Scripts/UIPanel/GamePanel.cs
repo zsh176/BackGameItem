@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,7 @@ public class GamePanel : BasePanel
     private List<Transform> heroBoxs;//所有备用区角色信息
     private List<Transform> fieldHeros;//所有上阵中角色信息
     private List<Transform> enemyAllList;//存储场景中所有敌人
+    private List<Transform> addBullet10005;//记录所有大鹅 特殊处理
     private Transform heroBoxBase;//角色备用区
     private Transform heroPoxX;//角色备用区 Y轴的位置
     private Transform fieldHero;//角色上阵中父物体
@@ -51,7 +53,8 @@ public class GamePanel : BasePanel
     private bool isGameOver;//当前关卡是否结束
 
     private int playerLevel = 1;//玩家等级
-    private int maxHP = 500;//最大血量
+    private int hpValue = 500;//基础血量
+    private int maxHP;//最大血量
     private int nowHP;//当前血量
 
     #region 配置信息
@@ -106,6 +109,7 @@ public class GamePanel : BasePanel
         heroBoxs = new List<Transform>();
         fieldHeros = new List<Transform>();
         enemyAllList = new List<Transform>();
+        addBullet10005 = new List<Transform>();
         heroBoxBase = transform.Find("Phase/HeroBoxBase");
         heroPoxX = transform.Find("Phase/HeroPoxX");
         fieldHero = transform.Find("BattleMap/Matrix_MapBox/FieldHero");
@@ -131,8 +135,9 @@ public class GamePanel : BasePanel
         hp_ace = transform.Find("hpBase/hp_ace").GetComponent<Image>();
 
         allLevelData = FileSystemMgr.Instance.levelGameData.allLevelData;
-        presentAllAwve = allLevelData.Count; 
+        presentAllAwve = allLevelData.Count;
         txt_level.text = $"第{presentAwve + 1}/{presentAllAwve}波";
+        maxHP = hpValue;
         nowHP = maxHP;
         txt_hp_value.text = nowHP.ToString();
         hp_ace.fillAmount = 1;
@@ -142,6 +147,10 @@ public class GamePanel : BasePanel
         EventMgr.Instance.AddEventListener<UpHeroOrBox>(E_EventType.placeHeroBox, PlaceHeroBox);
         EventMgr.Instance.AddEventListener<Transform>(E_EventType.enemyDeath, EnemyDeath);
         EventMgr.Instance.AddEventListener<BeAtkData>(E_EventType.playerBeAtk, PlayerBeAtk);
+        EventMgr.Instance.AddEventListener<Hero_10006>(E_EventType.upHero10006, UpHero10006);
+        EventMgr.Instance.AddEventListener<int>(E_EventType.addHP, AddHP);
+        EventMgr.Instance.AddEventListener<Transform>(E_EventType.addBulletAll, AddBullet10005);
+        EventMgr.Instance.AddEventListener<Transform>(E_EventType.removeBulletAll, RemoveBullet10005);
     }
 
     public override void HideMe()
@@ -149,6 +158,10 @@ public class GamePanel : BasePanel
         EventMgr.Instance.RemoveEventListener<UpHeroOrBox>(E_EventType.placeHeroBox, PlaceHeroBox);
         EventMgr.Instance.RemoveEventListener<Transform>(E_EventType.enemyDeath, EnemyDeath);
         EventMgr.Instance.RemoveEventListener<BeAtkData>(E_EventType.playerBeAtk, PlayerBeAtk);
+        EventMgr.Instance.RemoveEventListener<Hero_10006>(E_EventType.upHero10006, UpHero10006);
+        EventMgr.Instance.RemoveEventListener<int>(E_EventType.addHP, AddHP);
+        EventMgr.Instance.RemoveEventListener<Transform>(E_EventType.addBulletAll, AddBullet10005);
+        EventMgr.Instance.RemoveEventListener<Transform>(E_EventType.removeBulletAll, RemoveBullet10005);
     }
 
     #region 绑定按钮等控件的事件
@@ -216,7 +229,7 @@ public class GamePanel : BasePanel
         //基于锚点移动要用这个API
         phase.DOAnchorPosY(-410, animSmoothTime);
         btn_Time.DOAnchorPosX(47, animSmoothTime);
-        fOV.DOAnchorPosX(35, animSmoothTime);
+        fOV.DOAnchorPosX(47, animSmoothTime);
         hpBase.DOAnchorPosY(246.5f, animSmoothTime * 0.3f);
         EventMgr.Instance.EventTrigger<bool>(E_EventType.setPlayGame, true);
         obj_SkipLevel.SetActive(true);
@@ -242,7 +255,7 @@ public class GamePanel : BasePanel
     {
 
     }
-    private void OnClick_SkipLevel()
+    private void OnClick_SkipLevel()//测试按钮
     {
         if (presentAwve == presentAllAwve - 1)
         {
@@ -401,9 +414,9 @@ public class GamePanel : BasePanel
                 {
                     //处于上阵中角色被拖拽
                     fieldHeros.Remove(uphoero.type);
+                    OnHeroField(uphoero);
                     EventMgr.Instance.EventTrigger<Transform>(E_EventType.fieldHeroDrag, uphoero.type);
                 }
-                //注释此处可以解决，快速点击时，物体直接跑到屏幕中间的问题
                 uphoero.type.SetParent(transform, true);
                 uphoero.type.SetAsLastSibling();
                 uphoero.type.DOLocalRotate(new Vector3(0, 0, 0), animSmoothTime);
@@ -424,6 +437,7 @@ public class GamePanel : BasePanel
                 CalculateLayout(index);
                 break;
             case E_TouchState.UpField://上阵处理
+                OnHeroField(uphoero);
                 uphoero.type.SetParent(fieldHero, true);
                 fieldHeros.Add(uphoero.type);
                 SortObjects(fieldHero);
@@ -544,6 +558,52 @@ public class GamePanel : BasePanel
                 rt.DOLocalMove(targetPositions[i], animSmoothTime)
                 .SetEase(Ease.OutQuad);
             }
+        }
+    }
+    #endregion
+
+    #region 食堂阿姨相关
+    /// <summary>
+    /// 监听英雄上阵
+    /// </summary>
+    private void OnHeroField(UpHeroOrBox heroType)
+    {
+        if (heroType.heroBase == null) return;
+
+        if (heroType.heroBase.Type == HeroType.Hero_10006)
+        {
+            int addHP = heroType.type.GetComponent<Hero_10006>().addHPValue[heroType.heroBase.level - 1];
+            //食堂阿姨上阵，增加最大血量
+            if (heroType.e_touchState == E_TouchState.UpField)
+            {
+                maxHP += addHP;
+                nowHP += addHP;
+                RefreshHPShow();
+            }//如果是下阵，就减最大血量
+            else if (heroType.e_touchState == E_TouchState.Down)
+            {
+                maxHP -= addHP;
+                nowHP -= addHP;
+                RefreshHPShow();
+            }
+        }
+    }
+    /// <summary>
+    /// 上阵中的食堂阿姨合成升级
+    /// </summary>
+    private void UpHero10006(Hero_10006 _hero)
+    {
+        if (fieldHeros.Contains(_hero.transform))
+        {
+            //先减去上一级增加的血量
+            int hp = _hero.addHPValue[_hero.level - 2];
+            maxHP -= hp;
+            nowHP -= hp;
+            //再增加当前等级血量
+            hp = _hero.addHPValue[_hero.level - 1];
+            maxHP += hp;
+            nowHP += hp;
+            RefreshHPShow();
         }
     }
     #endregion
@@ -679,7 +739,7 @@ public class GamePanel : BasePanel
 
         //用当前批次的敌人总数，除以该批次的敌人类型数，四舍五入得出，每个类型的敌人成几个
         int fewEnemy = Mathf.RoundToInt(allLevelData[presentAwve].batchDatas[presentBatch].fewEnemy / allLevelData[presentAwve].batchDatas[presentBatch].enemyName.Length);
-       
+
         //Debug.Log($"第 {presentAwve + 1} 波的第 {presentBatch + 1} 批次，间隔 {allLevelData[presentAwve].batchDatas[presentBatch].Cooling} 秒后，再次生成敌人" +
         //  $"\n一共 {allLevelData[presentAwve].batchDatas[presentBatch].enemyName.Length} 个类型，每个类型生成 {fewEnemy} 个");
 
@@ -773,7 +833,17 @@ public class GamePanel : BasePanel
             }
         }
     }
-
+    /// <summary>
+    /// 增加血量
+    /// </summary>
+    private void AddHP(int hp)
+    {
+        if (nowHP >= maxHP) return;
+        nowHP += hp;
+        if (nowHP >= maxHP)
+            nowHP = maxHP;
+        RefreshHPShow();
+    }
     /// <summary>
     /// 玩家被攻击
     /// </summary>
@@ -782,9 +852,7 @@ public class GamePanel : BasePanel
         if (isGameOver) return;
 
         nowHP -= beAtk.harm;
-        float hp = (float)nowHP / maxHP;
-        hp_ace.fillAmount = hp;
-        txt_hp_value.text = nowHP.ToString();
+        RefreshHPShow();
 
         if (nowHP <= 0)
         {
@@ -792,12 +860,23 @@ public class GamePanel : BasePanel
             //GameOver(false);
         }
     }
+    /// <summary>
+    /// 更新血条
+    /// </summary>
+    private void RefreshHPShow()
+    {
+        float hp = (float)nowHP / maxHP;
+        hp_ace.fillAmount = hp;
+        txt_hp_value.text = nowHP.ToString();
+    }
+
 
     /// <summary>
     /// 通过小关
     /// </summary>
     private void WinLevel()
     {
+        PushBullet10005();
         isGameOver = true;
         TimeMgr.Instance.RemoveTime(generateEnemyIndexID);
         EventMgr.Instance.EventTrigger(E_EventType.skipLevel);
@@ -822,9 +901,11 @@ public class GamePanel : BasePanel
         {
             PlayAnimMgr.Instance.ShowTips($"-----游戏失败-----");
         }
-        
+
         presentAwve = 0;
         PlayUIAnim();
+
+        PushBullet10005();
 
         TimeMgr.Instance.RemoveTime(generateEnemyIndexID);
         EventMgr.Instance.EventTrigger(E_EventType.skipLevel);
@@ -835,7 +916,33 @@ public class GamePanel : BasePanel
         txt_level.text = $"第{presentAwve + 1}/{presentAllAwve}波";
     }
 
-    
+
+    /// <summary>
+    /// 记录所有大鹅，在过关时统一回收，因为大鹅移除事件和回收自己在同一个方法会报错特殊处理
+    /// </summary>
+    private void AddBullet10005(Transform bullet)
+    {
+        if (!addBullet10005.Contains(bullet))
+        {
+            addBullet10005.Add(bullet);
+        }
+    }
+    private void RemoveBullet10005(Transform bullet)
+    {
+        if (addBullet10005.Contains(bullet))
+        {
+            addBullet10005.Remove(bullet);
+        }
+    }
+    private void PushBullet10005()
+    {
+        foreach (var item in addBullet10005)
+        {
+            item.GetComponent<Bullet_Hero_10005>().PushObjGanme();
+        }
+        addBullet10005.Clear();
+    }
+
     #endregion
 
 }
@@ -843,7 +950,7 @@ public class GamePanel : BasePanel
 /// <summary>
 /// 被攻击时传入的信息
 /// </summary>
-public struct BeAtkData
+public class BeAtkData
 {
     /// <summary>
     /// 伤害值

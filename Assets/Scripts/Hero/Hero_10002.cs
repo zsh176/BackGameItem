@@ -19,8 +19,6 @@ public class Hero_10002 : HeroBase
         {
             obj.transform.SetParent(bullet_Base, false);
 
-            Vector3 spawnPos = atkPos.position;
-            Vector3 targetPos = target.position;
             Vector3 dir = (target.position - atkPos.position).normalized;
 
             Quaternion rotation = Quaternion.FromToRotation(Vector3.up, dir);

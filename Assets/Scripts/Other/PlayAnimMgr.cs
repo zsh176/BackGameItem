@@ -1,8 +1,6 @@
 using DG.Tweening.Core.Easing;
 using DragonBones;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using Spine.Unity;
 using UnityEngine;
 
 /// <summary>
@@ -17,12 +15,12 @@ public class PlayAnimMgr : BaseManager<PlayAnimMgr>
     }
 
     /// <summary>
-    /// 播放动画
+    /// 播放角色升级动画
     /// </summary>
     /// <param name="name">动画预制体名</param>
     /// <param name="compname">动画切片名</param>
     /// <param name="pos">动画显示位置</param>
-    public void PlayAnim(string name, string compname , Vector3 pos)
+    public void PlayUpLevelAnim(string name, string compname , Vector3 pos)
     {
         AddressablesMgr.Instance.LoadAssetAsync<GameObject>(obj =>
         {
@@ -39,6 +37,26 @@ public class PlayAnimMgr : BaseManager<PlayAnimMgr>
                 Destroy(anim);
             });
         }, name, StaticFields.AnimTag);
+    }
+
+    /// <summary>
+    /// 播放大鹅消失动画
+    /// </summary>
+    public void PlayBullePushAnim(Vector3 pos , UnityEngine.Transform parent)
+    {
+        PoolMgr.Instance.GetObj(obj =>
+        {
+            //设置父物体
+            obj.transform.SetParent(parent, false);
+            obj.transform.localScale = Vector3.one;
+            obj.transform.localPosition = pos;
+            //播完动画回收
+            obj.transform.Find("spine_Anim").GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "duang", false).Complete += trackEntry =>
+            {
+                PoolMgr.Instance.PushObj(obj);
+            };
+
+        }, "Bullet_10005_PushAnim", StaticFields.AnimTag);
     }
 
     /// <summary>

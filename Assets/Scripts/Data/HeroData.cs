@@ -39,8 +39,8 @@ public class HeroData
                 new HeroDataInfo
                 {
                     levelSpiteName = "dz_2_",
-                    atkValue = 4,
-                    atkCooling = 1.6f,
+                    atkValue = 3,
+                    atkCooling = 2.2f,
                     atkDistance = 0,
                 }
             },
