@@ -109,7 +109,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 61.2, y: 10}
+  m_AnchoredPosition: {x: 71.78, y: 10}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &4298628194408980112
@@ -563,6 +563,7 @@ MonoBehaviour:
   isAdLock: 0
   level: 0
   bullet_Base: {fileID: 0}
+  sceneMapBG: {fileID: 0}
 --- !u!95 &-7085653968970346963
 Animator:
   serializedVersion: 5

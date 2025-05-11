@@ -13,4 +13,19 @@ public class Bullet_Hero_10014 : BulletBase
 
         moveSpeed = 42;
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (isOver) return;
+        if (collision.CompareTag(StaticFields.Enemy))
+        {
+            isOver = true;
+            //Debug.Log($"¹¥»÷ÉËº¦Îª£º{atkValue}");
+            enemys.Add(collision.transform);
+            enemys[0].GetComponent<EnemyBase>().EnemyBeAtk(atkValue);
+            enemys.Clear();
+
+            PoolMgr.Instance.PushObj(gameObject);
+        }
+    }
 }

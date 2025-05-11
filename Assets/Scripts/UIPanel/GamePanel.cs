@@ -24,6 +24,7 @@ public class GamePanel : BasePanel
     private Transform battleMap;//游戏场景父物体
     private Transform mapHeroBG;//防御塔位置
     private RectTransform phase;//准备阶段，卡池备用区
+    private RectTransform btn_Simp;//隐藏按钮
     private RectTransform btn_Time;//两倍速按钮
     private RectTransform fOV;//地图缩放按钮
     private RectTransform hpBase;//血条父物体
@@ -35,6 +36,7 @@ public class GamePanel : BasePanel
     private TextMeshProUGUI txt_level;//显示当前处于第几波
     private TextMeshProUGUI txt_ShowTime;//显示时间速度
     private TextMeshProUGUI txt_hp_value;//显示剩余血条
+    private TextMeshProUGUI txt_Simp;//显示隐藏按钮
     private Slider fOV_Slider;//控制地图缩放滑动条
     private Image hp_ace;//血条进度
 
@@ -45,6 +47,7 @@ public class GamePanel : BasePanel
     private float maxMapScale = 0.9f;//地图最大缩放值
     private float fovMapScale = 0;//记录地图缩放比
     private float gameTimeSpeed = 1;//记录游戏中的时间流逝速度
+    private bool isSimp;//记录是否清屏
 
     private int presentAllAwve;//当前关卡总波数
     private int presentAwve = 0;//当前处于第几波
@@ -122,6 +125,7 @@ public class GamePanel : BasePanel
         phase = transform.Find("Phase").GetComponent<RectTransform>();
         btn_Time = transform.Find("Gamethe/btn_Time").GetComponent<RectTransform>();
         fOV = transform.Find("Gamethe/FOV").GetComponent<RectTransform>();
+        btn_Simp = transform.Find("Gamethe/btn_Simp").GetComponent<RectTransform>();
         hpBase = transform.Find("hpBase").GetComponent<RectTransform>();
         sceneMapBG = transform.Find("BattleMap/SceneMap/BG").GetComponent<RectTransform>();
 
@@ -131,6 +135,7 @@ public class GamePanel : BasePanel
         txt_level = transform.Find("Top/level/txt_level").GetComponent<TextMeshProUGUI>();
         txt_ShowTime = transform.Find("Gamethe/btn_Time/txt_Time").GetComponent<TextMeshProUGUI>();
         txt_hp_value = transform.Find("hpBase/txt_hp_value").GetComponent<TextMeshProUGUI>();
+        txt_Simp = transform.Find("Gamethe/btn_Simp/Text(TMP)").GetComponent<TextMeshProUGUI>();
         fOV_Slider = GetControl<Slider>("FOV_Slider");
         hp_ace = transform.Find("hpBase/hp_ace").GetComponent<Image>();
 
@@ -201,6 +206,9 @@ public class GamePanel : BasePanel
             case "btn_FOVDown"://地图缩放 -
                 OnClick_FOVDown();
                 break;
+            case "btn_Simp"://是否隐藏按钮
+                OnClick_Simp();
+                break;
         }
     }
     protected override void OnValueChangedSlider(string sliderName, float value)
@@ -228,9 +236,9 @@ public class GamePanel : BasePanel
         });
         //基于锚点移动要用这个API
         phase.DOAnchorPosY(-410, animSmoothTime);
-        btn_Time.DOAnchorPosX(47, animSmoothTime);
-        fOV.DOAnchorPosX(47, animSmoothTime);
         hpBase.DOAnchorPosY(246.5f, animSmoothTime * 0.3f);
+        btn_Simp.DOAnchorPosX(47, animSmoothTime);
+        SetSimp();
         EventMgr.Instance.EventTrigger<bool>(E_EventType.setPlayGame, true);
         obj_SkipLevel.SetActive(true);
         obj_UpLevel.SetActive(false);
@@ -244,9 +252,10 @@ public class GamePanel : BasePanel
             RefreshHeroBox();
         });
         phase.DOAnchorPosY(0, animSmoothTime);
-        btn_Time.DOAnchorPosX(-47, animSmoothTime);
-        fOV.DOAnchorPosX(-35, animSmoothTime);
         hpBase.DOAnchorPosY(350.5f, animSmoothTime);
+        btn_Simp.DOAnchorPosX(-47, animSmoothTime);
+        btn_Time.DOAnchorPosX(-47, animSmoothTime);
+        fOV.DOAnchorPosX(-47, animSmoothTime);
         EventMgr.Instance.EventTrigger<bool>(E_EventType.setPlayGame, false);
         obj_SkipLevel.SetActive(false);
         obj_UpLevel.SetActive(true);
@@ -309,6 +318,26 @@ public class GamePanel : BasePanel
         Time.timeScale = Time.timeScale == 1 ? 2 : 1;
         gameTimeSpeed = Time.timeScale;
         txt_ShowTime.text = $"加速×{gameTimeSpeed}";
+    }
+    private void OnClick_Simp()
+    {
+        isSimp = !isSimp;
+        SetSimp();
+    }
+    private void SetSimp()
+    {
+        if (isSimp)
+        {
+            txt_Simp.text = ">";
+            btn_Time.DOAnchorPosX(-47, animSmoothTime);
+            fOV.DOAnchorPosX(-47, animSmoothTime);
+        }
+        else
+        {
+            txt_Simp.text = "<";
+            btn_Time.DOAnchorPosX(47, animSmoothTime);
+            fOV.DOAnchorPosX(47, animSmoothTime);
+        }
     }
     private void OnClick_FOVAdd()
     {
@@ -857,7 +886,7 @@ public class GamePanel : BasePanel
         if (nowHP <= 0)
         {
             isGameOver = true;
-            //GameOver(false);
+            GameOver(false);
         }
     }
     /// <summary>

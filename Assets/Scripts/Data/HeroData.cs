@@ -22,8 +22,8 @@ public class HeroData
                 {
                     levelSpiteName = "dz_2_",
                     atkValue = 10,
-                    atkCooling = 1.55f,
-                    atkDistance = 1200,
+                    atkCooling = 2.3f,
+                    atkDistance = 1050,
                 }
             },
             { HeroType.Hero_10005,

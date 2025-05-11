@@ -1,16 +1,19 @@
 using DG.Tweening;
 using Spine.Unity;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+/// <summary>
+/// 养鹅叔子弹
+/// </summary>
 public class Bullet_Hero_10005 : BulletBase
 {
     private List<Transform> enemyAllList;//场景中所有敌列表
     private SkeletonGraphic spineAnim;//骨骼动画
     private Animator _animator;
     private bool isPlayAtkTimr;//攻击结束后再开始倒计计时攻击
+    private bool moveAtkTarget;//是否处于移动到攻击目标过程中
     private float atkCooling = 2.1f;//攻击间隔
     private float timeAtkCooling;//记时攻击间隔
     private int atkFew = 4;//攻击几次后回收自己
@@ -26,38 +29,33 @@ public class Bullet_Hero_10005 : BulletBase
     {
         transform.position = initPos;
         atkValue = initatkvalus;
-        target = initTarget;
+        atkTarget = initTarget;
         enemyAllList = initenemyAll;
 
-        Vector3 targetPos = target.localPosition;
 
         isPlayAtkTimr = false;
         timeAtkCooling = atkCooling;
         atkFewTime = atkFew;
 
-        if (target.position.x < transform.position.x)
-            transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
-        else
-            transform.localRotation = Quaternion.identity;
-
-        float distance = Vector3.Distance(transform.position, target.position);
-        if (distance < 350)
-            moveSpeed = 0.8f;
-        else if (distance >= 350 && distance < 650)
-            moveSpeed = 1.2f;
-        else
-            moveSpeed = 1.6f;
-
+        SetRotation();
+         moveSpeed = GetMoveSpeed(2.6f);
         _animator.enabled = true;
         spineAnim.AnimationState.SetAnimation(0, EnemyAnimSpineTag.move, true);
-        transform.DOLocalMove(targetPos, moveSpeed).SetEase(Ease.OutQuad).OnComplete(() =>
+        transform.DOLocalMove(atkTarget.localPosition, moveSpeed).SetEase(Ease.OutQuad).OnComplete(() =>
         {
-            spineAnim.AnimationState.SetAnimation(0, EnemyAnimSpineTag.stand, true);
-            TimeMgr.Instance.AddTime(0.8f, () =>
+            if (atkTarget.gameObject.activeSelf)
             {
-                Attack(target);
-            });
-
+                spineAnim.AnimationState.SetAnimation(0, EnemyAnimSpineTag.stand, true);
+                TimeMgr.Instance.AddTime(0.7f, () =>
+                {
+                    if (atkTarget.gameObject.activeSelf)
+                        Attack(atkTarget);
+                    else
+                        StopAtk();
+                });
+            }
+            else
+                StopAtk();
         });//先快后慢
 
         EventMgr.Instance.EventTrigger<Transform>(E_EventType.addBulletAll, transform);
@@ -66,14 +64,14 @@ public class Bullet_Hero_10005 : BulletBase
     //回收自己
     private void PushObj()
     {
-        //记录所有大鹅，在过关时统一回收，因为大鹅移除事件和回收自己在同一个方法会报错特殊处理
+        //记录所有大鹅，因为大鹅移除事件和回收自己在同一个方法会报错特殊处理
         EventMgr.Instance.EventTrigger<Transform>(E_EventType.removeBulletAll, transform);
 
         EventMgr.Instance.RemoveEventListener<List<Transform>>(E_EventType.chaEnemyList, ChaEnemyList);
         PlayAnimMgr.Instance.PlayBullePushAnim(transform.localPosition, transform.parent);
         PoolMgr.Instance.PushObj(gameObject);
     }
-    //特殊处理
+    //特殊处理，在过关时统一回收
     public void PushObjGanme()
     {
         EventMgr.Instance.RemoveEventListener<List<Transform>>(E_EventType.chaEnemyList, ChaEnemyList);
@@ -96,13 +94,14 @@ public class Bullet_Hero_10005 : BulletBase
         _animator.enabled = false;
     }
 
+    /// <summary>
+    /// 选择攻击目标
+    /// </summary>
     protected void IsOkAtk()
     {
         if (enemyAllList == null || enemyAllList.Count == 0)
             return;
-
         Vector3 myPos = transform.localPosition;
-
         //按距离由近及远排序
         var sorted = enemyAllList
             .OrderBy(e => (e.localPosition - myPos).sqrMagnitude)
@@ -120,61 +119,94 @@ public class Bullet_Hero_10005 : BulletBase
     private void Attack(Transform target)
     {
         if (target == null || !target.gameObject.activeSelf)
-        {   //如果去的路上敌人就死了，重新找一个目标
+        {   //如果敌人就死了，重新找一个目标
             IsOkAtk();
             return;
         }
+        atkTarget = target;
 
-        if (target.position.x < transform.position.x)
+        SetRotation();
+
+        if (IsDistanceMin())
+            StartAtk();
+        else
+        {
+            moveAtkTarget = true;
+            moveSpeed = GetMoveSpeed();
+            spineAnim.AnimationState.SetAnimation(0, EnemyAnimSpineTag.move, true);
+            transform.DOLocalMove(target.localPosition, moveSpeed).SetEase(Ease.OutQuad);
+        }
+    }
+    /// <summary>
+    /// 发起攻击
+    /// </summary>
+    private void StartAtk()
+    {
+        SetRotation();
+        isPlayAtkTimr = true;
+        moveAtkTarget = false;
+        if (atkTarget != null && atkTarget.gameObject.activeSelf)
+        {
+            atkFewTime--;
+            spineAnim.AnimationState.SetAnimation(0, EnemyAnimSpineTag.atk, false).Complete += trackEntry =>
+            {
+                if (atkFewTime <= 0)
+                {
+                    TimeMgr.Instance.AddTime(0.5f, () =>
+                    {
+                        PushObj();
+                    });
+                }
+                //动画结束再造成伤害
+                if (atkTarget.gameObject.activeSelf)
+                    atkTarget.GetComponent<EnemyBase>().EnemyBeAtk(atkValue);
+                spineAnim.AnimationState.AddAnimation(0, EnemyAnimSpineTag.stand, true, 0f);
+            };
+            timeAtkCooling = atkCooling;
+        }
+        else
+            StopAtk();
+    }
+    /// <summary>
+    /// 如果去的路上敌人就死了，冷却缩减一半
+    /// </summary>
+    private void StopAtk()
+    {
+        //停止移动动画
+        transform.DOKill();
+        moveAtkTarget = false;
+        isPlayAtkTimr = true;
+        timeAtkCooling = atkCooling / 2;
+        spineAnim.AnimationState.SetAnimation(0, EnemyAnimSpineTag.stand, true);
+    }
+    /// <summary>
+    /// 设置方向
+    /// </summary>
+    private void SetRotation()
+    {
+        if (atkTarget.position.x < transform.position.x)
             transform.localRotation = Quaternion.Euler(new Vector3(0, 180, 0));
         else
             transform.localRotation = Quaternion.identity;
-
-        float distance = Vector3.Distance(transform.position, target.position);
-        if (distance < 100)
-            moveSpeed = 0.8f;
-        else if (distance >= 100 && distance < 350)
-            moveSpeed = 1.6f;
-        else if (distance >= 350 && distance < 650)
-            moveSpeed = 2.2f;
-        else
-            moveSpeed = 3.8f;
-
-        spineAnim.AnimationState.SetAnimation(0, EnemyAnimSpineTag.move, true);
-        transform.DOLocalMove(target.localPosition, moveSpeed).SetEase(Ease.OutQuad).OnComplete(() =>
-        {
-            //移动到敌人身边 回调
-            isPlayAtkTimr = true;
-            atkFewTime--;
-            if (target != null && target.gameObject.activeSelf)
-            {
-                spineAnim.AnimationState.SetAnimation(0, EnemyAnimSpineTag.atk, false).Complete += trackEntry =>
-                {
-                    if (atkFewTime <= 0)
-                    {
-                        TimeMgr.Instance.AddTime(0.5f, () =>
-                        {
-                            PushObj();
-                        });
-                    }
-                    spineAnim.AnimationState.AddAnimation(0, EnemyAnimSpineTag.stand, true, 0f);
-                };
-                //跟动画同步
-                TimeMgr.Instance.AddTime(0.35f, () =>
-                {
-                    if (target != null && target.gameObject.activeSelf)
-                        target.GetComponent<EnemyBase>().EnemyBeAtk(atkValue);
-                });
-                target.GetComponent<EnemyBase>().EnemyBeAtk(atkValue);
-                timeAtkCooling = atkCooling;
-                //Debug.Log($"大鹅造成伤害 {atkValue}");
-            }
-            else
-            {
-                //如果去的路上敌人就死了，冷却缩减一半
-                timeAtkCooling = atkCooling / 2;
-            }
-        });
+    }
+    /// <summary>
+    /// 根据自身和敌人的距离，获取移动速度
+    /// </summary>
+    private float GetMoveSpeed(float maxSpedd = 4.5f)
+    {
+        float distance = Vector3.Distance(transform.localPosition, atkTarget.localPosition);
+        // 把距离 0~2000 映射到 0~1 区间，如果距离超过2000 就按照2000计算
+        float t = Mathf.Clamp01(distance / 2000f);
+        // 再把 0~1 映射 到0~4.5 的移动速度
+        return Mathf.Lerp(0, maxSpedd, t);
+    }
+    /// <summary>
+    /// 和攻击目标的距离是否小于150
+    /// </summary>
+    /// <returns></returns>
+    private bool IsDistanceMin()
+    {
+        return Vector3.Distance(transform.localPosition, atkTarget.localPosition) < 200;
     }
 
     protected override void Update()
@@ -188,6 +220,13 @@ public class Bullet_Hero_10005 : BulletBase
                 isPlayAtkTimr = false;
                 IsOkAtk();
             }
+        }
+        if (moveAtkTarget)
+        {
+            if (!atkTarget.gameObject.activeSelf)
+                StopAtk();
+            else if (IsDistanceMin())
+                StartAtk();
         }
     }
 }

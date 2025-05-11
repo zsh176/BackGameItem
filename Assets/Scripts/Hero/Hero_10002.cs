@@ -14,17 +14,20 @@ public class Hero_10002 : HeroBase
         base.Attack(target);
 
         bool isSkill = level >= 3;
-
-        PoolMgr.Instance.GetObj(obj =>
+        //延迟生成子弹，跟动画同步
+        TimeMgr.Instance.AddTime(0.2f, () =>
         {
-            obj.transform.SetParent(bullet_Base, false);
+            PoolMgr.Instance.GetObj(obj =>
+            {
+                obj.transform.SetParent(bullet_Base, false);
 
-            Vector3 dir = (target.position - atkPos.position).normalized;
+                Vector3 dir = (target.position - atkPos.position).normalized;
 
-            Quaternion rotation = Quaternion.FromToRotation(Vector3.up, dir);
+                Quaternion rotation = Quaternion.FromToRotation(Vector3.up, dir);
 
-            obj.GetComponent<Bullet_Hero_10002>().Init(atkPos.position, rotation, atkValueBuff , sceneMapBG, isSkill);
+                obj.GetComponent<Bullet_Hero_10002>().Init(atkPos.position, rotation, atkValueBuff, sceneMapBG, isSkill);
 
-        }, bulletName, StaticFields.Bullet);
+            }, bulletName, StaticFields.Bullet);
+        });
     }
 }

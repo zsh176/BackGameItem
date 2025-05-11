@@ -9,7 +9,7 @@ public abstract class BulletBase : MonoBehaviour
 {
     protected float moveSpeed;//移动速度
     protected int atkValue;//攻击力
-    protected Transform target;//攻击目标
+    protected Transform atkTarget;//攻击目标
     protected bool isOver;//攻击结束
 
     protected float mapBGheight = 1500;//游戏场景背景高度的 2/1
@@ -50,20 +50,5 @@ public abstract class BulletBase : MonoBehaviour
             return true;
         }
         return false;
-    }
-
-    protected virtual void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (isOver) return;
-        if (collision.CompareTag(StaticFields.Enemy))
-        {
-            isOver = true;
-            //Debug.Log($"攻击伤害为：{atkValue}");
-            enemys.Add(collision.transform);
-            enemys[0].GetComponent<EnemyBase>().EnemyBeAtk(atkValue);
-            enemys.Clear();
-
-            PoolMgr.Instance.PushObj(gameObject);
-        }
     }
 }

@@ -96,7 +96,7 @@ namespace DragonBones
         protected const string SUB_TYPE = "subType";
         protected const string NAME = "name";
         protected const string PARENT = "parent";
-        protected const string TARGET = "target";
+        protected const string TARGET = "atkTarget";
         protected const string STAGE = "stage";
         protected const string SHARE = "share";
         protected const string PATH = "path";

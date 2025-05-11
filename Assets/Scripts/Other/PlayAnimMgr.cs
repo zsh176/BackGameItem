@@ -60,6 +60,26 @@ public class PlayAnimMgr : BaseManager<PlayAnimMgr>
     }
 
     /// <summary>
+    /// 王小虎子弹爆炸动画
+    /// </summary>
+    public void PlayBulleExplosionAnim(Vector3 pos, UnityEngine.Transform parent)
+    {
+        PoolMgr.Instance.GetObj(obj =>
+        {
+            //设置父物体
+            obj.transform.SetParent(parent, false);
+            obj.transform.localScale = Vector3.one;
+            obj.transform.localPosition = pos;
+            //播完动画回收
+            obj.transform.Find("spine_Anim").GetComponent<SkeletonGraphic>().AnimationState.SetAnimation(0, "boom_yh", false).Complete += trackEntry =>
+            {
+                PoolMgr.Instance.PushObj(obj);
+            };
+        }, "Bullet_10004_ExplosionAnim", StaticFields.AnimTag);
+    }
+
+
+    /// <summary>
     /// 提示弹窗
     /// </summary>
     /// <param name="str"></param>

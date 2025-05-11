@@ -37,7 +37,6 @@ public class Hero_10005 : HeroBase
         //4.随机选一位并攻击
         Attack(nearest20[Random.Range(0, nearest20.Count)]);
     }
-
     protected override void Attack(Transform target)
     {
         base.Attack(target);
