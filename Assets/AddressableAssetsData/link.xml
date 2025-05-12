@@ -1,6 +1,7 @@
 <linker>
   <assembly fullname="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="BoxHero" preserve="all" />
+    <type fullname="Bullet_Enemy_04" preserve="all" />
     <type fullname="Bullet_Hero_10002" preserve="all" />
     <type fullname="Bullet_Hero_10004" preserve="all" />
     <type fullname="Bullet_Hero_10005" preserve="all" />
@@ -9,8 +10,10 @@
     <type fullname="DragonBones.UnityDragonBonesData" preserve="all" />
     <type fullname="DragonBones.UnityUGUIDisplay" preserve="all" />
     <type fullname="Enemy_Nearly" preserve="all" />
+    <type fullname="Enemy_Ordinary04" preserve="all" />
     <type fullname="Enemy_Remote" preserve="all" />
     <type fullname="GamePanel" preserve="all" />
+    <type fullname="HarmTips" preserve="all" />
     <type fullname="Hero_10002" preserve="all" />
     <type fullname="Hero_10004" preserve="all" />
     <type fullname="Hero_10005" preserve="all" />

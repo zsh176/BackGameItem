@@ -149,6 +149,8 @@ public class GamePanel : BasePanel
         obj_SkipLevel.SetActive(false);
         RefreshHeroBox();
 
+        originalPosition = battleMap.localPosition;
+
         EventMgr.Instance.AddEventListener<UpHeroOrBox>(E_EventType.placeHeroBox, PlaceHeroBox);
         EventMgr.Instance.AddEventListener<Transform>(E_EventType.enemyDeath, EnemyDeath);
         EventMgr.Instance.AddEventListener<BeAtkData>(E_EventType.playerBeAtk, PlayerBeAtk);
@@ -156,6 +158,7 @@ public class GamePanel : BasePanel
         EventMgr.Instance.AddEventListener<int>(E_EventType.addHP, AddHP);
         EventMgr.Instance.AddEventListener<Transform>(E_EventType.addBulletAll, AddBullet10005);
         EventMgr.Instance.AddEventListener<Transform>(E_EventType.removeBulletAll, RemoveBullet10005);
+        EventMgr.Instance.AddEventListener(E_EventType.playShaking, PlayShakingBG);
     }
 
     public override void HideMe()
@@ -167,6 +170,7 @@ public class GamePanel : BasePanel
         EventMgr.Instance.RemoveEventListener<int>(E_EventType.addHP, AddHP);
         EventMgr.Instance.RemoveEventListener<Transform>(E_EventType.addBulletAll, AddBullet10005);
         EventMgr.Instance.RemoveEventListener<Transform>(E_EventType.removeBulletAll, RemoveBullet10005);
+        EventMgr.Instance.RemoveEventListener(E_EventType.playShaking, PlayShakingBG);
     }
 
     #region 绑定按钮等控件的事件
@@ -747,6 +751,56 @@ public class GamePanel : BasePanel
     }
     #endregion
 
+    #region 其他
+    private Vector3 originalPosition;
+    private bool isShaking = false;
+    /// <summary>
+    /// 地图抖动
+    /// </summary>
+    private void PlayShakingBG()
+    {
+        if (isShaking) return;
+        isShaking = true;
+        originalPosition = battleMap.transform.localPosition;
+        originalPosition.y -= 5f;
+        originalPosition.x -= 5f;
+        battleMap.DOLocalMove(originalPosition, 0.1f).SetEase(Ease.OutBounce).OnComplete(() =>
+        {
+            originalPosition.y += 10f;
+            originalPosition.x += 10f;
+            battleMap.DOLocalMove(originalPosition, 0.2f).SetEase(Ease.OutBounce).OnComplete(() =>
+            {
+                originalPosition.y -= 5f;
+                originalPosition.x -= 5f;
+                battleMap.DOLocalMove(originalPosition, 0.1f).SetEase(Ease.OutBounce).OnComplete(() =>
+                {
+                    battleMap.DOLocalMove(Vector3.zero, 0.1f).SetEase(Ease.OutBounce).OnComplete(() =>
+                    {
+                        isShaking = false;
+                    });
+                });
+            });
+        });
+    }
+
+    /// <summary>
+    /// 获取子弹层级父物体
+    /// </summary>
+    /// <returns></returns>
+    public Transform GetBullet_Base()
+    {
+        return bullet_Base.transform;
+    }
+    /// <summary>
+    /// 获取防御塔
+    /// </summary>
+    /// <returns></returns>
+    public Transform GetmapHeroBG()
+    {
+        return mapHeroBG.transform;
+    }
+    #endregion
+
     /******** 游戏流程相关 **********/
 
     #region 生成敌人相关
@@ -771,6 +825,24 @@ public class GamePanel : BasePanel
 
         //Debug.Log($"第 {presentAwve + 1} 波的第 {presentBatch + 1} 批次，间隔 {allLevelData[presentAwve].batchDatas[presentBatch].Cooling} 秒后，再次生成敌人" +
         //  $"\n一共 {allLevelData[presentAwve].batchDatas[presentBatch].enemyName.Length} 个类型，每个类型生成 {fewEnemy} 个");
+
+
+        //测试
+        //for (int j = 0; j < 50; j++)
+        //{
+        //    PoolMgr.Instance.GetObj(obj =>
+        //    {
+        //        obj.transform.SetParent(enemyBoss, true);
+        //        EnemyBase enemy = obj.GetComponent<EnemyBase>();
+        //        enemy.Init(GeneratePositionAroundPoint(), mapHeroBG);
+
+        //        enemyAllList.Add(obj.transform);
+
+        //    }, EnemyType.Enemy_Ordinary04.ToString(), StaticFields.Enemy);
+        //}
+        //EventMgr.Instance.EventTrigger<List<Transform>>(E_EventType.chaEnemyList, enemyAllList);
+        //SortObjects(enemyBoss);
+        //return;
 
         for (int i = 0; i < allLevelData[presentAwve].batchDatas[presentBatch].enemyName.Length; i++)
         {
@@ -977,7 +1049,7 @@ public class GamePanel : BasePanel
 }
 
 /// <summary>
-/// 被攻击时传入的信息
+/// 玩家被攻击时传入的信息
 /// </summary>
 public class BeAtkData
 {

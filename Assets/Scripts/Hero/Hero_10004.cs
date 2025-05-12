@@ -45,7 +45,7 @@ public class Hero_10004 : HeroBase
             PoolMgr.Instance.GetObj(obj =>
             {
                 obj.transform.SetParent(bullet_Base, false);
-                obj.GetComponent<Bullet_Hero_10004>().Init(atkPos.position, atkValueBuff, target);
+                obj.GetComponent<Bullet_Hero_10004>().Init(atkPos.position, atkValueBuff, target, enemyAllList);
             }, bulletName, StaticFields.Bullet);
         });
     }

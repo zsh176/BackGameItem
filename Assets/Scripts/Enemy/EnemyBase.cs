@@ -62,11 +62,6 @@ public abstract class EnemyBase : MonoBehaviour
         nowHP = maxHP;
         isDeath = false;
 
-        //TimeMgr.Instance.AddTime(UnityEngine.Random.Range(6,12), () =>
-        //{
-        //    Death();
-        //});
-
         EventMgr.Instance.AddEventListener(E_EventType.skipLevel, Death);
     }
     /// <summary>
@@ -88,9 +83,13 @@ public abstract class EnemyBase : MonoBehaviour
     /// </summary>
     protected virtual void Attack()
     {
-        // 先播放攻击动画，结束后自动播放待机动画
-        spineAnim.AnimationState.SetAnimation(0, EnemyAnimSpineTag.atk, false);
-        spineAnim.AnimationState.AddAnimation(0, EnemyAnimSpineTag.stand, true, 0f);
+        spineAnim.AnimationState.SetAnimation(0, EnemyAnimSpineTag.atk, false).Complete += trackEntry =>
+        {   // 先播放攻击动画，结束后播放待机动画
+            spineAnim.AnimationState.SetAnimation(0, EnemyAnimSpineTag.stand, true);
+        };
+        timeAtkCooling = atkCooling;
+
+        //发送事件，玩家被攻击
         BeAtkData data = new BeAtkData()
         {
             harm = atkValue,
@@ -98,14 +97,21 @@ public abstract class EnemyBase : MonoBehaviour
         };
         EventMgr.Instance.EventTrigger<BeAtkData>(E_EventType.playerBeAtk, data);
 
-        timeAtkCooling = atkCooling;
+        
     }
     /// <summary>
     /// 敌人被攻击
     /// </summary>
-    public virtual void EnemyBeAtk(int harm)
+    public virtual void EnemyBeAtk(int harm, bool isStrike = false)
     {
         if (isDeath) return;
+
+        Vector3 tipsPos = new Vector3(transform.localPosition.x - 60, transform.localPosition.y);
+        PoolMgr.Instance.GetObj(obj =>
+        {
+            obj.GetComponent<HarmTips>().ShowTips(harm, tipsPos, isStrike);
+        }, "HarmTips", StaticFields.AnimTag);
+
         nowHP -= harm;
         if (nowHP <= 0)
         {

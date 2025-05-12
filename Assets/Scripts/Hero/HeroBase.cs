@@ -318,9 +318,10 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
         else
             thisRotation.localScale = Vector2.one;
 
-        // 先播放攻击动画，结束后自动播放待机动画
-        spineAnim.AnimationState.SetAnimation(0, HeroAnimSpineTag.atk, false);
-        spineAnim.AnimationState.AddAnimation(0, HeroAnimSpineTag.stand, true, 0f);
+        spineAnim.AnimationState.SetAnimation(0, HeroAnimSpineTag.atk, false).Complete += trackEntry =>
+        {   // 先播放攻击动画，结束后播放待机动画
+            spineAnim.AnimationState.SetAnimation(0, EnemyAnimSpineTag.stand, true);
+        };
 
         timeAtkCooling = atkCooling;
     }

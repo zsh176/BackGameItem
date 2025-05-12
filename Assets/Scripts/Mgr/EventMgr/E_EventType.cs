@@ -23,4 +23,5 @@ public enum E_EventType
     upHero10006,//上阵中的食堂阿姨合成升级
     addBulletAll,//记录大鹅，在过关时统一回收
     removeBulletAll,//大鹅被回收
+    playShaking,//播放地图抖动动画
 }
