@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 远程攻击敌人
 /// </summary>
-public class Enemy_Remote : EnemyBase
+public abstract class Enemy_Remote : EnemyBase
 {
     private GameObject remote_Atk;//远程攻击检测范围
     protected string bulletName;//子弹资源名

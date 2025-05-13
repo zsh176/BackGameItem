@@ -40,9 +40,14 @@ public class Hero_10014 : HeroBase
             startAngleOffset: 0
         );
 
+        //ÊÇ·ñ±©»÷
+        bool isStrike = false;
+
         for (int i = 0; i < bulletCount; i++)
         {
             int index = i;
+
+            isStrike = Random.value > 0.8f;
 
             PoolMgr.Instance.GetObj(obj =>
             {
@@ -65,7 +70,8 @@ public class Hero_10014 : HeroBase
                     spawnPos,
                     rotation,
                     atkValueBuff,
-                    sceneMapBG
+                    sceneMapBG,
+                    isStrike
                 );
 
             }, bulletName, StaticFields.Bullet);

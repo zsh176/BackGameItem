@@ -40,6 +40,7 @@ public abstract class EnemyBase : MonoBehaviour
 
     public virtual void Init(Vector2 birthpos, Transform hero)
     {
+        isDeath = false;
         transform.localScale = Vector3.one;
         transform.localPosition = birthpos;
         spineAnim.AnimationState.SetAnimation(0, EnemyAnimSpineTag.move, true);
@@ -60,7 +61,6 @@ public abstract class EnemyBase : MonoBehaviour
         atkValue = enemyDataInfo.atkValue;
         maxHP = enemyDataInfo.maxHP;
         nowHP = maxHP;
-        isDeath = false;
 
         EventMgr.Instance.AddEventListener(E_EventType.skipLevel, Death);
     }
@@ -69,6 +69,7 @@ public abstract class EnemyBase : MonoBehaviour
     /// </summary>
     protected virtual void PushObj()
     {
+        isDeath = false;
         stopMove = false;
         transform.localRotation = Quaternion.identity;
         transform.localPosition = new Vector3(1000, 0);
@@ -83,21 +84,20 @@ public abstract class EnemyBase : MonoBehaviour
     /// </summary>
     protected virtual void Attack()
     {
+        if (isDeath) return;
+
+        //获取当播放的动画名称 如果是死亡动画，则跳过
+        TrackEntry entry = spineAnim.AnimationState.GetCurrent(0);
+        if (entry != null && entry.Animation != null && entry.Animation.Name == EnemyAnimSpineTag.death)
+            return;
+
         spineAnim.AnimationState.SetAnimation(0, EnemyAnimSpineTag.atk, false).Complete += trackEntry =>
         {   // 先播放攻击动画，结束后播放待机动画
+            if (isDeath) return;
             spineAnim.AnimationState.SetAnimation(0, EnemyAnimSpineTag.stand, true);
         };
         timeAtkCooling = atkCooling;
 
-        //发送事件，玩家被攻击
-        BeAtkData data = new BeAtkData()
-        {
-            harm = atkValue,
-            pos = transform.position,
-        };
-        EventMgr.Instance.EventTrigger<BeAtkData>(E_EventType.playerBeAtk, data);
-
-        
     }
     /// <summary>
     /// 敌人被攻击

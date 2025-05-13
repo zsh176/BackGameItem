@@ -18,16 +18,17 @@ public class Bullet_Hero_10002 : BulletBase
         ordinary = transform.Find("Ordinary").gameObject;
         skill = transform.Find("Skill").gameObject;
     }
-    public void Init(Vector3 initPos, Quaternion initRotation, int atkvalus,RectTransform initsceneMapBG, bool isSkill = false)
+    public override void Init(Vector3 initPos, Quaternion initRotation, int atkvalus, RectTransform initsceneMapBG, bool initIsStrike)
     {
         transform.position = initPos;
         transform.rotation = initRotation;
         atkValue = atkvalus;
         mapBGheight = (initsceneMapBG.rect.height / 2) + 200;
         mapBGwidth = (initsceneMapBG.rect.width / 2) + 200;
-        ordinary.SetActive(!isSkill);
-        skill.SetActive(isSkill);
+        ordinary.SetActive(!initIsStrike);
+        skill.SetActive(initIsStrike);
         isOver = false;
+        isStrike = initIsStrike;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -38,7 +39,7 @@ public class Bullet_Hero_10002 : BulletBase
             isOver = true;
             //Debug.Log($"¹¥»÷ÉËº¦Îª£º{atkValue}");
             enemys.Add(collision.transform);
-            enemys[0].GetComponent<EnemyBase>().EnemyBeAtk(atkValue);
+            enemys[0].GetComponent<EnemyBase>().EnemyBeAtk(atkValue, isStrike);
             enemys.Clear();
 
             PoolMgr.Instance.PushObj(gameObject);

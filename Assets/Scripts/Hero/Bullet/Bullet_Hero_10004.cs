@@ -54,8 +54,10 @@ public class Bullet_Hero_10004 : BulletBase
             {
                 if(Vector3.Distance(transform.localPosition, item.localPosition) < 170)
                 {
+                    //是否暴击
+                    bool isStrike = Random.value > 0.8f;
                     //在爆炸范围内的敌人，造成伤害
-                    item.GetComponent<EnemyBase>().EnemyBeAtk(atkValue);
+                    item.GetComponent<EnemyBase>().EnemyBeAtk(atkValue, isStrike);
                 }
             }
         }

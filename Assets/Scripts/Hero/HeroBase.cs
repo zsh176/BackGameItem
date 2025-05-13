@@ -27,7 +27,7 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
     private Animator thisAnimator;//动画控制器
     private Quaternion downRotation;//按下时的旋转
     private bool isUpLevelSeq;//是否开启提示可以升级动画
-    private bool isField;//自己是否已上阵
+    
 
     protected RectTransform thisRect;//自身
     protected Transform thisRotation;//左右旋转点
@@ -36,7 +36,8 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
     protected HeroDataInfo heroDataInfo;//角色配置数据
     protected bool isClick;//是否点击 且没有进行拖拽
 
-    
+    [HideInInspector]
+    public bool isField;//自己是否已上阵
     [HideInInspector]
     public bool isSyn;//标记自己为被合成对象
     [HideInInspector]
@@ -118,6 +119,7 @@ public abstract class HeroBase : MonoBehaviour, IPointerDownHandler, IPointerUpH
     public virtual void OnPointerDown(PointerEventData eventData)
     {
         if (GameStatus.Instance.offDrag) return;
+        isField = false;
         isClick = false;
         UpHeroOrBox upHero = new UpHeroOrBox();
         upHero.type = transform;

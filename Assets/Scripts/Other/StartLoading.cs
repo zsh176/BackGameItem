@@ -4,9 +4,9 @@ using UnityEngine;
 
 
 /// <summary>
-/// 游戏启动显示第一个面板
+/// 游戏启动脚本，加载中第一个面板
 /// </summary>
-public class StartInitPanel : MonoBehaviour
+public class StartLoading : MonoBehaviour
 {
     void Start()
     {
@@ -14,6 +14,7 @@ public class StartInitPanel : MonoBehaviour
         {
             UIManager.Instance.ShowPanel<GamePanel>(callBack:transform =>
             {
+                gameObject.SetActive(false);
                 print("显示GamePanel面板完成");
             });
         };

@@ -13,7 +13,9 @@ public class Hero_10002 : HeroBase
     {
         base.Attack(target);
 
-        bool isSkill = level >= 3;
+        //是否暴击
+        bool isStrike = Random.value > 0.8f;
+
         //延迟生成子弹，跟动画同步
         TimeMgr.Instance.AddTime(0.2f, () =>
         {
@@ -25,7 +27,7 @@ public class Hero_10002 : HeroBase
 
                 Quaternion rotation = Quaternion.FromToRotation(Vector3.up, dir);
 
-                obj.GetComponent<Bullet_Hero_10002>().Init(atkPos.position, rotation, atkValueBuff, sceneMapBG, isSkill);
+                obj.GetComponent<Bullet_Hero_10002>().Init(atkPos.position, rotation, atkValueBuff, sceneMapBG, isStrike);
 
             }, bulletName, StaticFields.Bullet);
         });

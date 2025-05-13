@@ -14,9 +14,7 @@ public class Enemy_Ordinary04 : Enemy_Remote
     }
     protected override void Attack()
     {
-        spineAnim.AnimationState.SetAnimation(0, EnemyAnimSpineTag.atk, false);
-        spineAnim.AnimationState.AddAnimation(0, EnemyAnimSpineTag.stand, true, 0f);
-        timeAtkCooling = atkCooling;
+        base.Attack();
         TimeMgr.Instance.AddTime(0.2f, () =>
         {
             PoolMgr.Instance.GetObj(obj =>

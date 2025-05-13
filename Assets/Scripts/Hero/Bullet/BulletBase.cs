@@ -11,6 +11,7 @@ public abstract class BulletBase : MonoBehaviour
     protected int atkValue;//攻击力
     protected Transform atkTarget;//攻击目标
     protected bool isOver;//攻击结束
+    protected bool isStrike;//是否暴击
 
     protected float mapBGheight = 1500;//游戏场景背景高度的 2/1
     protected float mapBGwidth = 1500;//游戏场景背景宽度的 2/1
@@ -22,7 +23,7 @@ public abstract class BulletBase : MonoBehaviour
         enemys = new List<Transform>();
     }
 
-    public virtual void Init(Vector3 initPos, Quaternion initRotation, int atkvalus, RectTransform initsceneMapBG)
+    public virtual void Init(Vector3 initPos, Quaternion initRotation, int atkvalus, RectTransform initsceneMapBG,bool initIsStrike)
     {
         transform.position = initPos;
         transform.rotation = initRotation;
@@ -30,6 +31,7 @@ public abstract class BulletBase : MonoBehaviour
         mapBGheight = (initsceneMapBG.rect.height / 2) + 200;
         mapBGwidth = (initsceneMapBG.rect.width / 2) + 200;
         isOver = false;
+        isStrike = initIsStrike;
     }
 
     protected virtual void Update()

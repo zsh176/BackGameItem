@@ -142,6 +142,9 @@ public class Bullet_Hero_10005 : BulletBase
     /// </summary>
     private void StartAtk()
     {
+        //是否暴击
+        bool isStrike = Random.value > 0.8f;
+
         SetRotation();
         isPlayAtkTimr = true;
         moveAtkTarget = false;
@@ -159,7 +162,7 @@ public class Bullet_Hero_10005 : BulletBase
                 }
                 //动画结束再造成伤害
                 if (atkTarget.gameObject.activeSelf)
-                    atkTarget.GetComponent<EnemyBase>().EnemyBeAtk(atkValue);
+                    atkTarget.GetComponent<EnemyBase>().EnemyBeAtk(atkValue, isStrike);
                 spineAnim.AnimationState.AddAnimation(0, EnemyAnimSpineTag.stand, true, 0f);
             };
             timeAtkCooling = atkCooling;

@@ -242,7 +242,9 @@ public class Matrix_MapBox : MonoBehaviour
                         //将挤下来的角色放回备用区
                         UpHeroOrBox upHero = new UpHeroOrBox();
                         upHero.type = itemHero;
+                        upHero.heroBase =  itemHero.GetComponent<HeroBase>();
                         upHero.e_touchState = E_TouchState.UpPlace;
+                        upHero.heroBase.isField = false;
                         EventMgr.Instance.EventTrigger<UpHeroOrBox>(E_EventType.placeHeroBox, upHero);
                     });
             }

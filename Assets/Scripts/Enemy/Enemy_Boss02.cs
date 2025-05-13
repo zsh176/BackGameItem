@@ -2,10 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-/// <summary>
-/// ½ü³Ì¹¥»÷µÐÈË
-/// </summary>
-public class Enemy_Nearly : EnemyBase
+public class Enemy_Boss02 : Enemy_Remote
 {
     protected override void Attack()
     {

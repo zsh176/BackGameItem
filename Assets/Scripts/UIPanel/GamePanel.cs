@@ -330,6 +330,7 @@ public class GamePanel : BasePanel
     }
     private void SetSimp()
     {
+        if (!GameStatus.Instance.offDrag) return;
         if (isSimp)
         {
             txt_Simp.text = ">";
@@ -345,12 +346,15 @@ public class GamePanel : BasePanel
     }
     private void OnClick_FOVAdd()
     {
+        if (!GameStatus.Instance.offDrag) return;
+
         float value = fOV_Slider.value + 0.1f;
         fOV_Slider.DOValue(value, animSmoothTime);
         BtnOnClick_FOV(value);
     }
     private void OnClick_FOVDown()
     {
+        if (!GameStatus.Instance.offDrag) return;
         float value = fOV_Slider.value - 0.1f;
         fOV_Slider.DOValue(value, animSmoothTime);
         BtnOnClick_FOV(value);
@@ -363,6 +367,7 @@ public class GamePanel : BasePanel
 
     private void OnValue_FOV(float sliderValue)
     {
+        if (!GameStatus.Instance.offDrag) return;
         // 将 0~1 映射成 0.38~0.9
         float targetScale = Mathf.Lerp(minMapScale, maxMapScale, sliderValue);
         battleMap.localScale = Vector3.one * targetScale;
@@ -446,8 +451,8 @@ public class GamePanel : BasePanel
                 if (fieldHeros.Contains(uphoero.type))
                 {
                     //处于上阵中角色被拖拽
-                    fieldHeros.Remove(uphoero.type);
                     OnHeroField(uphoero);
+                    fieldHeros.Remove(uphoero.type);
                     EventMgr.Instance.EventTrigger<Transform>(E_EventType.fieldHeroDrag, uphoero.type);
                 }
                 uphoero.type.SetParent(transform, true);
@@ -458,6 +463,12 @@ public class GamePanel : BasePanel
                 CalculateLayout();
                 break;
             case E_TouchState.UpPlace://放入备用卡池区
+                if (fieldHeros.Contains(uphoero.type))
+                {   //处于上阵中角色被挤下阵
+                    OnHeroField(uphoero);
+                    fieldHeros.Remove(uphoero.type);
+                    EventMgr.Instance.EventTrigger<Transform>(E_EventType.fieldHeroDrag, uphoero.type);
+                }
                 uphoero.type.SetParent(heroBoxBase, true);
                 int index = FindClosest(uphoero.type.position);
                 //在指定索引处，插入
@@ -612,9 +623,9 @@ public class GamePanel : BasePanel
                 maxHP += addHP;
                 nowHP += addHP;
                 RefreshHPShow();
-            }//如果是下阵，就减最大血量
-            else if (heroType.e_touchState == E_TouchState.Down)
-            {
+            }//如果是下阵或被挤下阵，就减最大血量
+            else if (heroType.e_touchState == E_TouchState.Down || heroType.e_touchState == E_TouchState.UpPlace)
+            {   //并且是处于上阵中的
                 maxHP -= addHP;
                 nowHP -= addHP;
                 RefreshHPShow();
@@ -639,6 +650,7 @@ public class GamePanel : BasePanel
             RefreshHPShow();
         }
     }
+
     #endregion
 
     #region 封装一层随机数API

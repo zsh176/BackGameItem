@@ -22,7 +22,7 @@ public class Bullet_Hero_10014 : BulletBase
             isOver = true;
             //Debug.Log($"¹¥»÷ÉËº¦Îª£º{atkValue}");
             enemys.Add(collision.transform);
-            enemys[0].GetComponent<EnemyBase>().EnemyBeAtk(atkValue);
+            enemys[0].GetComponent<EnemyBase>().EnemyBeAtk(atkValue, isStrike);
             enemys.Clear();
 
             PoolMgr.Instance.PushObj(gameObject);
